@@ -1,8 +1,8 @@
 //
-//  SignInViewModel.swift
+//  LogInScreenViewModel.swift
 //  MyMusic
 //
-//  Created by Данила on 07.09.2023.
+//  Created by Данила on 08.09.2023.
 //
 
 import Foundation
@@ -11,12 +11,12 @@ import CombineExt
 import FirebaseCore
 import FirebaseAuth
 
-final class SignInViewModel: ObservableObject {
+final class LogInViewModel: ObservableObject {
     
     var router: NavigationRouter? = nil
     
-    var successSignIn: AnyPublisher<Bool, Never> {
-        return input.successSignInSubject.eraseToAnyPublisher()
+    var successLogIn: AnyPublisher<Bool, Never> {
+        return input.successLogInSubject.eraseToAnyPublisher()
     }
     
     let input: Input = Input()
@@ -26,24 +26,24 @@ final class SignInViewModel: ObservableObject {
     func setRouter(_ router: NavigationRouter) {
         self.router = router
     }
-    
+ 
     init() {
         bind()
     }
 }
 
-extension SignInViewModel {
+extension LogInViewModel {
     
     func bind() {
-        bindAccessToSignIn()
-        signIn()
+        bindAccessToLogIn()
+        logIn()
     }
     
-    func bindAccessToSignIn() {
+    func bindAccessToLogIn() {
         input.emailSubject
-            .combineLatest(input.passwordSubject)
-            .map { email, password in
-                !email.isEmpty && !password.isEmpty
+            .combineLatest(input.passwordSubject, input.nameSubject)
+            .map { email, password, name in
+                !email.isEmpty && !password.isEmpty && !name.isEmpty
             }
             .sink { isEnabledEnter in
                 self.output.isDisabledButton = !isEnabledEnter
@@ -51,15 +51,16 @@ extension SignInViewModel {
             .store(in: &cancellable)
     }
     
-    func signIn() {
-        input.signInSubject
-            .sink { (email, password) in
-                Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+    func logIn() {
+        input.logInSubject
+            .sink { (email, password, name) in
+                // create user here
+                Auth.auth().createUser(withEmail: email, password: name) { (result, error) in
                     if error != nil {
                         print(error?.localizedDescription ?? "")
                     } else {
-                        print("success")
-                        self.input.successSignInSubject.send(true)
+                        print("Success Log In")
+                        self.input.successLogInSubject.send(true)
                     }
                 }
             }
@@ -68,13 +69,14 @@ extension SignInViewModel {
     
 }
 
-extension SignInViewModel {
+extension LogInViewModel {
     
     struct Input {
+        let nameSubject = PassthroughSubject<String, Never>()
         let emailSubject = PassthroughSubject<String, Never>()
         let passwordSubject = PassthroughSubject<String, Never>()
-        let signInSubject = PassthroughSubject<(String, String), Never>()
-        let successSignInSubject = PassthroughSubject<Bool, Never>()
+        let logInSubject = PassthroughSubject<(String, String, String), Never>()
+        let successLogInSubject = PassthroughSubject<Bool, Never>()
     }
     
     struct Output {

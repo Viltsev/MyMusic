@@ -51,6 +51,12 @@ extension StartScreenViewModel {
                 self?.output.isAccountComplete = true
             }
             .store(in: &cancellable)
+        
+        input.signInSuccessSubject
+            .sink { [weak self] in
+                self?.router?.popToRoot()
+            }
+            .store(in: &cancellable)
     }
     
     
@@ -62,6 +68,7 @@ extension StartScreenViewModel {
         let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
         let popToRoot = PassthroughSubject<Void, Never>()
         let accountCompleteSubject = PassthroughSubject<Void, Never>()
+        let signInSuccessSubject = PassthroughSubject<Void, Never>()
     }
 
     struct Output {

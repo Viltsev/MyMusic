@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignInScreenView: View {
+    
     @EnvironmentObject var router: NavigationRouter
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var startViewModel: StartScreenViewModel
@@ -20,10 +21,21 @@ struct SignInScreenView: View {
     
     var body: some View {
         VStack(spacing: 15) {
-            Text("Sign In")
-                .font(Font.custom("Bakery Holland", size: 60))
-                .foregroundColor(Color.greenLight)
-                .padding(25)
+            HStack {
+                Button {
+                    router.popToRoot()
+                } label: {
+                    Text("back")
+                        .font(Font.custom("Bakery Holland", size: 30))
+                        .foregroundColor(Color.greenLight)
+                        
+                }
+                .padding(.horizontal, -50)
+                Text("Sign In")
+                    .font(Font.custom("Bakery Holland", size: 60))
+                    .foregroundColor(Color.greenLight)
+                    .padding(25)
+            }
             VStack(alignment: .leading, spacing: -10) {
                 Text("Email")
                     .font(Font.custom("Bakery Holland", size: 30))
@@ -66,9 +78,7 @@ struct SignInScreenView: View {
                     .padding(25)
             }
             Button {
-                startViewModel.input.accountCompleteSubject.send()
-                router.popToRoot()
-                dismiss()
+                signIn(email, password)
             } label: {
                 VStack {
                     Text("Go to Music")
@@ -83,6 +93,16 @@ struct SignInScreenView: View {
             .disabled(signViewModel.output.isDisabledButton)
             Spacer()
         }
+        .onReceive(signViewModel.successSignIn, perform: { success in
+            if success {
+                startViewModel.input.accountCompleteSubject.send()
+                router.popToRoot()
+                dismiss()
+            }
+        })
+        .onAppear {
+            signViewModel.setRouter(router)
+        }
         .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.purpleMid)
@@ -96,6 +116,11 @@ extension SignInScreenView {
     
     func bindPassword(_ password: String) {
         signViewModel.input.passwordSubject.send(password)
+    }
+    
+    func signIn(_ email: String, _ password: String) {
+        signViewModel.input.signInSubject.send((email, password))
+
     }
 }
 

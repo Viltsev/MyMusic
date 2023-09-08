@@ -74,7 +74,6 @@ struct StartScreenView: View {
         }
         .navigationBarBackButtonHidden(true)
         .frame(width: screenWidth, height: screenHeight)
-        //.frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.purpleDark.ignoresSafeArea(.all))
     }
 }
