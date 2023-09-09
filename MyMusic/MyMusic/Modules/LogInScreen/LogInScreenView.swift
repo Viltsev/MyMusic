@@ -11,6 +11,8 @@ struct LogInScreenView: View {
     @EnvironmentObject var router: NavigationRouter
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var startViewModel: StartScreenViewModel
+    @EnvironmentObject var dataManager: DataManager
+    
     
     @StateObject var logViewModel = LogInViewModel()
     
@@ -26,19 +28,19 @@ struct LogInScreenView: View {
                     router.popToRoot()
                 } label: {
                     Text("back")
-                        .font(Font.custom("Bakery Holland", size: 30))
+                        .font(Font.custom("Chillax-Semibold", size: 20))
                         .foregroundColor(Color.greenLight)
                         
                 }
                 .padding(.horizontal, -55)
                 Text("Log In")
-                    .font(Font.custom("Bakery Holland", size: 60))
+                    .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
                     .padding(25)
             }
             VStack(alignment: .leading, spacing: -10) {
                 Text("Name")
-                    .font(Font.custom("Bakery Holland", size: 30))
+                    .font(Font.custom("Chillax-Semibold", size: 20))
                     .foregroundColor(Color.greenLight)
                     .padding(.horizontal, 60)
                 SearchField(text: $name,
@@ -50,7 +52,7 @@ struct LogInScreenView: View {
             }
             VStack(alignment: .leading, spacing: -10) {
                 Text("Email")
-                    .font(Font.custom("Bakery Holland", size: 30))
+                    .font(Font.custom("Chillax-Semibold", size: 20))
                     .foregroundColor(Color.greenLight)
                     .padding(.horizontal, 60)
                 SearchField(text: $email,
@@ -63,7 +65,7 @@ struct LogInScreenView: View {
             VStack(alignment: .leading, spacing: -10) {
                 HStack {
                     Text("Password")
-                        .font(Font.custom("Bakery Holland", size: 30))
+                        .font(Font.custom("Chillax-Semibold", size: 20))
                         .foregroundColor(Color.greenLight)
                         .padding(.horizontal, 60)
                     Spacer()
@@ -72,11 +74,11 @@ struct LogInScreenView: View {
                     } label: {
                         if isHidePassword {
                             Text("show")
-                                .font(Font.custom("Bakery Holland", size: 25))
+                                .font(Font.custom("Chillax-Semibold", size: 15))
                                 .foregroundColor(Color.greenLight)
                         } else {
                             Text("hide")
-                                .font(Font.custom("Bakery Holland", size: 25))
+                                .font(Font.custom("Chillax-Semibold", size: 15))
                                 .foregroundColor(Color.greenLight)
                         }
                     }
@@ -94,7 +96,7 @@ struct LogInScreenView: View {
             } label: {
                 VStack {
                     Text("Go to Music")
-                        .font(Font.custom("Bakery Holland", size: 40))
+                        .font(Font.custom("Chillax-Semibold", size: 25))
                         .foregroundColor(Color.greenLight)
                 }
                 .frame(width: 305, height: 70)
@@ -113,7 +115,11 @@ struct LogInScreenView: View {
             }
         })
         .onAppear {
+            for i in dataManager.savedEntities {
+                print("name: \(i.name ?? "no name"), email: \(i.email ?? "no email")")
+            }
             logViewModel.setRouter(router)
+            logViewModel.setDataBase(dataManager)
         }
         .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

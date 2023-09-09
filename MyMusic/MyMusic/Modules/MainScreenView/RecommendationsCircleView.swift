@@ -25,7 +25,7 @@ struct RecommendationsCircleView: View {
 //                            }
 //                        }
                     Text(.myRecommendations)
-                        .font(Font.custom("Bakery Holland", size: 30))
+                        .font(Font.custom("Chillax-Regular", size: 20))
                         .foregroundColor(Color.white)
                 }
             }

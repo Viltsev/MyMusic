@@ -4,6 +4,12 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Durer.ttf</string>
+		<string>Chillax-Regular.otf</string>
+		<string>Chillax-Extralight.otf</string>
+		<string>Chillax-Semibold.otf</string>
+		<string>Shancalluna_regular.ttf</string>
+		<string>SHRIMP.ttf</string>
 		<string>Impana-Regular.otf</string>
 		<string>Bakery Holland.otf</string>
 		<string>Holiday Valentine.otf</string>

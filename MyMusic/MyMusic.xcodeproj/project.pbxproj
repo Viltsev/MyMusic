@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */; };
+		83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC22AAC8BED00ED870A /* DataManager.swift */; };
+		83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC52AACAE7C00ED870A /* ProfileView.swift */; };
+		83495FC82AACD41000ED870A /* Shancalluna_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FC72AACD40F00ED870A /* Shancalluna_regular.ttf */; };
+		83495FCA2AACD73400ED870A /* SHRIMP.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FC92AACD73300ED870A /* SHRIMP.ttf */; };
+		83495FCC2AACD97C00ED870A /* Chillax-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FCB2AACD97B00ED870A /* Chillax-Semibold.otf */; };
+		83495FCE2AACD99A00ED870A /* Chillax-Extralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FCD2AACD99A00ED870A /* Chillax-Extralight.otf */; };
+		83495FD02AACD9A500ED870A /* Chillax-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FCF2AACD9A500ED870A /* Chillax-Regular.otf */; };
+		83495FD22AACDBC000ED870A /* Durer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FD12AACDBBF00ED870A /* Durer.ttf */; };
 		835A25832AA85CF50020E6A9 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A25822AA85CF40020E6A9 /* AppData.swift */; };
 		8373A9E42A9B603E00CA4A44 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373A9E32A9B603E00CA4A44 /* AudioPlayer.swift */; };
 		8373A9E62A9B61D400CA4A44 /* TrackScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373A9E52A9B61D400CA4A44 /* TrackScreenViewModel.swift */; };
@@ -69,6 +78,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83495FC02AAC8B7600ED870A /* UsersContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UsersContainer.xcdatamodel; sourceTree = "<group>"; };
+		83495FC22AAC8BED00ED870A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		83495FC52AACAE7C00ED870A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		83495FC72AACD40F00ED870A /* Shancalluna_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shancalluna_regular.ttf; sourceTree = "<group>"; };
+		83495FC92AACD73300ED870A /* SHRIMP.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SHRIMP.ttf; sourceTree = "<group>"; };
+		83495FCB2AACD97B00ED870A /* Chillax-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chillax-Semibold.otf"; sourceTree = "<group>"; };
+		83495FCD2AACD99A00ED870A /* Chillax-Extralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chillax-Extralight.otf"; sourceTree = "<group>"; };
+		83495FCF2AACD9A500ED870A /* Chillax-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chillax-Regular.otf"; sourceTree = "<group>"; };
+		83495FD12AACDBBF00ED870A /* Durer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Durer.ttf; sourceTree = "<group>"; };
 		835A25822AA85CF40020E6A9 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		8373A9E32A9B603E00CA4A44 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		8373A9E52A9B61D400CA4A44 /* TrackScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackScreenViewModel.swift; sourceTree = "<group>"; };
@@ -144,6 +162,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83495FBE2AAC8B5D00ED870A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */,
+				83495FC22AAC8BED00ED870A /* DataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		83495FC42AACAE6600ED870A /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				83495FC52AACAE7C00ED870A /* ProfileView.swift */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
 		8373A9F12A9B7E9400CA4A44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +273,7 @@
 		83C0240E2A949EB500FE6B03 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				83495FBE2AAC8B5D00ED870A /* Data */,
 				83C0240F2A949EC800FE6B03 /* GeneralAPI */,
 				83C024352A95436F00FE6B03 /* Provider.swift */,
 				83C024372A95438300FE6B03 /* ErrorAPI.swift */,
@@ -289,6 +325,7 @@
 		83C024132A949EF300FE6B03 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				83495FC42AACAE6600ED870A /* ProfileScreen */,
 				839DA0F32AAA15B50001DF8C /* LogInScreen */,
 				839DA0F02AA9EC300001DF8C /* SignInScreen */,
 				839DA0ED2AA9E1C80001DF8C /* StartScreen */,
@@ -345,9 +382,15 @@
 		83CEAEE82A914C520044F2CF = {
 			isa = PBXGroup;
 			children = (
+				83495FC72AACD40F00ED870A /* Shancalluna_regular.ttf */,
 				83CEAF022A914FCA0044F2CF /* Impana-Regular.otf */,
 				83CEAF052A91528E0044F2CF /* Bakery Holland.otf */,
+				83495FC92AACD73300ED870A /* SHRIMP.ttf */,
+				83495FCB2AACD97B00ED870A /* Chillax-Semibold.otf */,
+				83495FCD2AACD99A00ED870A /* Chillax-Extralight.otf */,
 				83CEAF072A9153250044F2CF /* Holiday Valentine.otf */,
+				83495FCF2AACD9A500ED870A /* Chillax-Regular.otf */,
+				83495FD12AACDBBF00ED870A /* Durer.ttf */,
 				83CEAEF32A914C520044F2CF /* MyMusic */,
 				83CEAEF22A914C520044F2CF /* Products */,
 			);
@@ -464,10 +507,16 @@
 			files = (
 				83CEAF032A914FCB0044F2CF /* Impana-Regular.otf in Resources */,
 				8373A9EB2A9B7C2900CA4A44 /* Localizable.strings in Resources */,
+				83495FCC2AACD97C00ED870A /* Chillax-Semibold.otf in Resources */,
 				83CEAF062A91528E0044F2CF /* Bakery Holland.otf in Resources */,
 				83CEAF082A9153260044F2CF /* Holiday Valentine.otf in Resources */,
+				83495FD22AACDBC000ED870A /* Durer.ttf in Resources */,
 				83CEAEFC2A914C570044F2CF /* Preview Assets.xcassets in Resources */,
+				83495FCA2AACD73400ED870A /* SHRIMP.ttf in Resources */,
 				83CEAEF92A914C570044F2CF /* Assets.xcassets in Resources */,
+				83495FC82AACD41000ED870A /* Shancalluna_regular.ttf in Resources */,
+				83495FCE2AACD99A00ED870A /* Chillax-Extralight.otf in Resources */,
+				83495FD02AACD9A500ED870A /* Chillax-Regular.otf in Resources */,
 				83ADC6B52AAB55C400CD62E5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,9 +540,11 @@
 				83C024382A95438300FE6B03 /* ErrorAPI.swift in Sources */,
 				83B05A932A9689B80057CA72 /* SearchViewModel.swift in Sources */,
 				83CEAEF72A914C530044F2CF /* ContentView.swift in Sources */,
+				83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */,
 				83B3BB962AA715AE008D4063 /* ServerArtist.swift in Sources */,
 				83C0241C2A94A6AD00FE6B03 /* BaseModelMapper.swift in Sources */,
 				83C024342A9542E500FE6B03 /* GeneralAPI.swift in Sources */,
+				83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */,
 				8388E6A52A9F7EE400A2520E /* Navigation.swift in Sources */,
 				8373A9F32A9B7EA400CA4A44 /* Text+Extension.swift in Sources */,
 				839DA0EF2AA9E1E20001DF8C /* StartScreenView.swift in Sources */,
@@ -517,6 +568,7 @@
 				83757AD42A99FB8800EFB64D /* NewTrackScreenView.swift in Sources */,
 				83C0241A2A94A5DE00FE6B03 /* Track.swift in Sources */,
 				83B3BB9A2AA71AFF008D4063 /* ReceiveArtistEndpoint.swift in Sources */,
+				83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */,
 				83C0242C2A94BDFF00FE6B03 /* RecommendationsCircleView.swift in Sources */,
 				83ADC6BE2AAB7EA800CD62E5 /* LogInScreenViewModel.swift in Sources */,
 				8388E6A72A9F7F1800A2520E /* NavigationRouter.swift in Sources */,
@@ -821,6 +873,19 @@
 			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				83495FC02AAC8B7600ED870A /* UsersContainer.xcdatamodel */,
+			);
+			currentVersion = 83495FC02AAC8B7600ED870A /* UsersContainer.xcdatamodel */;
+			path = UsersContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 83CEAEE92A914C520044F2CF /* Project object */;
 }

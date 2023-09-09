@@ -60,11 +60,11 @@ struct TrackView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(trackTitle)
-                        .font(.title3)
+                        .font(Font.custom("Chillax-Semibold", size: 20))
                         .lineLimit(0)
                         .foregroundColor(Color.white)
                     Text(artistNames.joined(separator: ", "))
-                        .font(.headline)
+                        .font(Font.custom("Chillax-Regular", size: 20))
                         .foregroundColor(Color.gray)
                 }
                 Spacer()

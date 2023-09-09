@@ -41,27 +41,13 @@ struct MiniPlayer: View {
                     WebImage(url: newTrack.spotifyTrack.album.cover.first?.url)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-//                    AsyncImage(url: newTrack.spotifyTrack.album.cover.first?.url) { phase in
-//                        switch phase {
-//                            case .empty:
-//                                ProgressView()
-//                            case .success(let image):
-//                                image
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fill)
-//                            case .failure(_):
-//                                Text("Failed to load image")
-//                            @unknown default:
-//                                EmptyView()
-//                        }
-//                    }
                 )
                 .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .overlay(
                     VStack(alignment: .leading, spacing: 12) {
                         HStack {
                             Text(newTrack.spotifyTrack.name)
-                                .font(.largeTitle.weight(.bold))
+                                .font(Font.custom("Chillax-Semibold", size: 30))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             VStack {
                                 Button {
@@ -83,7 +69,8 @@ struct MiniPlayer: View {
                                     showArtists.toggle()
                                 } label: {
                                     Text(artistNames.joined(separator: ", "))
-                                        .font(.headline)
+                                        .font(Font.custom("Chillax-Regular", size: 20))
+                                        //.font(.headline)
                                         .foregroundColor(.black)
                                 }
                                     .sheet(isPresented: $showArtists) {
@@ -102,8 +89,10 @@ struct MiniPlayer: View {
                             .tint(Color.greenLight)
                             HStack {
                                 Text("\(formatTime(audioPlayer.currentTimeSliderValue))")
+                                    .font(Font.custom("Chillax-Regular", size: 18))
                                 Spacer()
                                 Text("\(formatTime(Double(newTrack.spotifyTrack.durationMs) / 1000))")
+                                    .font(Font.custom("Chillax-Regular", size: 18))
                             }
                         }
                         .padding(.vertical, 30)
@@ -171,7 +160,7 @@ struct MiniPlayer: View {
                 )
                 if !expand {
                     Text(newTrack.spotifyTrack.name)
-                        .font(.headline)
+                        .font(Font.custom("Chillax-Regular", size: 20))
                         .fontWeight(.bold)
                     Spacer()
                     Button {

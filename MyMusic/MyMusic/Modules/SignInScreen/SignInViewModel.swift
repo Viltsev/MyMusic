@@ -60,6 +60,9 @@ extension SignInViewModel {
                     } else {
                         print("success")
                         self.input.successSignInSubject.send(true)
+                        UserDefaults.standard.removeObject(forKey: "email")
+                        UserDefaults.standard.removeObject(forKey: "name")
+                        UserDefaults.standard.set(email, forKey: "email")
                     }
                 }
             }

@@ -26,19 +26,19 @@ struct SignInScreenView: View {
                     router.popToRoot()
                 } label: {
                     Text("back")
-                        .font(Font.custom("Bakery Holland", size: 30))
+                        .font(Font.custom("Chillax-Semibold", size: 20))
                         .foregroundColor(Color.greenLight)
                         
                 }
                 .padding(.horizontal, -50)
                 Text("Sign In")
-                    .font(Font.custom("Bakery Holland", size: 60))
+                    .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
                     .padding(25)
             }
             VStack(alignment: .leading, spacing: -10) {
                 Text("Email")
-                    .font(Font.custom("Bakery Holland", size: 30))
+                    .font(Font.custom("Chillax-Semibold", size: 20))
                     .foregroundColor(Color.greenLight)
                     .padding(.horizontal, 60)
                 SearchField(text: $email,
@@ -51,7 +51,7 @@ struct SignInScreenView: View {
             VStack(alignment: .leading, spacing: -10) {
                 HStack {
                     Text("Password")
-                        .font(Font.custom("Bakery Holland", size: 30))
+                        .font(Font.custom("Chillax-Semibold", size: 20))
                         .foregroundColor(Color.greenLight)
                         .padding(.horizontal, 60)
                     Spacer()
@@ -60,11 +60,11 @@ struct SignInScreenView: View {
                     } label: {
                         if isHidePassword {
                             Text("show")
-                                .font(Font.custom("Bakery Holland", size: 25))
+                                .font(Font.custom("Chillax-Semibold", size: 15))
                                 .foregroundColor(Color.greenLight)
                         } else {
                             Text("hide")
-                                .font(Font.custom("Bakery Holland", size: 25))
+                                .font(Font.custom("Chillax-Semibold", size: 15))
                                 .foregroundColor(Color.greenLight)
                         }
                     }
@@ -82,7 +82,7 @@ struct SignInScreenView: View {
             } label: {
                 VStack {
                     Text("Go to Music")
-                        .font(Font.custom("Bakery Holland", size: 40))
+                        .font(Font.custom("Chillax-Semibold", size: 25))
                         .foregroundColor(Color.greenLight)
                 }
                 .frame(width: 305, height: 70)

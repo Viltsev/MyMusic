@@ -14,6 +14,7 @@ import FirebaseAuth
 final class LogInViewModel: ObservableObject {
     
     var router: NavigationRouter? = nil
+    var dataBase: DataManager? = nil
     
     var successLogIn: AnyPublisher<Bool, Never> {
         return input.successLogInSubject.eraseToAnyPublisher()
@@ -25,6 +26,10 @@ final class LogInViewModel: ObservableObject {
     
     func setRouter(_ router: NavigationRouter) {
         self.router = router
+    }
+    
+    func setDataBase(_ database: DataManager) {
+        self.dataBase = database
     }
  
     init() {
@@ -54,13 +59,17 @@ extension LogInViewModel {
     func logIn() {
         input.logInSubject
             .sink { (email, password, name) in
-                // create user here
-                Auth.auth().createUser(withEmail: email, password: name) { (result, error) in
+                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                     if error != nil {
                         print(error?.localizedDescription ?? "")
                     } else {
                         print("Success Log In")
                         self.input.successLogInSubject.send(true)
+                        self.dataBase?.addUser(name: name, email: email)
+                        UserDefaults.standard.removeObject(forKey: "email")
+                        UserDefaults.standard.removeObject(forKey: "name")
+                        UserDefaults.standard.set(email, forKey: "email")
+                        UserDefaults.standard.set(name, forKey: "name")
                     }
                 }
             }

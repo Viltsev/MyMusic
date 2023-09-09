@@ -22,11 +22,11 @@ struct ArtistView: View {
                 Spacer()
                 VStack(spacing: 15) {
                     Text(receivedArtist.name)
-                        .font(.largeTitle)
+                        .font(Font.custom("Chillax-Semibold", size: 30))
                         .fontWeight(.heavy)
                         .foregroundColor(Color.white)
                     Text("\(receivedArtist.stats.followers) listeners")
-                        .font(.headline)
+                        .font(Font.custom("Chillax-Regular", size: 20))
                         .foregroundColor(Color.white)
                 }
                 .padding(.vertical, 50)
@@ -56,7 +56,7 @@ struct ArtistView: View {
             Spacer()
             VStack(spacing: 25) {
                 Text("Popular Tracks")
-                    .font(Font.custom("Bakery Holland", size: 40))
+                    .font(Font.custom("Chillax-Semibold", size: 25))
                     .foregroundColor(Color.greenLight)
                 VStack(spacing: 15) {
                     ForEach(receivedArtist.discography.topTracks) { track in

@@ -11,7 +11,7 @@ struct RecentlyPlayedView: View {
     var body: some View {
         HStack {
             Text(.recentlyPlayed)
-                .font(Font.custom("Bakery Holland", size: 30))
+                .font(Font.custom("Chillax-Semibold", size: 25))
                 .foregroundColor(Color.greenLight)
                 .padding(.horizontal, 25)
             Spacer()

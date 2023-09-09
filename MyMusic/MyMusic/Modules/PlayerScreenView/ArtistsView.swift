@@ -22,7 +22,7 @@ struct ArtistsView: View {
         VStack {
             HStack {
                 Text("Artists")
-                    .font(Font.custom("Bakery Holland", size: 40))
+                    .font(Font.custom("Chillax-Semibold", size: 25))
                     .foregroundColor(Color.greenLight)
             }.padding(25)
             ForEach(artists) { artist in
@@ -53,7 +53,7 @@ struct ArtistsView: View {
 //                            }
 //                        }
                         Text(artist.name)
-                            .font(.title2)
+                            .font(Font.custom("Chillax-Regular", size: 20))
                             .foregroundColor(Color.white)
                     }
                     .sheet(isPresented: $showArtist) {

@@ -21,7 +21,7 @@ struct StartScreenView: View {
         VStack {
             VStack {
                 Text(.myMusic)
-                    .font(Font.custom("Bakery Holland", size: 60))
+                    .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
                 Button {
                     router.pushView(Navigation.pushSignInScreen)
@@ -29,7 +29,7 @@ struct StartScreenView: View {
                 } label: {
                     VStack {
                         Text("Sign In")
-                            .font(Font.custom("Bakery Holland", size: 40))
+                            .font(Font.custom("Chillax-Semibold", size: 25))
                             .foregroundColor(Color.greenLight)
                     }
                     .frame(width: 200, height: 70)
@@ -45,7 +45,7 @@ struct StartScreenView: View {
                 } label: {
                     VStack {
                         Text("Log In")
-                            .font(Font.custom("Bakery Holland", size: 40))
+                            .font(Font.custom("Chillax-Semibold", size: 25))
                             .foregroundColor(Color.greenLight)
                     }
                     .frame(width: 200, height: 70)

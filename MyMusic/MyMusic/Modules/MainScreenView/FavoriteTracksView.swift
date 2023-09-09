@@ -11,7 +11,7 @@ struct FavoriteTracksView: View {
     var body: some View {
         HStack {
             Text(.favoriteTracks)
-                .font(Font.custom("Bakery Holland", size: 30))
+                .font(Font.custom("Chillax-Semibold", size: 25))
                 .foregroundColor(Color.greenLight)
                 .padding(.horizontal, 25)
             Spacer()
@@ -25,7 +25,7 @@ struct FavoriteTracksView: View {
                     .foregroundColor(Color.greenLight)
                     .cornerRadius(20)
                 Text(.likeTracks)
-                    .font(Font.custom("Bakery Holland", size: 28))
+                    .font(Font.custom("Chillax-Regular", size: 20))
                     .foregroundColor(Color.white)
                 Spacer()
                 Image(systemName: "chevron.forward")
