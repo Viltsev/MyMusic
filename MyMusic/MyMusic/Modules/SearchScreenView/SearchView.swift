@@ -9,6 +9,12 @@ import SwiftUI
 import AVFoundation
 
 struct SearchView: View {
+    
+    private var mockTrack: TopTracks =
+        TopTracks(trackID: "", name: "ДЕЖАВЮ", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 1", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
+    
+    
+    
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var viewModel: SearchViewModel
     @Environment(\.dismiss) var dismiss
@@ -16,6 +22,7 @@ struct SearchView: View {
     @State private var playerItem: AVPlayerItem?
     @State private var trackName: String = ""
     @State private var isMPActive = false
+    @State private var isLiked = false
     @State var expand = false
     
     var body: some View {
@@ -47,13 +54,22 @@ struct SearchView: View {
                 .padding(25)
                 VStack {
                     if !viewModel.output.tracks.spotifyTrack.name.isEmpty {
+                        let artistNames =  viewModel.output.tracks.spotifyTrack.artists.map { $0.name }
                             TrackView(
                                 isActive: $isMPActive,
                                 trackTitle: viewModel.output.tracks.spotifyTrack.name,
-                                trackArtists: viewModel.output.tracks.spotifyTrack.artists,
+                                trackArtists: artistNames.joined(separator: ", "),
                                 trackImage: viewModel.output.tracks.spotifyTrack.album.cover.first?.url
                             )
                     }
+                }
+                
+                VStack {
+                    let artistNames = mockTrack.artists.map { $0.name }
+                    TrackView(isActive: $isMPActive,
+                              trackTitle: mockTrack.name,
+                              trackArtists: artistNames.joined(separator: ", "),
+                              trackImage: mockTrack.album.cover.first?.url)
                 }
             }
             .background(Color.purpleMid)
@@ -81,7 +97,7 @@ struct LikeTrackView: View {
     @State var isLiked: Bool
     var body: some View {
         Button {
-            
+            print("like!")
         } label: {
             if isLiked {
                 Image(systemName: "heart.fill")

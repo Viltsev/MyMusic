@@ -36,6 +36,7 @@ struct ContentView: View {
                             .environmentObject(router)
                         RecommendationsCircleView()
                         FavoriteTracksView()
+                            .environmentObject(router)
                         RecentlyPlayedView()
                         Spacer()
                     }
@@ -46,10 +47,11 @@ struct ContentView: View {
                         if isAuthCompleted {
                             ProfileView()
                                 .environmentObject(router)
+                                .environmentObject(startViewModel)
                         }
                     }
                     .frame(height: UIScreen.main.bounds.height / 1.1)
-                    .background(Color.purpleMid)
+                    .background(Color.greenLight)
                     .cornerRadius(30)
                     .offset(x: show ? 0 : -UIScreen.main.bounds.width)
                     .rotation3DEffect(Angle(degrees: show ? 0 : 30), axis: (x: 0, y: 10.0, z: 0))
@@ -81,6 +83,9 @@ struct ContentView: View {
                         ContentView()
                     case .pushStartScreen:
                         StartScreenView()
+                    case .pushFavoriteMusic:
+                        FavoriteMusicView()
+                            .environmentObject(dataManager)
                     }
                 }
                 .environmentObject(router)

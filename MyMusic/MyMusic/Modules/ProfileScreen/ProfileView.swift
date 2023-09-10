@@ -10,12 +10,13 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var router: NavigationRouter
+    @EnvironmentObject var startViewModel: StartScreenViewModel
     
     private var name: String {
         var name = ""
         for user in dataManager.savedEntities {
             if let email = UserDefaults.standard.string(forKey: "email"), user.email == email {
-                name = user.name ?? "HUI"
+                name = user.name ?? ""
             }
         }
         return name
@@ -31,7 +32,7 @@ struct ProfileView: View {
                     .font(Font.custom("Chillax-Regular", size: 20))
                     //.foregroundColor(Color.greenLight)
             }
-            .foregroundColor(Color.greenLight)
+            .foregroundColor(Color.purpleDark)
             HStack(spacing: 20) {
                 Image(systemName: "envelope.fill")
                     .resizable()
@@ -40,7 +41,7 @@ struct ProfileView: View {
                     .font(Font.custom("Chillax-Regular", size: 20))
                     //.foregroundColor(Color.greenLight)
             }
-            .foregroundColor(Color.greenLight)
+            .foregroundColor(Color.purpleDark)
             HStack(spacing: 20) {
                 Image(systemName: "heart.fill")
                     .resizable()
@@ -49,9 +50,12 @@ struct ProfileView: View {
                     .font(Font.custom("Chillax-Regular", size: 20))
                     //.foregroundColor(Color.greenLight)
             }
-            .foregroundColor(Color.greenLight)
+            .foregroundColor(Color.purpleDark)
             Button {
                 router.pushView(Navigation.pushStartScreen)
+                startViewModel.input.accountCompleteSubject.send()
+                UserDefaults.standard.removeObject(forKey: "email")
+                UserDefaults.standard.removeObject(forKey: "name")
             } label: {
                 HStack(spacing: 20) {
                     Image(systemName: "arrow.uturn.down")
@@ -60,7 +64,7 @@ struct ProfileView: View {
                     Text("Sign Out")
                         .font(Font.custom("Chillax-Regular", size: 20))
                 }
-            }.foregroundColor(Color.greenLight)
+            }.foregroundColor(Color.purpleDark)
             Spacer()
         }
         .padding(25)

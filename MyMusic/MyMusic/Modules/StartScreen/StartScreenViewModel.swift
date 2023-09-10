@@ -48,7 +48,7 @@ extension StartScreenViewModel {
         
         input.accountCompleteSubject
             .sink { [weak self] in
-                self?.output.isAccountComplete = true
+                self?.output.isAccountComplete.toggle()
             }
             .store(in: &cancellable)
         

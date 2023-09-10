@@ -11,21 +11,24 @@ import SDWebImageSwiftUI
 struct TrackView: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var dataManager: DataManager
     
     @StateObject var viewModelArtist = ArtistsViewModel()
+    @StateObject var trackViewModel = TrackViewModel()
     
     @Binding var isActive: Bool
     
+    @State var isLiked: Bool = false
     var trackTitle: String
-    var trackArtists: [Artist]
+    var trackArtists: String
     var trackImage: URL?
     
     var body: some View {
-        let artistNames = trackArtists.map { $0.name }
+        //let artistNames = trackArtists.map { $0.name }
         HStack(spacing: 20) {
             Button {
                 if viewModel.output.isTopTrackLoad {
-                    viewModelArtist.input.selectTopTrackSubject.send("\(trackTitle) \(trackArtists.first!.name)")
+                    viewModelArtist.input.selectTopTrackSubject.send("\(trackTitle) \(trackArtists)")
                     viewModel.input.searchButtonTapSubject.send(viewModelArtist.output.selectedTopTrack!)
                     if isActive {
                         isActive.toggle()
@@ -41,37 +44,46 @@ struct TrackView: View {
                     .frame(width: 70, height: 70)
                     .shadow(color: .black.opacity(0.7), radius: 30)
                     .cornerRadius(15)
-//                AsyncImage(url: trackImage) { phase in
-//                    switch phase {
-//                        case .empty:
-//                            ProgressView()
-//                        case .success(let image):
-//                            image
-//                                .resizable()
-//                                .frame(width: 70, height: 70)
-//                                .shadow(color: .black.opacity(0.7), radius: 30)
-//                                .cornerRadius(15)
-//                        case .failure(_):
-//                            Text("Failed to load image")
-//                        @unknown default:
-//                            EmptyView()
-//                    }
-//                }
-                
                 VStack(alignment: .leading, spacing: 10) {
                     Text(trackTitle)
                         .font(Font.custom("Chillax-Semibold", size: 20))
                         .lineLimit(0)
                         .foregroundColor(Color.white)
-                    Text(artistNames.joined(separator: ", "))
+                    Text(trackArtists)
                         .font(Font.custom("Chillax-Regular", size: 20))
                         .foregroundColor(Color.gray)
                 }
                 Spacer()
             }
-            LikeTrackView(isLiked: false)
+            Button {
+                isLiked.toggle()
+                trackViewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage))
+                //artistNames.joined(separator: ", ")
+            } label: {
+                ZStack {
+                    image(Image(systemName: "heart.fill"), show: isLiked)
+                    image(Image(systemName: "heart"), show: !isLiked)
+                }
+            }
+        }
+        .onAppear {
+//            if dataManager.savedTrackEntities.contains(where: { track in
+//                track.trackID == trackID
+//            }) {
+//                self.isLiked = true
+//            }
+            trackViewModel.setDataManager(dataManager)
         }
         .padding(25)
+    }
+    
+    func image(_ image: Image, show: Bool) -> some View {
+        image
+            .tint(isLiked ? Color.greenLight : Color.white)
+            .font(.title)
+            .scaleEffect(show ? 1 : 0)
+            .opacity(show ? 1 : 0)
+            .animation(.interpolatingSpring(stiffness: 170, damping: 15), value: show)
     }
     
     

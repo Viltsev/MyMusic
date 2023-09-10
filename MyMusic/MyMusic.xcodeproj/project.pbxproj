@@ -29,6 +29,8 @@
 		8383A0812AA9089900C9E175 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8383A0802AA9089900C9E175 /* TrackView.swift */; };
 		8388E6A52A9F7EE400A2520E /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E6A42A9F7EE400A2520E /* Navigation.swift */; };
 		8388E6A72A9F7F1800A2520E /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E6A62A9F7F1800A2520E /* NavigationRouter.swift */; };
+		838AEC5C2AADC9270081F7C6 /* FavoriteMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838AEC5B2AADC9270081F7C6 /* FavoriteMusicView.swift */; };
+		838AEC5E2AADF6340081F7C6 /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838AEC5D2AADF6340081F7C6 /* TrackViewModel.swift */; };
 		839DA0EC2AA9BCEE0001DF8C /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 839DA0EB2AA9BCEE0001DF8C /* SDWebImageSwiftUI */; };
 		839DA0EF2AA9E1E20001DF8C /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DA0EE2AA9E1E20001DF8C /* StartScreenView.swift */; };
 		839DA0F22AA9EC490001DF8C /* SignInScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DA0F12AA9EC490001DF8C /* SignInScreenView.swift */; };
@@ -101,6 +103,8 @@
 		8383A0802AA9089900C9E175 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		8388E6A42A9F7EE400A2520E /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		8388E6A62A9F7F1800A2520E /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		838AEC5B2AADC9270081F7C6 /* FavoriteMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMusicView.swift; sourceTree = "<group>"; };
+		838AEC5D2AADF6340081F7C6 /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		839DA0EE2AA9E1E20001DF8C /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		839DA0F12AA9EC490001DF8C /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
 		839DA0F42AAA15CF0001DF8C /* LogInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInScreenView.swift; sourceTree = "<group>"; };
@@ -196,6 +200,38 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		838AEC562AADC73A0081F7C6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				83495FC72AACD40F00ED870A /* Shancalluna_regular.ttf */,
+				83CEAF022A914FCA0044F2CF /* Impana-Regular.otf */,
+				83CEAF052A91528E0044F2CF /* Bakery Holland.otf */,
+				83495FC92AACD73300ED870A /* SHRIMP.ttf */,
+				83495FCD2AACD99A00ED870A /* Chillax-Extralight.otf */,
+				83CEAF072A9153250044F2CF /* Holiday Valentine.otf */,
+				83495FD12AACDBBF00ED870A /* Durer.ttf */,
+				83495FCF2AACD9A500ED870A /* Chillax-Regular.otf */,
+				83495FCB2AACD97B00ED870A /* Chillax-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		838AEC572AADC8350081F7C6 /* FavoriteMusicScreen */ = {
+			isa = PBXGroup;
+			children = (
+				838AEC5B2AADC9270081F7C6 /* FavoriteMusicView.swift */,
+			);
+			path = FavoriteMusicScreen;
+			sourceTree = "<group>";
+		};
+		838AEC582AADC8520081F7C6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				83CEAEF42A914C530044F2CF /* MyMusicApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		839DA0ED2AA9E1C80001DF8C /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +265,7 @@
 				83B05A8F2A9666AD0057CA72 /* SearchView.swift */,
 				83B05A922A9689B80057CA72 /* SearchViewModel.swift */,
 				8383A0802AA9089900C9E175 /* TrackView.swift */,
+				838AEC5D2AADF6340081F7C6 /* TrackViewModel.swift */,
 			);
 			path = SearchScreenView;
 			sourceTree = "<group>";
@@ -295,6 +332,7 @@
 		83C024102A949ED300FE6B03 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				838AEC562AADC73A0081F7C6 /* Fonts */,
 				83CEAEF82A914C570044F2CF /* Assets.xcassets */,
 				8373A9E72A9B793100CA4A44 /* Colors.swift */,
 				8373A9ED2A9B7C2900CA4A44 /* Localizable.strings */,
@@ -325,6 +363,7 @@
 		83C024132A949EF300FE6B03 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				838AEC572AADC8350081F7C6 /* FavoriteMusicScreen */,
 				83495FC42AACAE6600ED870A /* ProfileScreen */,
 				839DA0F32AAA15B50001DF8C /* LogInScreen */,
 				839DA0F02AA9EC300001DF8C /* SignInScreen */,
@@ -382,15 +421,6 @@
 		83CEAEE82A914C520044F2CF = {
 			isa = PBXGroup;
 			children = (
-				83495FC72AACD40F00ED870A /* Shancalluna_regular.ttf */,
-				83CEAF022A914FCA0044F2CF /* Impana-Regular.otf */,
-				83CEAF052A91528E0044F2CF /* Bakery Holland.otf */,
-				83495FC92AACD73300ED870A /* SHRIMP.ttf */,
-				83495FCB2AACD97B00ED870A /* Chillax-Semibold.otf */,
-				83495FCD2AACD99A00ED870A /* Chillax-Extralight.otf */,
-				83CEAF072A9153250044F2CF /* Holiday Valentine.otf */,
-				83495FCF2AACD9A500ED870A /* Chillax-Regular.otf */,
-				83495FD12AACDBBF00ED870A /* Durer.ttf */,
 				83CEAEF32A914C520044F2CF /* MyMusic */,
 				83CEAEF22A914C520044F2CF /* Products */,
 			);
@@ -407,15 +437,15 @@
 		83CEAEF32A914C520044F2CF /* MyMusic */ = {
 			isa = PBXGroup;
 			children = (
+				838AEC582AADC8520081F7C6 /* App */,
 				8388E6A32A9F7ED000A2520E /* Navigation */,
-				83CEAF042A91505E0044F2CF /* Info.plist */,
-				83ADC6B42AAB55C400CD62E5 /* GoogleService-Info.plist */,
 				83C0240E2A949EB500FE6B03 /* Services */,
 				83C024102A949ED300FE6B03 /* Resources */,
 				83C024112A949EDD00FE6B03 /* Helpers */,
 				83C024122A949EE800FE6B03 /* Models */,
 				83C024132A949EF300FE6B03 /* Modules */,
-				83CEAEF42A914C530044F2CF /* MyMusicApp.swift */,
+				83CEAF042A91505E0044F2CF /* Info.plist */,
+				83ADC6B42AAB55C400CD62E5 /* GoogleService-Info.plist */,
 				83CEAEFA2A914C570044F2CF /* Preview Content */,
 			);
 			path = MyMusic;
@@ -528,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				838AEC5E2AADF6340081F7C6 /* TrackViewModel.swift in Sources */,
 				83C0241E2A94A6D700FE6B03 /* TrackModelMapper.swift in Sources */,
 				839DA0F72AAA214E0001DF8C /* LowerCaseStringFormatter.swift in Sources */,
 				83B3BB8B2AA5BFE6008D4063 /* ArtistsView.swift in Sources */,
@@ -536,6 +567,7 @@
 				83B3BB8D2AA5CAC3008D4063 /* Artist.swift in Sources */,
 				83B3BB982AA716D6008D4063 /* ArtistModelMapper.swift in Sources */,
 				8373AA192A9B9A6300CA4A44 /* MiniPlayer.swift in Sources */,
+				838AEC5C2AADC9270081F7C6 /* FavoriteMusicView.swift in Sources */,
 				839DA0FB2AAA61130001DF8C /* SignInViewModel.swift in Sources */,
 				83C024382A95438300FE6B03 /* ErrorAPI.swift in Sources */,
 				83B05A932A9689B80057CA72 /* SearchViewModel.swift in Sources */,

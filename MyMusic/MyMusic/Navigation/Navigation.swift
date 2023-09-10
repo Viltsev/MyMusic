@@ -14,4 +14,5 @@ enum Navigation: Hashable {
     case pushLogInScreen
     case pushMainScreen
     case pushStartScreen
+    case pushFavoriteMusic
 }

@@ -118,6 +118,9 @@ struct LogInScreenView: View {
             for i in dataManager.savedEntities {
                 print("name: \(i.name ?? "no name"), email: \(i.email ?? "no email")")
             }
+            for i in dataManager.savedTrackEntities {
+                print("trackTitle: \(i.trackTitle ?? "")\nuserEmail: \(i.userEmail ?? "")")
+            }
             logViewModel.setRouter(router)
             logViewModel.setDataBase(dataManager)
         }

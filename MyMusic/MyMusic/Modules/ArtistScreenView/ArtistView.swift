@@ -13,6 +13,7 @@ struct ArtistView: View {
     @EnvironmentObject var viewModel: SearchViewModel
     
     @State private var isMPActive = false
+    @State private var isLiked = false
     
     var receivedArtist: ReceivedArtist
     
@@ -60,9 +61,10 @@ struct ArtistView: View {
                     .foregroundColor(Color.greenLight)
                 VStack(spacing: 15) {
                     ForEach(receivedArtist.discography.topTracks) { track in
+                        let artistNames = track.artists.map({$0.name})
                         TrackView(isActive: $isMPActive,
                                   trackTitle: track.name,
-                                  trackArtists: track.artists,
+                                  trackArtists: artistNames.joined(separator: ", "),
                                   trackImage: track.album.cover.first?.url
                         )
                     }

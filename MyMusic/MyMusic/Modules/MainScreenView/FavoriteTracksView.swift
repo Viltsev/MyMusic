@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FavoriteTracksView: View {
+    @EnvironmentObject var router: NavigationRouter
+    
     var body: some View {
         HStack {
             Text(.favoriteTracks)
@@ -17,7 +19,7 @@ struct FavoriteTracksView: View {
             Spacer()
         }
         Button {
-            // action
+            router.pushView(Navigation.pushFavoriteMusic)
         } label: {
             HStack(spacing: 25) {
                 Rectangle()
