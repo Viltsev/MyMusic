@@ -15,6 +15,18 @@ struct ContentView: View {
     
     @State var show = false
     
+    private var isAuthCompleted: Bool {
+        if let user = UserDefaults.standard.string(forKey: "email") {
+            if user.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        } else {
+            return false
+        }
+    }
+    
     var body: some View {
         NavigationStack(path: $router.path) {
             ScrollView(showsIndicators: false) {
@@ -31,8 +43,9 @@ struct ContentView: View {
                     Button {
                         self.show.toggle()
                     } label: {
-                        if startViewModel.output.isAccountComplete {
+                        if isAuthCompleted {
                             ProfileView()
+                                .environmentObject(router)
                         }
                     }
                     .frame(height: UIScreen.main.bounds.height / 1.1)
@@ -47,7 +60,8 @@ struct ContentView: View {
                 
             }
             .onAppear {
-                if !startViewModel.output.isAccountComplete {
+                //let email = UserDefaults.standard.string(forKey: "email")
+                if !startViewModel.output.isAccountComplete && !isAuthCompleted {
                     router.pushView(Navigation.pushStartScreen)
                 }
             }

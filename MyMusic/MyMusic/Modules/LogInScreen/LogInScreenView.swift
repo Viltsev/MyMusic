@@ -33,7 +33,7 @@ struct LogInScreenView: View {
                         
                 }
                 .padding(.horizontal, -55)
-                Text("Log In")
+                Text("Sign Up")
                     .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
                     .padding(25)

@@ -120,7 +120,6 @@ extension SignInScreenView {
     
     func signIn(_ email: String, _ password: String) {
         signViewModel.input.signInSubject.send((email, password))
-
     }
 }
 

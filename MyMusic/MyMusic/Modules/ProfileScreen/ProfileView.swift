@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var router: NavigationRouter
     
     private var name: String {
         var name = ""
@@ -50,7 +51,7 @@ struct ProfileView: View {
             }
             .foregroundColor(Color.greenLight)
             Button {
-                
+                router.pushView(Navigation.pushStartScreen)
             } label: {
                 HStack(spacing: 20) {
                     Image(systemName: "arrow.uturn.down")
