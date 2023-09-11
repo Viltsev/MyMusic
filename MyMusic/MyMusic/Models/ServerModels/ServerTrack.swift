@@ -23,6 +23,7 @@ struct ServerAudio: Codable {
 }
 
 struct ServerSpotifyTrack: Codable {
+    let id: String?
     let name: String?
     let artists: [ServerArtist]?
     let album: ServerAlbum?

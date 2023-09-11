@@ -150,7 +150,7 @@ extension SearchViewModel {
     }
     
     struct Output {
-        var tracks: Track = Track(youtubeVideo: YoutubeVideo(id: "", audio: []), spotifyTrack: SpotifyTrack(name: "", artists: [], album: Album(name: "", shareUrl: URL(string: ""), cover: []), durationMs: 0))
+        var tracks: Track = Track(youtubeVideo: YoutubeVideo(id: "", audio: []), spotifyTrack: SpotifyTrack(trackID: "", name: "", artists: [], album: Album(name: "", shareUrl: URL(string: ""), cover: []), durationMs: 0))
         var artists: [ReceivedArtist] = []
         var isTrackLoaded: Bool = false
         var playerItem: AVPlayerItem?

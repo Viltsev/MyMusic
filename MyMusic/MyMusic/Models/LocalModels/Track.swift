@@ -26,6 +26,7 @@ struct Audio: Identifiable {
 
 struct SpotifyTrack: Identifiable {
     var id = UUID()
+    let trackID: String
     let name: String
     let artists: [Artist]
     let album: Album

@@ -73,11 +73,13 @@ struct FavoriteMusicView: View {
                     if let title = track.trackTitle,
                        let artists = track.trackArtists,
                        let email = UserDefaults.standard.string(forKey: "email"),
-                       track.userEmail == email {
+                       track.userEmail == email,
+                       let id = track.trackID {
                         TrackView(isActive: $isMPActive,
                                   trackTitle: title,
                                   trackArtists: artists,
-                                  trackImage: track.trackImage)
+                                  trackImage: track.trackImage,
+                                  trackID: id)
                     }
                 }
             }

@@ -27,17 +27,63 @@ final class TrackViewModel: ObservableObject {
 
 extension TrackViewModel {
     func bind() {
+        saveTrack()
+        deleteTrack()
+        checkFavoriteTrack()
+    }
+    
+    func saveTrack() {
         input.saveTrackSubject
-            .sink { (trackTitle, trackArtists, trackImage) in
+            .sink { (trackTitle, trackArtists, trackImage, trackID) in
                 self.output.isLiked = true
+                if let dataManager = self.dataManager, let currentImage = trackImage {
+                    dataManager.addTrack(trackTitle: trackTitle,
+                                         trackArtists: trackArtists,
+                                         trackCover: currentImage,
+                                         trackID: trackID)
+                }
+//                if let dataManager = self.dataManager {
+//                    for user in dataManager.savedEntities {
+//                        if let email = UserDefaults.standard.string(forKey: "email"), let currentImage = trackImage, user.email == email {
+//                            dataManager.addTrack(user: user,
+//                                                 trackTitle: trackTitle,
+//                                                 trackArtists: trackArtists,
+//                                                 trackCover: currentImage,
+//                                                 trackID: trackID
+//                            )
+//                        }
+//                    }
+//                }
+            }
+            .store(in: &cancellable)
+    }
+    
+    func deleteTrack() {
+        input.deleteTrackSubject
+            .sink { trackID in
                 if let dataManager = self.dataManager {
-                    for user in dataManager.savedEntities {
-                        if let email = UserDefaults.standard.string(forKey: "email"), let currentImage = trackImage, user.email == email {
-                            dataManager.addTrack(user: user,
-                                                 trackTitle: trackTitle,
-                                                 trackArtists: trackArtists,
-                                                 trackCover: currentImage
-                            )
+                    dataManager.deleteTrack(trackID: trackID)
+//                    for user in dataManager.savedEntities {
+//                        if let email = UserDefaults.standard.string(forKey: "email"), user.email == email {
+//                            dataManager.deleteTrack(trackID: trackID)
+//                        }
+//                    }
+                }
+            }
+            .store(in: &cancellable)
+    }
+    
+    func checkFavoriteTrack() {
+        input.checkFavoriteTrackSubject
+            .sink { trackID in
+                if let dataManager = self.dataManager {
+                    for track in dataManager.savedTrackEntities {
+                        if let currentUser = UserDefaults.standard.string(forKey: "email"),
+                           track.userEmail == currentUser,
+                           let id = track.trackID {
+                            if id == trackID {
+                                self.output.isLiked = true
+                            }
                         }
                     }
                 }
@@ -48,7 +94,9 @@ extension TrackViewModel {
 
 extension TrackViewModel {
     struct Input {
-        let saveTrackSubject = PassthroughSubject<(String, String, URL?), Never>()
+        let saveTrackSubject = PassthroughSubject<(String, String, URL?, String), Never>()
+        let deleteTrackSubject = PassthroughSubject<String, Never>()
+        let checkFavoriteTrackSubject = PassthroughSubject<String, Never>()
     }
     
     struct Output {

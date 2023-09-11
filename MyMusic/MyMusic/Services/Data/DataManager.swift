@@ -52,20 +52,59 @@ class DataManager: ObservableObject {
         saveData()
     }
     
-    func addTrack(user: UserEntity, trackTitle: String, trackArtists: String, trackCover: URL) {
+    func addTrack(trackTitle: String, trackArtists: String, trackCover: URL, trackID: String) {
         let newTrack = TrackEntity(context: container.viewContext)
-        newTrack.trackTitle = trackTitle
-        newTrack.trackArtists = trackArtists
-        newTrack.trackImage = trackCover
-        newTrack.userEmail = user.email
-        newTrack.id = UUID()
+        let request = NSFetchRequest<UserEntity>(entityName: "UserEntity")
+        if let email = UserDefaults.standard.string(forKey: "email") {
+            request.predicate = NSPredicate(format: "email == %@", email)
+        }
         
-        saveTrackData()
-//        savedTrackEntities.append(newTrack)
-//        user.tracks = savedTrackEntities as NSObject
-//
-//        saveData()
+        do {
+            if let currentUser = try container.viewContext.fetch(request).first {
+                newTrack.trackTitle = trackTitle
+                newTrack.trackArtists = trackArtists
+                newTrack.trackImage = trackCover
+                newTrack.userEmail = currentUser.email
+                newTrack.trackID = trackID
+                newTrack.id = UUID()
+                
+                saveTrackData()
+            }
+        } catch let error {
+            print("error adding track. \(error)")
+        }
     }
+    
+    func deleteTrack(trackID: String) {
+        let request = NSFetchRequest<TrackEntity>(entityName: "TrackEntity")
+        request.predicate = NSPredicate(format: "trackID == %@", trackID)
+        
+        do {
+            if let trackToDelete = try container.viewContext.fetch(request).first {
+                container.viewContext.delete(trackToDelete)
+                saveTrackData()
+            }
+        } catch let error {
+            print("error deleting track. \(error)")
+        }
+    }
+    
+//    func isFavoriteTrack(_ trackID: String) -> Bool {
+//        let request = NSFetchRequest<TrackEntity>(entityName: "TrackEntity")
+//        request.predicate = NSPredicate(format: "trackID == %@", trackID)
+//
+//        do {
+//            if let track = try container.viewContext.fetch(request).first {
+//                return true
+//            } else {
+//                return false
+//            }
+//        } catch let error {
+//            print("error searching track. \(error)")
+//            return false
+//        }
+//    }
+    
     
     func saveData() {
         do {

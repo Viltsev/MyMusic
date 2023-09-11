@@ -43,13 +43,13 @@ final class AlbumModelMapper: BaseModelMapper<ServerAlbum, Album> {
 
 final class SpotifyTrackModelMapper: BaseModelMapper<ServerSpotifyTrack, SpotifyTrack> {
     override func toLocal(serverEntity: ServerSpotifyTrack) -> SpotifyTrack {
-        SpotifyTrack(name: serverEntity.name ?? "", artists: ArtistModelMapper().toLocal(list: serverEntity.artists), album: AlbumModelMapper().toLocal(serverEntity: serverEntity.album ?? ServerAlbum(name: "", shareUrl: "", cover: [])), durationMs: serverEntity.durationMs ?? 0)
+        SpotifyTrack(trackID: serverEntity.id ?? "", name: serverEntity.name ?? "", artists: ArtistModelMapper().toLocal(list: serverEntity.artists), album: AlbumModelMapper().toLocal(serverEntity: serverEntity.album ?? ServerAlbum(name: "", shareUrl: "", cover: [])), durationMs: serverEntity.durationMs ?? 0)
     }
 }
 
 final class TrackModelMapper: BaseModelMapper<ServerTrack, Track> {
     override func toLocal(serverEntity: ServerTrack) -> Track {
-        Track(youtubeVideo: YoutubeVideoModelMapper().toLocal(serverEntity: serverEntity.youtubeVideo ?? ServerYoutubeVideo(id: "", audio: [])), spotifyTrack: SpotifyTrackModelMapper().toLocal(serverEntity: serverEntity.spotifyTrack ?? ServerSpotifyTrack(name: "", artists: [], album: ServerAlbum(name: "", shareUrl: "", cover: []), durationMs: 0)))
+        Track(youtubeVideo: YoutubeVideoModelMapper().toLocal(serverEntity: serverEntity.youtubeVideo ?? ServerYoutubeVideo(id: "", audio: [])), spotifyTrack: SpotifyTrackModelMapper().toLocal(serverEntity: serverEntity.spotifyTrack ?? ServerSpotifyTrack(id: nil, name: "", artists: [], album: ServerAlbum(name: "", shareUrl: "", cover: []), durationMs: 0)))
     }
 }
 

@@ -38,7 +38,7 @@ final class ReceivedAlbumModelMapper: BaseModelMapper<ServerReceivedAlbum, Recei
 final class TopTracksModelMapper: BaseModelMapper<ServerTopTracks, TopTracks> {
     
     override func toLocal(serverEntity: ServerTopTracks) -> TopTracks {
-        TopTracks(trackID: serverEntity.trackID ?? "",
+        TopTracks(trackID: serverEntity.id ?? "",
                   name: serverEntity.name ?? "",
                   durationMs: serverEntity.durationMs ?? 0,
                   playCount: serverEntity.playCount ?? 0,

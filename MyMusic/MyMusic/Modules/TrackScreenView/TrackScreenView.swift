@@ -17,7 +17,7 @@ struct TrackScreenView: View {
     
     var mockTrack: Track =
     Track(youtubeVideo: YoutubeVideo(id: "dqdbVlU1f0M", audio: [Audio(url: URL(string: mockURL))]),
-          spotifyTrack: SpotifyTrack(name: "MELTDOWN (feat. Drake)",
+          spotifyTrack: SpotifyTrack(trackID: "", name: "MELTDOWN (feat. Drake)",
                                      artists:
                                         [Artist(idArtist: "0Y5tJX1MQlPlqiwlOH1tJY", name: "Travis Scott",
                                                 shareUrl: nil),

@@ -22,6 +22,7 @@ struct TrackView: View {
     var trackTitle: String
     var trackArtists: String
     var trackImage: URL?
+    var trackID: String
     
     var body: some View {
         //let artistNames = trackArtists.map { $0.name }
@@ -56,8 +57,14 @@ struct TrackView: View {
                 Spacer()
             }
             Button {
-                isLiked.toggle()
-                trackViewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage))
+                if isLiked {
+                    print("delete: \(trackTitle)")
+                    trackViewModel.input.deleteTrackSubject.send(trackID)
+                    isLiked.toggle()
+                } else {
+                    isLiked.toggle()
+                    trackViewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
+                }
                 //artistNames.joined(separator: ", ")
             } label: {
                 ZStack {
@@ -67,11 +74,9 @@ struct TrackView: View {
             }
         }
         .onAppear {
-//            if dataManager.savedTrackEntities.contains(where: { track in
-//                track.trackID == trackID
-//            }) {
-//                self.isLiked = true
-//            }
+//            trackViewModel.input.checkFavoriteTrackSubject.send(trackID)
+//            self.isLiked = trackViewModel.output.isLiked
+            isFavoriteTrack()
             trackViewModel.setDataManager(dataManager)
         }
         .padding(25)
@@ -84,6 +89,18 @@ struct TrackView: View {
             .scaleEffect(show ? 1 : 0)
             .opacity(show ? 1 : 0)
             .animation(.interpolatingSpring(stiffness: 170, damping: 15), value: show)
+    }
+    
+    func isFavoriteTrack() {
+        for track in dataManager.savedTrackEntities {
+            if let currentUser = UserDefaults.standard.string(forKey: "email"),
+               track.userEmail == currentUser,
+               let id = track.trackID {
+                if id == trackID {
+                    self.isLiked = true
+                }
+            }
+        }
     }
     
     

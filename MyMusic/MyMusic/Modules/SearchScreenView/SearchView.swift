@@ -11,7 +11,13 @@ import AVFoundation
 struct SearchView: View {
     
     private var mockTrack: TopTracks =
-        TopTracks(trackID: "", name: "ДЕЖАВЮ", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 1", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
+        TopTracks(trackID: "123", name: "FE!N", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 1", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
+    
+    private var mockTrack2: TopTracks =
+        TopTracks(trackID: "456", name: "MELTDOWN", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 2", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
+    
+    private var mockTrack3: TopTracks =
+        TopTracks(trackID: "789", name: "TOPIA TWIND", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 3", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
     
     
     
@@ -59,7 +65,8 @@ struct SearchView: View {
                                 isActive: $isMPActive,
                                 trackTitle: viewModel.output.tracks.spotifyTrack.name,
                                 trackArtists: artistNames.joined(separator: ", "),
-                                trackImage: viewModel.output.tracks.spotifyTrack.album.cover.first?.url
+                                trackImage: viewModel.output.tracks.spotifyTrack.album.cover.first?.url,
+                                trackID: viewModel.output.tracks.spotifyTrack.trackID
                             )
                     }
                 }
@@ -69,7 +76,26 @@ struct SearchView: View {
                     TrackView(isActive: $isMPActive,
                               trackTitle: mockTrack.name,
                               trackArtists: artistNames.joined(separator: ", "),
-                              trackImage: mockTrack.album.cover.first?.url)
+                              trackImage: mockTrack.album.cover.first?.url,
+                              trackID: mockTrack.trackID)
+                }
+                
+                VStack {
+                    let artistNames = mockTrack2.artists.map { $0.name }
+                    TrackView(isActive: $isMPActive,
+                              trackTitle: mockTrack2.name,
+                              trackArtists: artistNames.joined(separator: ", "),
+                              trackImage: mockTrack2.album.cover.first?.url,
+                              trackID: mockTrack2.trackID)
+                }
+                
+                VStack {
+                    let artistNames = mockTrack3.artists.map { $0.name }
+                    TrackView(isActive: $isMPActive,
+                              trackTitle: mockTrack2.name,
+                              trackArtists: artistNames.joined(separator: ", "),
+                              trackImage: mockTrack2.album.cover.first?.url,
+                              trackID: mockTrack3.trackID)
                 }
             }
             .background(Color.purpleMid)

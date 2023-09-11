@@ -38,20 +38,6 @@ struct ArtistView: View {
                 WebImage(url: receivedArtist.visuals.avatar.first?.url)
                     .resizable()
                     .scaledToFill()
-//                AsyncImage(url: receivedArtist.visuals.avatar.first?.url) { phase in
-//                    switch phase {
-//                        case .empty:
-//                            ProgressView()
-//                        case .success(let image):
-//                            image
-//                                .resizable()
-//                                .scaledToFill()
-//                        case .failure(_):
-//                            Text("Failed to load image")
-//                        @unknown default:
-//                            EmptyView()
-//                    }
-//                }
             )
             .cornerRadius(25)
             Spacer()
@@ -61,11 +47,12 @@ struct ArtistView: View {
                     .foregroundColor(Color.greenLight)
                 VStack(spacing: 15) {
                     ForEach(receivedArtist.discography.topTracks) { track in
-                        let artistNames = track.artists.map({$0.name})
+                        let artistNames = track.artists.map( { $0.name } )
                         TrackView(isActive: $isMPActive,
                                   trackTitle: track.name,
                                   trackArtists: artistNames.joined(separator: ", "),
-                                  trackImage: track.album.cover.first?.url
+                                  trackImage: track.album.cover.first?.url,
+                                  trackID: track.trackID
                         )
                     }
                 }
