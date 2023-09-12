@@ -23,12 +23,8 @@ struct TrackView: View {
     var trackArtists: String
     var trackImage: URL?
     var trackID: String
-//    var artistName: String
-//    var artistID: String
-//    var artistCover: URL?
     
     var body: some View {
-        //let artistNames = trackArtists.map { $0.name }
         HStack(spacing: 20) {
             Button {
                 if viewModel.output.isTopTrackLoad {
@@ -37,7 +33,6 @@ struct TrackView: View {
                     if isActive {
                         isActive.toggle()
                     }
-                    //viewModel.input.isTopTrackLoadSubject.send()
                 }
                 isActive.toggle()
                 if audioPlayer.isPlaying {
@@ -70,7 +65,6 @@ struct TrackView: View {
                     isLiked.toggle()
                     trackViewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
                 }
-                //artistNames.joined(separator: ", ")
             } label: {
                 ZStack {
                     image(Image(systemName: "heart.fill"), show: isLiked)
@@ -79,8 +73,6 @@ struct TrackView: View {
             }
         }
         .onAppear {
-//            trackViewModel.input.checkFavoriteTrackSubject.send(trackID)
-//            self.isLiked = trackViewModel.output.isLiked
             isFavoriteTrack()
             trackViewModel.setDataManager(dataManager)
         }
@@ -107,6 +99,4 @@ struct TrackView: View {
             }
         }
     }
-    
-    
 }

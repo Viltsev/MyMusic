@@ -35,6 +35,10 @@ final class SearchViewModel: ObservableObject {
         self.dataManager = dataManager
     }
     
+    var successArtistReceive: AnyPublisher<Bool, Never> {
+        return input.successArtistReceiveSubject.eraseToAnyPublisher()
+    }
+    
     init() {
         bind()
     }
@@ -49,6 +53,7 @@ extension SearchViewModel {
         loadCurrentTrack()
         checkTopTrackLoad()
         saveRecentlyPlayedArtist()
+        getArtistInfo()
     }
     
     func bindSearchButton() {
@@ -146,6 +151,36 @@ extension SearchViewModel {
             .store(in: &cancellable)
     }
     
+    func getArtistInfo() {
+        let request = input.artistInfoSubject
+            .map { [unowned self] artistID in
+                self.apiService.receiveArtist(byID: artistID)
+                    .materialize()
+            }
+            .switchToLatest()
+            .share()
+        
+        request
+            .failures()
+            .sink { error in
+                print(error)
+            }
+            .store(in: &cancellable)
+        
+        request
+            .values()
+            .sink { [weak self] artist in
+                guard let self else { return }
+                if !self.output.artists.isEmpty {
+                    self.output.artists.removeAll()
+                }
+                self.input.successArtistReceiveSubject.send(true)
+                self.output.selectedArtist = artist
+                //self.output.artists.append(artist)
+            }
+            .store(in: &cancellable)
+    }
+    
     func saveRecentlyPlayedArtist() {
         input.recentlyPlayedArtistSubject
             .sink { artists in
@@ -171,11 +206,14 @@ extension SearchViewModel {
         let loadTrackSubject = PassthroughSubject<(URL?, AudioPlayer), Never>()
         let isTopTrackLoadSubject = PassthroughSubject<Void, Never>()
         let recentlyPlayedArtistSubject = PassthroughSubject<[ReceivedArtist], Never>()
+        let artistInfoSubject = PassthroughSubject<String, Never>()
+        let successArtistReceiveSubject = PassthroughSubject<Bool, Never>()
     }
     
     struct Output {
         var tracks: Track = Track(youtubeVideo: YoutubeVideo(id: "", audio: []), spotifyTrack: SpotifyTrack(trackID: "", name: "", artists: [], album: Album(name: "", shareUrl: URL(string: ""), cover: []), durationMs: 0))
         var artists: [ReceivedArtist] = []
+        var selectedArtist: ReceivedArtist?
         var isTrackLoaded: Bool = false
         var playerItem: AVPlayerItem?
         var isTopTrackLoad: Bool = false

@@ -10,6 +10,9 @@ import SDWebImageSwiftUI
 
 struct RecentlyPlayedView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var viewModel: SearchViewModel
+    
+    @State private var showArtist: Bool = false
     
     var body: some View {
         HStack {
@@ -24,7 +27,7 @@ struct RecentlyPlayedView: View {
                 ForEach(dataManager.savedArtistsEntities, id: \.id) { artist in
                     if let name = artist.name, let image = artist.image, let id = artist.artistID {
                         Button {
-                            
+                            viewModel.input.artistInfoSubject.send(id)
                         } label: {
                             VStack {
                                 WebImage(url: image)
@@ -37,9 +40,19 @@ struct RecentlyPlayedView: View {
                                     .foregroundColor(Color.white)
                             }
                         }
+                        .sheet(isPresented: $showArtist) {
+                            if viewModel.output.selectedArtist != nil {
+                                ArtistView(receivedArtist: viewModel.output.selectedArtist!)
+                            }
+                        }
                     }
                 }
             }
+            .onReceive(viewModel.successArtistReceive, perform: { success in
+                if success {
+                    showArtist.toggle()
+                }
+            })
             .padding(25)
         }
     }

@@ -38,6 +38,9 @@ struct ArtistView: View {
                 WebImage(url: receivedArtist.visuals.avatar.first?.url)
                     .resizable()
                     .scaledToFill()
+                    .overlay(
+                        Color.black.opacity(0.5)
+                    )
             )
             .cornerRadius(25)
             Spacer()

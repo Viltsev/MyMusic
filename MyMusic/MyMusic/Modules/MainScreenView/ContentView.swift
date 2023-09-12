@@ -40,6 +40,7 @@ struct ContentView: View {
                             .environmentObject(router)
                         RecentlyPlayedView()
                             .environmentObject(dataManager)
+                            .environmentObject(viewModel)
                         Spacer()
                     }
                     
