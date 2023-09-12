@@ -36,22 +36,6 @@ struct ArtistsView: View {
                             .frame(width: 50, height: 50)
                             .cornerRadius(25)
                             .padding(.horizontal, 16)
-//                        AsyncImage(url: artist.visuals.avatar.first?.url) { phase in
-//                            switch phase {
-//                                case .empty:
-//                                    ProgressView()
-//                                case .success(let image):
-//                                    image
-//                                        .resizable()
-//                                        .frame(width: 50, height: 50)
-//                                        .cornerRadius(25)
-//                                        .padding(.horizontal, 16)
-//                                case .failure(_):
-//                                    Text("Failed to load image")
-//                                @unknown default:
-//                                    EmptyView()
-//                            }
-//                        }
                         Text(artist.name)
                             .font(Font.custom("Chillax-Regular", size: 20))
                             .foregroundColor(Color.white)

@@ -164,6 +164,21 @@ struct MiniPlayer: View {
                         .fontWeight(.bold)
                     Spacer()
                     Button {
+//                        if audioPlayer.isPlaying {
+//                            audioPlayer.pauseAudio()
+//                        } else {
+//                            if viewModel.output.isTrackLoaded {
+//                                if let unwrappedPlayer = viewModel.output.playerItem {
+//                                    audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
+//                                    viewModel.output.isTrackLoaded.toggle()
+//                                }
+//                            } else {
+//                                if let unwrappedPlayer = viewModel.output.playerItem {
+//                                    audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
+//                                }
+//                            }
+//
+//                        }
                         if audioPlayer.isPlaying {
                             audioPlayer.pauseAudio()
                         } else {

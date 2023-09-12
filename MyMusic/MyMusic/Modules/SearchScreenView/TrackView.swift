@@ -34,10 +34,12 @@ struct TrackView: View {
                     if isActive {
                         isActive.toggle()
                     }
-                    viewModel.input.isTopTrackLoadSubject.send()
+                    //viewModel.input.isTopTrackLoadSubject.send()
                 }
                 isActive.toggle()
-                audioPlayer.pauseAudio()
+                if audioPlayer.isPlaying {
+                    audioPlayer.pauseAudio()
+                }
                 audioPlayer.restartAudio(newTrack: true)
             } label: {
                 WebImage(url: trackImage)

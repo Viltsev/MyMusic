@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var viewModel: SearchViewModel
     
     @StateObject var router = NavigationRouter()
     @StateObject var startViewModel = StartScreenViewModel()
@@ -86,6 +87,7 @@ struct ContentView: View {
                     case .pushFavoriteMusic:
                         FavoriteMusicView()
                             .environmentObject(dataManager)
+                            .environmentObject(viewModel)
                     }
                 }
                 .environmentObject(router)

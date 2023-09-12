@@ -54,7 +54,7 @@ class AudioPlayer: ObservableObject {
 
         if let currentTime = currentTime {
             player.seek(to: currentTime)
-            self.currentTime = nil
+            //self.currentTime = nil
         }
         
         if self.currentTimeSliderValue >= self.totalTime! {
