@@ -39,6 +39,7 @@ struct ContentView: View {
                         FavoriteTracksView()
                             .environmentObject(router)
                         RecentlyPlayedView()
+                            .environmentObject(dataManager)
                         Spacer()
                     }
                     

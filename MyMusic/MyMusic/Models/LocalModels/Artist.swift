@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ReceivedArtist: Identifiable {
     var id = UUID()
+    let artistID: String
     let name: String
     let stats: Stats
     let visuals: Visuals

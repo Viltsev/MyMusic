@@ -127,7 +127,7 @@ struct MiniPlayer: View {
                                             audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
                                         }
                                     }
-
+                                    
                                 }
                             } label: {
                                 Image(systemName: audioPlayer.isPlaying ? "stop.fill" : "play.fill")

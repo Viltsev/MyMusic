@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ServerReceivedArtist: Codable {
+    let id: String?
     let name: String?
     let stats: ServerStats?
     let visuals: ServerVisuals?

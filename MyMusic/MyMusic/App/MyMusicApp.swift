@@ -37,6 +37,7 @@ struct MyMusicApp: App {
                 .environmentObject(dataManager)
                 .onAppear {
                     viewModel.setAudioPlayer(audioPlayer)
+                    viewModel.setDataManager(dataManager)
                 }
         }
     }

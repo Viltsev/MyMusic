@@ -7,111 +7,367 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6609A38E-1434-42D4-ACA1-8BDC65E1BFBE"
+            uuid = "BBEC5F9B-FBA9-48C9-A0CB-7EAF35B51BCE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/FavoriteMusicScreen/FavoriteMusicView.swift"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8AA6D3ED-F642-4B11-B21A-0545E17B1DA5"
+            uuid = "F9184C80-0958-4FFD-B02C-4A5AE45F03B5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/SearchScreenView/TrackView.swift"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "88814231-98E7-4B42-8B8F-FE3D64C8CF55"
+            uuid = "CF1CB80A-68C5-46DF-B00E-0AB4B4540250"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/SearchScreenView/TrackView.swift"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3407C081-15EF-4E40-8DB3-12A3C1FAD8B8"
+            uuid = "45DCB4B6-6C47-4E7C-9E78-CFE2A4D404E6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/SearchScreenView/TrackView.swift"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "45DCB4B6-6C47-4E7C-9E78-CFE2A4D404E6 - 739297025c30a8bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "495">
+               </Location>
+               <Location
+                  uuid = "45DCB4B6-6C47-4E7C-9E78-CFE2A4D404E6 - 739297025c30a8bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "793">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AA003BC6-375E-4EEC-BBD2-F912C8BD1CBD"
+            uuid = "6E12C3EF-5ACD-4392-AE82-D77DC26CA08A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/SearchScreenView/TrackView.swift"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6E12C3EF-5ACD-4392-AE82-D77DC26CA08A - 739297025c30a8bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "495">
+               </Location>
+               <Location
+                  uuid = "6E12C3EF-5ACD-4392-AE82-D77DC26CA08A - 739297025c30a8bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "793">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "55F211A6-B2E1-41C6-B852-54A54B29B810"
+            uuid = "9A3CCFD5-6E38-4679-9AC1-D0D86A6BE4A3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/SearchScreenView/TrackView.swift"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9A3CCFD5-6E38-4679-9AC1-D0D86A6BE4A3 - 739297025c30a8bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "495">
+               </Location>
+               <Location
+                  uuid = "9A3CCFD5-6E38-4679-9AC1-D0D86A6BE4A3 - 739297025c30a8bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "793">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "032BA4AE-C7FD-4BBB-8448-5F48B0CE642D"
+            uuid = "6A1A0ABA-0885-4AD5-84D3-74C6FCD4B297"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/SearchScreenView/TrackView.swift"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DFB8FCB-AF7A-4045-A452-C509993C9A93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0DFB8FCB-AF7A-4045-A452-C509993C9A93 - 739297025c30a920"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "975">
+               </Location>
+               <Location
+                  uuid = "0DFB8FCB-AF7A-4045-A452-C509993C9A93 - 739297025c30a920"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "1477">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BFC1CF6A-4436-457A-B3C3-84E5789EC053"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5DC5720-695C-4683-AFC6-9ED06DDC9747"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "423B769D-34F9-4DE8-9125-11B958626321"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3F0D3F11-B41E-4ECE-8A1E-ED722F5366D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Services/Data/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "deleteArtist(artistID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3F0D3F11-B41E-4ECE-8A1E-ED722F5366D9 - 739297025c30a907"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "1069">
+               </Location>
+               <Location
+                  uuid = "3F0D3F11-B41E-4ECE-8A1E-ED722F5366D9 - 739297025c30a907"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMusic.DataManager.deleteArtist(artistID: Swift.String) -&gt; ()"
+                  moduleName = "MyMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Services/Data/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "1127">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD5DE371-538E-4868-95AF-5B6A8C91D21C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Modules/MainScreenView/RecentlyPlayedView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

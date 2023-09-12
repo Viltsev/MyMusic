@@ -23,6 +23,9 @@ struct TrackView: View {
     var trackArtists: String
     var trackImage: URL?
     var trackID: String
+//    var artistName: String
+//    var artistID: String
+//    var artistCover: URL?
     
     var body: some View {
         //let artistNames = trackArtists.map { $0.name }

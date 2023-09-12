@@ -78,14 +78,15 @@ struct FavoriteMusicView: View {
                             }
                         }
                     }
-
+                    .frame(height: UIScreen.main.bounds.height / 1.8)
                     .onAppear {
                         viewModel.input.isTopTrackLoadSubject.send()
                     }
                 }
                 .navigationBarBackButtonHidden(true)
+                Spacer()
             }
-           
+            
             
             if viewModel.output.tracks.spotifyTrack.album.cover.first?.url != nil  {
                 Spacer()

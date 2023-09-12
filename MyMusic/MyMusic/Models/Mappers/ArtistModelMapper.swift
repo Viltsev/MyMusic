@@ -57,7 +57,7 @@ final class DiscographyModelMapper: BaseModelMapper<ServerDiscography, Discograp
 final class ReceivedArtistModelMapper: BaseModelMapper<ServerReceivedArtist, ReceivedArtist> {
     
     override func toLocal(serverEntity: ServerReceivedArtist) -> ReceivedArtist {
-        ReceivedArtist(name: serverEntity.name ?? "",
+        ReceivedArtist(artistID: serverEntity.id ?? "", name: serverEntity.name ?? "",
                        stats: StatsModelMapper().toLocal(serverEntity: serverEntity.stats ?? ServerStats(followers: 0, worldRank: 0)),
                        visuals: VisualsModelMapper().toLocal(serverEntity: serverEntity.visuals ?? ServerVisuals(avatar: [])),
                        discography: DiscographyModelMapper().toLocal(serverEntity: serverEntity.discography ?? ServerDiscography(topTracks: [])))

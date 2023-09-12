@@ -42,18 +42,6 @@ extension TrackViewModel {
                                          trackCover: currentImage,
                                          trackID: trackID)
                 }
-//                if let dataManager = self.dataManager {
-//                    for user in dataManager.savedEntities {
-//                        if let email = UserDefaults.standard.string(forKey: "email"), let currentImage = trackImage, user.email == email {
-//                            dataManager.addTrack(user: user,
-//                                                 trackTitle: trackTitle,
-//                                                 trackArtists: trackArtists,
-//                                                 trackCover: currentImage,
-//                                                 trackID: trackID
-//                            )
-//                        }
-//                    }
-//                }
             }
             .store(in: &cancellable)
     }
@@ -63,11 +51,6 @@ extension TrackViewModel {
             .sink { trackID in
                 if let dataManager = self.dataManager {
                     dataManager.deleteTrack(trackID: trackID)
-//                    for user in dataManager.savedEntities {
-//                        if let email = UserDefaults.standard.string(forKey: "email"), user.email == email {
-//                            dataManager.deleteTrack(trackID: trackID)
-//                        }
-//                    }
                 }
             }
             .store(in: &cancellable)
@@ -90,6 +73,8 @@ extension TrackViewModel {
             }
             .store(in: &cancellable)
     }
+    
+    
 }
 
 extension TrackViewModel {

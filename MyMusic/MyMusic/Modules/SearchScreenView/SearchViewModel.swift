@@ -13,6 +13,7 @@ import AVFoundation
 
 final class SearchViewModel: ObservableObject {
     
+    var dataManager: DataManager? = nil
     var audioPlayer: AudioPlayer? = nil
     var router: NavigationRouter? = nil
     
@@ -30,6 +31,10 @@ final class SearchViewModel: ObservableObject {
         self.audioPlayer = player
     }
     
+    func setDataManager(_ dataManager: DataManager) {
+        self.dataManager = dataManager
+    }
+    
     init() {
         bind()
     }
@@ -43,6 +48,7 @@ extension SearchViewModel {
         loadTopTrack()
         loadCurrentTrack()
         checkTopTrackLoad()
+        saveRecentlyPlayedArtist()
     }
     
     func bindSearchButton() {
@@ -135,7 +141,24 @@ extension SearchViewModel {
                 }
             }, receiveValue: { artist in
                 self.output.artists.append(artist)
+                self.input.recentlyPlayedArtistSubject.send(self.output.artists)
             })
+            .store(in: &cancellable)
+    }
+    
+    func saveRecentlyPlayedArtist() {
+        input.recentlyPlayedArtistSubject
+            .sink { artists in
+                if let dataManager = self.dataManager {
+                    for artist in artists {
+                        if let currentCover = artist.visuals.avatar.first?.url {
+                            dataManager.addArtist(name: artist.name,
+                                                  cover: currentCover,
+                                                  artistID: artist.artistID)
+                        }
+                    }
+                }
+            }
             .store(in: &cancellable)
     }
 }
@@ -147,6 +170,7 @@ extension SearchViewModel {
         let selectedTopTrackSubject = PassthroughSubject<TopTracks, Never>()
         let loadTrackSubject = PassthroughSubject<(URL?, AudioPlayer), Never>()
         let isTopTrackLoadSubject = PassthroughSubject<Void, Never>()
+        let recentlyPlayedArtistSubject = PassthroughSubject<[ReceivedArtist], Never>()
     }
     
     struct Output {

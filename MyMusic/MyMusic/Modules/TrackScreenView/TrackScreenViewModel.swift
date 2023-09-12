@@ -99,7 +99,7 @@ extension TrackScreenViewModel {
         var trackCover: UIImage?
         var artistCover: UIImage?
         var artists: [ReceivedArtist] = [
-            ReceivedArtist(name: "Travis Scott",
+            ReceivedArtist(artistID: "", name: "Travis Scott",
                            stats: Stats(followers: 3000000, worldRank: 5),
                            visuals: Visuals(avatar: [Avatar(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44"))]),
                            discography: Discography(topTracks: [
@@ -113,7 +113,7 @@ extension TrackScreenViewModel {
                                      )
                            ])
                           ),
-            ReceivedArtist(name: "Drake",
+            ReceivedArtist(artistID: "", name: "Drake",
                            stats: Stats(followers: 5000000, worldRank: 5),
                            visuals: Visuals(avatar: [Avatar(url: URL(string: "https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9"))]),
                            discography: Discography(topTracks: [

@@ -13,6 +13,7 @@ class DataManager: ObservableObject {
     
     @Published var savedEntities: [UserEntity] = []
     @Published var savedTrackEntities: [TrackEntity] = []
+    @Published var savedArtistsEntities: [ArtistEntity] = []
     
     init() {
         container = NSPersistentContainer(name: "UsersContainer")
@@ -23,6 +24,7 @@ class DataManager: ObservableObject {
         }
         fetchUsers()
         fetchTracks()
+        fetchArtists()
     }
     
     func fetchUsers() {
@@ -41,6 +43,46 @@ class DataManager: ObservableObject {
             savedTrackEntities = try container.viewContext.fetch(request)
         } catch let error {
             print("error fetching. \(error)")
+        }
+    }
+    
+    func fetchArtists() {
+        let request = NSFetchRequest<ArtistEntity>(entityName: "ArtistEntity")
+        do {
+            savedArtistsEntities = try container.viewContext.fetch(request)
+        } catch let error {
+            print("error fetching. \(error)")
+        }
+    }
+    
+    func addArtist(name: String, cover: URL, artistID: String) {
+        let newArtist = ArtistEntity(context: container.viewContext)
+        let request = NSFetchRequest<UserEntity>(entityName: "UserEntity")
+        let artistRequest = NSFetchRequest<ArtistEntity>(entityName: "ArtistEntity")
+        
+        if let email = UserDefaults.standard.string(forKey: "email") {
+            request.predicate = NSPredicate(format: "email == %@", email)
+        }
+        artistRequest.predicate = NSPredicate(format: "artistID == %@", artistID)
+        
+        do {
+            if savedArtistsEntities.contains(where: { artist in
+                artist.artistID == artistID
+            }) {
+                print("artist already has been added!")
+            } else {
+                if let currentUser = try container.viewContext.fetch(request).first {
+                    newArtist.name = name
+                    newArtist.image = cover
+                    newArtist.userEmail = currentUser.email
+                    newArtist.artistID = artistID
+                    newArtist.id = UUID()
+                    
+                    saveArtistData()
+                }
+            }
+        } catch let error {
+            print("error adding track. \(error)")
         }
     }
     
@@ -89,24 +131,21 @@ class DataManager: ObservableObject {
         }
     }
     
-//    func isFavoriteTrack(_ trackID: String) -> Bool {
-//        let request = NSFetchRequest<TrackEntity>(entityName: "TrackEntity")
-//        request.predicate = NSPredicate(format: "trackID == %@", trackID)
-//
-//        do {
-//            if let track = try container.viewContext.fetch(request).first {
-//                return true
-//            } else {
-//                return false
-//            }
-//        } catch let error {
-//            print("error searching track. \(error)")
-//            return false
-//        }
-//    }
+    func deleteArtist(artistID: String) {
+        let request = NSFetchRequest<ArtistEntity>(entityName: "ArtistEntity")
+        request.predicate = NSPredicate(format: "artistID == %@", artistID)
+        
+        do {
+            if let artistToDelete = try container.viewContext.fetch(request).first {
+                container.viewContext.delete(artistToDelete)
+                saveArtistData()
+            }
+        } catch let error {
+            print("error deleting track. \(error)")
+        }
+    }
     
-    
-    func saveData() {
+    private func saveData() {
         do {
             try container.viewContext.save()
             fetchUsers()
@@ -116,10 +155,19 @@ class DataManager: ObservableObject {
         
     }
     
-    func saveTrackData() {
+    private func saveTrackData() {
         do {
             try container.viewContext.save()
             fetchTracks()
+        } catch let error {
+            print("error saving. \(error)")
+        }
+    }
+    
+    private func saveArtistData() {
+        do {
+            try container.viewContext.save()
+            fetchArtists()
         } catch let error {
             print("error saving. \(error)")
         }
