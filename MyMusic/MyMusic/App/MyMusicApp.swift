@@ -25,20 +25,9 @@ struct MyMusicApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @StateObject private var audioPlayer = AudioPlayer()
-    @StateObject private var viewModel = SearchViewModel()
-    @StateObject private var dataManager = DataManager()
-    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(audioPlayer)
-                .environmentObject(viewModel)
-                .environmentObject(dataManager)
-                .onAppear {
-                    viewModel.setAudioPlayer(audioPlayer)
-                    viewModel.setDataManager(dataManager)
-                }
+            AppContainer()
         }
     }
     

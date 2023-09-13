@@ -12,20 +12,9 @@ import FirebaseCore
 import FirebaseAuth
 
 final class SignInViewModel: ObservableObject {
-    
-    var router: NavigationRouter? = nil
-    
-    var successSignIn: AnyPublisher<Bool, Never> {
-        return input.successSignInSubject.eraseToAnyPublisher()
-    }
-    
     let input: Input = Input()
     @Published var output: Output = Output()
     var cancellable = Set<AnyCancellable>()
-    
-    func setRouter(_ router: NavigationRouter) {
-        self.router = router
-    }
     
     init() {
         bind()
@@ -58,8 +47,8 @@ extension SignInViewModel {
                     if error != nil {
                         print(error?.localizedDescription ?? "")
                     } else {
-                        print("success")
-                        self.input.successSignInSubject.send(true)
+                        print("Success Sign In")
+                        AuthenticationLocalService.shared.status.send(true)
                         UserDefaults.standard.removeObject(forKey: "email")
                         UserDefaults.standard.removeObject(forKey: "name")
                         UserDefaults.standard.set(email, forKey: "email")
@@ -77,7 +66,6 @@ extension SignInViewModel {
         let emailSubject = PassthroughSubject<String, Never>()
         let passwordSubject = PassthroughSubject<String, Never>()
         let signInSubject = PassthroughSubject<(String, String), Never>()
-        let successSignInSubject = PassthroughSubject<Bool, Never>()
     }
     
     struct Output {

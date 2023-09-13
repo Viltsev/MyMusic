@@ -31,6 +31,10 @@
 		8388E6A72A9F7F1800A2520E /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E6A62A9F7F1800A2520E /* NavigationRouter.swift */; };
 		838AEC5C2AADC9270081F7C6 /* FavoriteMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838AEC5B2AADC9270081F7C6 /* FavoriteMusicView.swift */; };
 		838AEC5E2AADF6340081F7C6 /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838AEC5D2AADF6340081F7C6 /* TrackViewModel.swift */; };
+		838EF0672AB1D340004EC180 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF0662AB1D340004EC180 /* AppContainer.swift */; };
+		838EF06A2AB1D3FE004EC180 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF0692AB1D3FE004EC180 /* UserStorage.swift */; };
+		838EF06C2AB1D440004EC180 /* OptionalString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF06B2AB1D440004EC180 /* OptionalString+Extension.swift */; };
+		838EF06F2AB1D4E1004EC180 /* AuthenticationLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF06E2AB1D4E1004EC180 /* AuthenticationLocalService.swift */; };
 		839DA0EC2AA9BCEE0001DF8C /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 839DA0EB2AA9BCEE0001DF8C /* SDWebImageSwiftUI */; };
 		839DA0EF2AA9E1E20001DF8C /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DA0EE2AA9E1E20001DF8C /* StartScreenView.swift */; };
 		839DA0F22AA9EC490001DF8C /* SignInScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DA0F12AA9EC490001DF8C /* SignInScreenView.swift */; };
@@ -105,6 +109,10 @@
 		8388E6A62A9F7F1800A2520E /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		838AEC5B2AADC9270081F7C6 /* FavoriteMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMusicView.swift; sourceTree = "<group>"; };
 		838AEC5D2AADF6340081F7C6 /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
+		838EF0662AB1D340004EC180 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		838EF0692AB1D3FE004EC180 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		838EF06B2AB1D440004EC180 /* OptionalString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalString+Extension.swift"; sourceTree = "<group>"; };
+		838EF06E2AB1D4E1004EC180 /* AuthenticationLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationLocalService.swift; sourceTree = "<group>"; };
 		839DA0EE2AA9E1E20001DF8C /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		839DA0F12AA9EC490001DF8C /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
 		839DA0F42AAA15CF0001DF8C /* LogInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInScreenView.swift; sourceTree = "<group>"; };
@@ -187,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				8373A9F22A9B7EA400CA4A44 /* Text+Extension.swift */,
+				838EF06B2AB1D440004EC180 /* OptionalString+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 		8388E6A32A9F7ED000A2520E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				838EF0652AB1D329004EC180 /* AppContainer */,
 				8388E6A42A9F7EE400A2520E /* Navigation.swift */,
 				8388E6A62A9F7F1800A2520E /* NavigationRouter.swift */,
 			);
@@ -230,6 +240,30 @@
 				83CEAEF42A914C530044F2CF /* MyMusicApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		838EF0652AB1D329004EC180 /* AppContainer */ = {
+			isa = PBXGroup;
+			children = (
+				838EF0662AB1D340004EC180 /* AppContainer.swift */,
+			);
+			path = AppContainer;
+			sourceTree = "<group>";
+		};
+		838EF0682AB1D3E2004EC180 /* Storeges */ = {
+			isa = PBXGroup;
+			children = (
+				838EF0692AB1D3FE004EC180 /* UserStorage.swift */,
+			);
+			path = Storeges;
+			sourceTree = "<group>";
+		};
+		838EF0702AB1D516004EC180 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				838EF06E2AB1D4E1004EC180 /* AuthenticationLocalService.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		839DA0ED2AA9E1C80001DF8C /* StartScreen */ = {
@@ -310,6 +344,8 @@
 		83C0240E2A949EB500FE6B03 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				838EF0702AB1D516004EC180 /* Authentication */,
+				838EF0682AB1D3E2004EC180 /* Storeges */,
 				83495FBE2AAC8B5D00ED870A /* Data */,
 				83C0240F2A949EC800FE6B03 /* GeneralAPI */,
 				83C024352A95436F00FE6B03 /* Provider.swift */,
@@ -574,6 +610,7 @@
 				83CEAEF72A914C530044F2CF /* ContentView.swift in Sources */,
 				83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */,
 				83B3BB962AA715AE008D4063 /* ServerArtist.swift in Sources */,
+				838EF06C2AB1D440004EC180 /* OptionalString+Extension.swift in Sources */,
 				83C0241C2A94A6AD00FE6B03 /* BaseModelMapper.swift in Sources */,
 				83C024342A9542E500FE6B03 /* GeneralAPI.swift in Sources */,
 				83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */,
@@ -592,6 +629,7 @@
 				839DA0F52AAA15CF0001DF8C /* LogInScreenView.swift in Sources */,
 				83C024182A94A07A00FE6B03 /* ServerTrack.swift in Sources */,
 				83B3BB922AA62588008D4063 /* ArtistsViewModel.swift in Sources */,
+				838EF06A2AB1D3FE004EC180 /* UserStorage.swift in Sources */,
 				8373A9E42A9B603E00CA4A44 /* AudioPlayer.swift in Sources */,
 				8373AA172A9B9A3D00CA4A44 /* BlurView.swift in Sources */,
 				83B05A902A9666AD0057CA72 /* SearchView.swift in Sources */,
@@ -599,11 +637,13 @@
 				83C024302A94BE8800FE6B03 /* RecentlyPlayedView.swift in Sources */,
 				83757AD42A99FB8800EFB64D /* NewTrackScreenView.swift in Sources */,
 				83C0241A2A94A5DE00FE6B03 /* Track.swift in Sources */,
+				838EF0672AB1D340004EC180 /* AppContainer.swift in Sources */,
 				83B3BB9A2AA71AFF008D4063 /* ReceiveArtistEndpoint.swift in Sources */,
 				83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */,
 				83C0242C2A94BDFF00FE6B03 /* RecommendationsCircleView.swift in Sources */,
 				83ADC6BE2AAB7EA800CD62E5 /* LogInScreenViewModel.swift in Sources */,
 				8388E6A72A9F7F1800A2520E /* NavigationRouter.swift in Sources */,
+				838EF06F2AB1D4E1004EC180 /* AuthenticationLocalService.swift in Sources */,
 				835A25832AA85CF50020E6A9 /* AppData.swift in Sources */,
 				839DA0F92AAA34060001DF8C /* StartScreenViewModel.swift in Sources */,
 			);

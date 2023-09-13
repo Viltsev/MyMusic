@@ -12,11 +12,10 @@ struct SearchBarView: View {
     @Binding var show: Bool
     
     var body: some View {
-        ZStack {
+        //ZStack {
             HStack {
                 Button {
                     show.toggle()
-                    //router.pushView(Navigation.pushProfileScreen)
                 } label: {
                     Image(systemName: "text.alignleft")
                         .font(.title2)
@@ -38,7 +37,7 @@ struct SearchBarView: View {
             .padding(25)
             
             
-        }
+        //}
         
     }
 }

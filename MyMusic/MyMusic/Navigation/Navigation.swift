@@ -9,10 +9,5 @@ import Foundation
 
 enum Navigation: Hashable {
     case pushSearchScreen
-    case pushProfileScreen
-    case pushSignInScreen
-    case pushLogInScreen
-    case pushMainScreen
-    case pushStartScreen
     case pushFavoriteMusic
 }

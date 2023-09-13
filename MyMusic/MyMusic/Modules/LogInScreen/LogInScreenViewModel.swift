@@ -12,21 +12,11 @@ import FirebaseCore
 import FirebaseAuth
 
 final class LogInViewModel: ObservableObject {
-    
-    var router: NavigationRouter? = nil
     var dataBase: DataManager? = nil
-    
-    var successLogIn: AnyPublisher<Bool, Never> {
-        return input.successLogInSubject.eraseToAnyPublisher()
-    }
     
     let input: Input = Input()
     @Published var output: Output = Output()
     var cancellable = Set<AnyCancellable>()
-    
-    func setRouter(_ router: NavigationRouter) {
-        self.router = router
-    }
     
     func setDataBase(_ database: DataManager) {
         self.dataBase = database
@@ -64,7 +54,7 @@ extension LogInViewModel {
                         print(error?.localizedDescription ?? "")
                     } else {
                         print("Success Log In")
-                        self.input.successLogInSubject.send(true)
+                        AuthenticationLocalService.shared.status.send(true)
                         self.dataBase?.addUser(name: name, email: email)
                         UserDefaults.standard.removeObject(forKey: "email")
                         UserDefaults.standard.removeObject(forKey: "name")
@@ -85,7 +75,6 @@ extension LogInViewModel {
         let emailSubject = PassthroughSubject<String, Never>()
         let passwordSubject = PassthroughSubject<String, Never>()
         let logInSubject = PassthroughSubject<(String, String, String), Never>()
-        let successLogInSubject = PassthroughSubject<Bool, Never>()
     }
     
     struct Output {

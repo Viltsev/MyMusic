@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var dataManager: DataManager
-    @EnvironmentObject var router: NavigationRouter
-    @EnvironmentObject var startViewModel: StartScreenViewModel
+    //@EnvironmentObject var router: NavigationRouter
+    //@EnvironmentObject var startViewModel: StartScreenViewModel
     
     private var name: String {
         var name = ""
@@ -52,8 +52,9 @@ struct ProfileView: View {
             }
             .foregroundColor(Color.purpleDark)
             Button {
-                router.pushView(Navigation.pushStartScreen)
-                startViewModel.input.accountCompleteSubject.send()
+                AuthenticationLocalService.shared.status.send(false)
+//                router.pushView(Navigation.pushStartScreen)
+//                startViewModel.input.accountCompleteSubject.send()
                 UserDefaults.standard.removeObject(forKey: "email")
                 UserDefaults.standard.removeObject(forKey: "name")
             } label: {

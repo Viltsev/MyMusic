@@ -10,23 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var viewModel: SearchViewModel
-    
-    @StateObject var router = NavigationRouter()
-    @StateObject var startViewModel = StartScreenViewModel()
+    @EnvironmentObject var router: NavigationRouter
     
     @State var show = false
-    
-    private var isAuthCompleted: Bool {
-        if let user = UserDefaults.standard.string(forKey: "email") {
-            if user.isEmpty {
-                return false
-            } else {
-                return true
-            }
-        } else {
-            return false
-        }
-    }
     
     var body: some View {
         NavigationStack(path: $router.path) {
@@ -43,15 +29,11 @@ struct ContentView: View {
                             .environmentObject(viewModel)
                         Spacer()
                     }
-                    
                     Button {
                         self.show.toggle()
                     } label: {
-                        if isAuthCompleted {
-                            ProfileView()
-                                .environmentObject(router)
-                                .environmentObject(startViewModel)
-                        }
+                        ProfileView()
+                            .environmentObject(dataManager)
                     }
                     .frame(height: UIScreen.main.bounds.height / 1.1)
                     .background(Color.greenLight)
@@ -64,28 +46,12 @@ struct ContentView: View {
                 }
                 
             }
-            .onAppear {
-                //let email = UserDefaults.standard.string(forKey: "email")
-                if !startViewModel.output.isAccountComplete && !isAuthCompleted {
-                    router.pushView(Navigation.pushStartScreen)
-                }
-            }
             .background(Color.purpleMid)
             .navigationDestination(for: Navigation.self) { nav in
                 Group {
                     switch nav {
                     case .pushSearchScreen:
                         SearchView()
-                    case .pushProfileScreen:
-                        Text("")
-                    case .pushSignInScreen:
-                        SignInScreenView()
-                    case .pushLogInScreen:
-                        LogInScreenView()
-                    case .pushMainScreen:
-                        ContentView()
-                    case .pushStartScreen:
-                        StartScreenView()
                     case .pushFavoriteMusic:
                         FavoriteMusicView()
                             .environmentObject(dataManager)
@@ -93,14 +59,14 @@ struct ContentView: View {
                     }
                 }
                 .environmentObject(router)
-                .environmentObject(startViewModel)
             }
         }
     }
 }
+    
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

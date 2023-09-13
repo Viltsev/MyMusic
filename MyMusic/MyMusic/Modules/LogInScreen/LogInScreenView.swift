@@ -8,12 +8,7 @@
 import SwiftUI
 
 struct LogInScreenView: View {
-    @EnvironmentObject var router: NavigationRouter
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var startViewModel: StartScreenViewModel
     @EnvironmentObject var dataManager: DataManager
-    
-    
     @StateObject var logViewModel = LogInViewModel()
     
     @State private var name: String = ""
@@ -24,15 +19,15 @@ struct LogInScreenView: View {
     var body: some View {
         VStack(spacing: 15) {
             HStack {
-                Button {
-                    router.popToRoot()
-                } label: {
-                    Text("back")
-                        .font(Font.custom("Chillax-Semibold", size: 20))
-                        .foregroundColor(Color.greenLight)
-                        
-                }
-                .padding(.horizontal, -55)
+//                Button {
+//                    //router.popToRoot()
+//                } label: {
+//                    Text("back")
+//                        .font(Font.custom("Chillax-Semibold", size: 20))
+//                        .foregroundColor(Color.greenLight)
+//
+//                }
+//                .padding(.horizontal, -55)
                 Text("Sign Up")
                     .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
@@ -107,22 +102,7 @@ struct LogInScreenView: View {
             .disabled(logViewModel.output.isDisabledButton)
             Spacer()
         }
-        .onReceive(logViewModel.successLogIn, perform: { success in
-            if success {
-                startViewModel.input.accountCompleteSubject.send()
-                router.popToRoot()
-                dismiss()
-            }
-        })
         .onAppear {
-            for i in dataManager.savedEntities {
-                print("name: \(i.name ?? "no name"), email: \(i.email ?? "no email")")
-            }
-            for i in dataManager.savedTrackEntities {
-                print("\n")
-                print("trackTitle: \(i.trackTitle ?? "")\nuserEmail: \(i.userEmail ?? "")\ntrackID: \(i.trackID)")
-            }
-            logViewModel.setRouter(router)
             logViewModel.setDataBase(dataManager)
         }
         .navigationBarBackButtonHidden(true)

@@ -38,7 +38,7 @@ extension ReceiveArtistEndpoint: TargetType {
     }
     
     var headers: [String : String]? {
-        [ "X-RapidAPI-Key" : "0658d578b3mshb179e5335235cfcp1670cdjsnc2d05548d106",
+        [ "X-RapidAPI-Key" : "27c6d1d550msh8035facaaa7d0aep1faf31jsn553934d16125",
           "X-RapidAPI-Host" : "spotify-scraper.p.rapidapi.com"
         ]
     }

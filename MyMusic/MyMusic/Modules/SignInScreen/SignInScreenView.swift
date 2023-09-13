@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct SignInScreenView: View {
-    
-    @EnvironmentObject var router: NavigationRouter
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var startViewModel: StartScreenViewModel
-    
     @StateObject var signViewModel = SignInViewModel()
 
     @State private var email: String = ""
@@ -22,15 +17,15 @@ struct SignInScreenView: View {
     var body: some View {
         VStack(spacing: 15) {
             HStack {
-                Button {
-                    router.popToRoot()
-                } label: {
-                    Text("back")
-                        .font(Font.custom("Chillax-Semibold", size: 20))
-                        .foregroundColor(Color.greenLight)
-                        
-                }
-                .padding(.horizontal, -50)
+//                Button {
+//                   
+//                } label: {
+//                    Text("back")
+//                        .font(Font.custom("Chillax-Semibold", size: 20))
+//                        .foregroundColor(Color.greenLight)
+//                        
+//                }
+//                .padding(.horizontal, -50)
                 Text("Sign In")
                     .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
@@ -92,16 +87,6 @@ struct SignInScreenView: View {
             }
             .disabled(signViewModel.output.isDisabledButton)
             Spacer()
-        }
-        .onReceive(signViewModel.successSignIn, perform: { success in
-            if success {
-                startViewModel.input.accountCompleteSubject.send()
-                router.popToRoot()
-                dismiss()
-            }
-        })
-        .onAppear {
-            signViewModel.setRouter(router)
         }
         .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
