@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830744642AB3279A005A66DE /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830744632AB3279A005A66DE /* Assembler.swift */; };
+		830744662AB32EB5005A66DE /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830744652AB32EB5005A66DE /* ServiceAssembly.swift */; };
 		83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */; };
 		83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC22AAC8BED00ED870A /* DataManager.swift */; };
 		83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC52AACAE7C00ED870A /* ProfileView.swift */; };
@@ -35,6 +37,8 @@
 		838EF06A2AB1D3FE004EC180 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF0692AB1D3FE004EC180 /* UserStorage.swift */; };
 		838EF06C2AB1D440004EC180 /* OptionalString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF06B2AB1D440004EC180 /* OptionalString+Extension.swift */; };
 		838EF06F2AB1D4E1004EC180 /* AuthenticationLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF06E2AB1D4E1004EC180 /* AuthenticationLocalService.swift */; };
+		838EF0782AB20F94004EC180 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 838EF0772AB20F94004EC180 /* Swinject */; };
+		838EF07A2AB2487F004EC180 /* DataManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838EF0792AB2487F004EC180 /* DataManagerModel.swift */; };
 		839DA0EC2AA9BCEE0001DF8C /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 839DA0EB2AA9BCEE0001DF8C /* SDWebImageSwiftUI */; };
 		839DA0EF2AA9E1E20001DF8C /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DA0EE2AA9E1E20001DF8C /* StartScreenView.swift */; };
 		839DA0F22AA9EC490001DF8C /* SignInScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839DA0F12AA9EC490001DF8C /* SignInScreenView.swift */; };
@@ -84,6 +88,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		830744632AB3279A005A66DE /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		830744652AB32EB5005A66DE /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
 		83495FC02AAC8B7600ED870A /* UsersContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UsersContainer.xcdatamodel; sourceTree = "<group>"; };
 		83495FC22AAC8BED00ED870A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		83495FC52AACAE7C00ED870A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 		838EF0692AB1D3FE004EC180 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		838EF06B2AB1D440004EC180 /* OptionalString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalString+Extension.swift"; sourceTree = "<group>"; };
 		838EF06E2AB1D4E1004EC180 /* AuthenticationLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationLocalService.swift; sourceTree = "<group>"; };
+		838EF0792AB2487F004EC180 /* DataManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerModel.swift; sourceTree = "<group>"; };
 		839DA0EE2AA9E1E20001DF8C /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		839DA0F12AA9EC490001DF8C /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
 		839DA0F42AAA15CF0001DF8C /* LogInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInScreenView.swift; sourceTree = "<group>"; };
@@ -160,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83ADC6B82AAB56DD00CD62E5 /* FirebaseAnalytics in Frameworks */,
+				838EF0782AB20F94004EC180 /* Swinject in Frameworks */,
 				83ADC6BC2AAB56DD00CD62E5 /* FirebaseAuthCombine-Community in Frameworks */,
 				839DA0EC2AA9BCEE0001DF8C /* SDWebImageSwiftUI in Frameworks */,
 				83C024232A94AF9800FE6B03 /* Moya in Frameworks */,
@@ -174,11 +182,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		830744622AB3276D005A66DE /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				830744632AB3279A005A66DE /* Assembler.swift */,
+				830744652AB32EB5005A66DE /* ServiceAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		83495FBE2AAC8B5D00ED870A /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */,
 				83495FC22AAC8BED00ED870A /* DataManager.swift */,
+				838EF0792AB2487F004EC180 /* DataManagerModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -474,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				838AEC582AADC8520081F7C6 /* App */,
+				830744622AB3276D005A66DE /* Assembly */,
 				8388E6A32A9F7ED000A2520E /* Navigation */,
 				83C0240E2A949EB500FE6B03 /* Services */,
 				83C024102A949ED300FE6B03 /* Resources */,
@@ -521,6 +540,7 @@
 				83ADC6B72AAB56DD00CD62E5 /* FirebaseAnalytics */,
 				83ADC6B92AAB56DD00CD62E5 /* FirebaseAuth */,
 				83ADC6BB2AAB56DD00CD62E5 /* FirebaseAuthCombine-Community */,
+				838EF0772AB20F94004EC180 /* Swinject */,
 			);
 			productName = MyMusic;
 			productReference = 83CEAEF12A914C520044F2CF /* MyMusic.app */;
@@ -556,6 +576,7 @@
 				83B05A942A968BC10057CA72 /* XCRemoteSwiftPackageReference "CombineExt" */,
 				839DA0EA2AA9BCEE0001DF8C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				83ADC6B62AAB56DD00CD62E5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				838EF0762AB20F94004EC180 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 83CEAEF22A914C520044F2CF /* Products */;
 			projectDirPath = "";
@@ -633,6 +654,8 @@
 				8373A9E42A9B603E00CA4A44 /* AudioPlayer.swift in Sources */,
 				8373AA172A9B9A3D00CA4A44 /* BlurView.swift in Sources */,
 				83B05A902A9666AD0057CA72 /* SearchView.swift in Sources */,
+				838EF07A2AB2487F004EC180 /* DataManagerModel.swift in Sources */,
+				830744662AB32EB5005A66DE /* ServiceAssembly.swift in Sources */,
 				83C024362A95436F00FE6B03 /* Provider.swift in Sources */,
 				83C024302A94BE8800FE6B03 /* RecentlyPlayedView.swift in Sources */,
 				83757AD42A99FB8800EFB64D /* NewTrackScreenView.swift in Sources */,
@@ -642,6 +665,7 @@
 				83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */,
 				83C0242C2A94BDFF00FE6B03 /* RecommendationsCircleView.swift in Sources */,
 				83ADC6BE2AAB7EA800CD62E5 /* LogInScreenViewModel.swift in Sources */,
+				830744642AB3279A005A66DE /* Assembler.swift in Sources */,
 				8388E6A72A9F7F1800A2520E /* NavigationRouter.swift in Sources */,
 				838EF06F2AB1D4E1004EC180 /* AuthenticationLocalService.swift in Sources */,
 				835A25832AA85CF50020E6A9 /* AppData.swift in Sources */,
@@ -864,6 +888,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		838EF0762AB20F94004EC180 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.8.0;
+			};
+		};
 		839DA0EA2AA9BCEE0001DF8C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -899,6 +931,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		838EF0772AB20F94004EC180 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 838EF0762AB20F94004EC180 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
 		839DA0EB2AA9BCEE0001DF8C /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 839DA0EA2AA9BCEE0001DF8C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

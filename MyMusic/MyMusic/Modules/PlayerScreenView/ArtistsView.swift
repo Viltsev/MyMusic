@@ -9,9 +9,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ArtistsView: View {
-    @EnvironmentObject var viewModel: SearchViewModel
-    
-    @StateObject var viewModelTrack = TrackScreenViewModel()
     @StateObject var viewModelArtist = ArtistsViewModel()
     
     @State private var showArtist: Bool = false

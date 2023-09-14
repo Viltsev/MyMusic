@@ -12,15 +12,11 @@ import FirebaseCore
 import FirebaseAuth
 
 final class LogInViewModel: ObservableObject {
-    var dataBase: DataManager? = nil
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
     
     let input: Input = Input()
     @Published var output: Output = Output()
     var cancellable = Set<AnyCancellable>()
-    
-    func setDataBase(_ database: DataManager) {
-        self.dataBase = database
-    }
  
     init() {
         bind()
@@ -54,8 +50,9 @@ extension LogInViewModel {
                         print(error?.localizedDescription ?? "")
                     } else {
                         print("Success Log In")
+                        //self.dataManagerModel.input.fetchDataSubject.send()
                         AuthenticationLocalService.shared.status.send(true)
-                        self.dataBase?.addUser(name: name, email: email)
+                        self.dataManager.addUser(name: name, email: email)
                         UserDefaults.standard.removeObject(forKey: "email")
                         UserDefaults.standard.removeObject(forKey: "name")
                         UserDefaults.standard.set(email, forKey: "email")

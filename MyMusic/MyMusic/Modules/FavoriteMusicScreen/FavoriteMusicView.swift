@@ -9,8 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct FavoriteMusicView: View {
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
     @EnvironmentObject var router: NavigationRouter
-    @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var viewModel: SearchViewModel
     @State private var playerItem: AVPlayerItem?
     @State private var isMPActive = false
@@ -18,8 +18,11 @@ struct FavoriteMusicView: View {
     @State private var favoriteTracks: [TrackEntity] = []
     @State var expand = false
     
+    private var savedTrackEntities: [TrackEntity] {
+        return dataManager.fetchTracks()
+    }
+    
     var body: some View {
-        //alignment: Alignment(horizontal: .center, vertical: .bottom)
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             VStack {
                 HStack {
@@ -63,7 +66,7 @@ struct FavoriteMusicView: View {
                 }
                 VStack {
                     ScrollView(showsIndicators: false) {
-                        ForEach(dataManager.savedTrackEntities) { track in
+                        ForEach(savedTrackEntities) { track in
                             if let title = track.trackTitle,
                                let artists = track.trackArtists,
                                let email = UserDefaults.standard.string(forKey: "email"),
@@ -98,8 +101,6 @@ struct FavoriteMusicView: View {
                         playerItem: $playerItem
                     )
                 }
-                
-                    //.opacity(isMPActive ? 0 : 1)
             }
         }
         .frame(width: UIScreen.main.bounds.width)

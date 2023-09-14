@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import CombineExt
 
-
 final class StartScreenViewModel: ObservableObject {
     @Published var output = Output()
     let input = Input()
@@ -21,7 +20,6 @@ final class StartScreenViewModel: ObservableObject {
 }
 
 extension StartScreenViewModel {
-    
     func bind() {
         input.sheetButtonSubject
             .sink { [weak self] in
@@ -34,8 +32,6 @@ extension StartScreenViewModel {
             }
             .store(in: &cancellable)
     }
-    
-    
 }
 
 extension StartScreenViewModel {

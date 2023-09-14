@@ -9,9 +9,10 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct TrackView: View {
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
+
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var viewModel: SearchViewModel
-    @EnvironmentObject var dataManager: DataManager
     
     @StateObject var viewModelArtist = ArtistsViewModel()
     @StateObject var trackViewModel = TrackViewModel()
@@ -23,6 +24,10 @@ struct TrackView: View {
     var trackArtists: String
     var trackImage: URL?
     var trackID: String
+    
+    private var savedTrackEntities: [TrackEntity] {
+        return dataManager.fetchTracks()
+    }
     
     var body: some View {
         HStack(spacing: 20) {
@@ -74,7 +79,6 @@ struct TrackView: View {
         }
         .onAppear {
             isFavoriteTrack()
-            trackViewModel.setDataManager(dataManager)
         }
         .padding(25)
     }
@@ -89,7 +93,7 @@ struct TrackView: View {
     }
     
     func isFavoriteTrack() {
-        for track in dataManager.savedTrackEntities {
+        for track in savedTrackEntities {
             if let currentUser = UserDefaults.standard.string(forKey: "email"),
                track.userEmail == currentUser,
                let id = track.trackID {

@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct StartScreenView: View {
-    @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var startViewModel: StartScreenViewModel
-    
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     
@@ -55,7 +53,6 @@ struct StartScreenView: View {
                         SignInScreenView()
                     case .logIn:
                         LogInScreenView()
-                            .environmentObject(dataManager)
                     }
                 })
                 .frame(width: screenWidth / 1.2, height: screenHeight / 1.3)

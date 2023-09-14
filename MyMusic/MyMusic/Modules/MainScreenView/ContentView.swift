@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var viewModel: SearchViewModel
     @EnvironmentObject var router: NavigationRouter
     
@@ -25,7 +24,6 @@ struct ContentView: View {
                         FavoriteTracksView()
                             .environmentObject(router)
                         RecentlyPlayedView()
-                            .environmentObject(dataManager)
                             .environmentObject(viewModel)
                         Spacer()
                     }
@@ -33,7 +31,6 @@ struct ContentView: View {
                         self.show.toggle()
                     } label: {
                         ProfileView()
-                            .environmentObject(dataManager)
                     }
                     .frame(height: UIScreen.main.bounds.height / 1.1)
                     .background(Color.greenLight)
@@ -54,7 +51,6 @@ struct ContentView: View {
                         SearchView()
                     case .pushFavoriteMusic:
                         FavoriteMusicView()
-                            .environmentObject(dataManager)
                             .environmentObject(viewModel)
                     }
                 }
@@ -63,10 +59,3 @@ struct ContentView: View {
         }
     }
 }
-    
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}

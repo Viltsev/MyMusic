@@ -11,7 +11,6 @@ import SDWebImageSwiftUI
 
 
 struct MiniPlayer: View {
-    
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var viewModel: SearchViewModel
     

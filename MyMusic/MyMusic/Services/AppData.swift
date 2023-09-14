@@ -7,24 +7,24 @@
 
 import Foundation
 
-final class AppData: ObservableObject {
-    @Published var track: Track?
-    @Published var artists: [ReceivedArtist]?
-    @Published var disabled: Bool
-    
-    func selectTrack(_ track: Track) {
-        self.track = track
-    }
-    
-    func selectArtists(_ artists: [ReceivedArtist]) {
-        self.artists = artists
-    }
-    
-    func setDisabled(_ disabled: Bool) {
-        self.disabled = disabled
-    }
-    
-    init(disabled: Bool) {
-        self.disabled = disabled
-    }
-}
+//final class AppData: ObservableObject {
+//    @Published var track: Track?
+//    @Published var artists: [ReceivedArtist]?
+//    @Published var disabled: Bool
+//    
+//    func selectTrack(_ track: Track) {
+//        self.track = track
+//    }
+//    
+//    func selectArtists(_ artists: [ReceivedArtist]) {
+//        self.artists = artists
+//    }
+//    
+//    func setDisabled(_ disabled: Bool) {
+//        self.disabled = disabled
+//    }
+//    
+//    init(disabled: Bool) {
+//        self.disabled = disabled
+//    }
+//}

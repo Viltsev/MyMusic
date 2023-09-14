@@ -8,12 +8,23 @@
 import Foundation
 import CoreData
 
-class DataManager: ObservableObject {
+protocol DataProtocol {
+    func fetchUsers() -> [UserEntity]
+    func fetchTracks() -> [TrackEntity]
+    func fetchArtists() -> [ArtistEntity]
+    func addArtist(name: String, cover: URL, artistID: String)
+    func addUser(name: String, email: String)
+    func addTrack(trackTitle: String, trackArtists: String, trackCover: URL, trackID: String)
+    func deleteTrack(trackID: String)
+    func deleteArtist(artistID: String)
+}
+
+class DataManager: DataProtocol {
     let container: NSPersistentContainer
-    
-    @Published var savedEntities: [UserEntity] = []
-    @Published var savedTrackEntities: [TrackEntity] = []
-    @Published var savedArtistsEntities: [ArtistEntity] = []
+    //private var dataManagerModel = AppDelegate.shared.container.resolve(DataManagerModel.self)!
+//    @Published var savedEntities: [UserEntity] = []
+//    @Published var savedTrackEntities: [TrackEntity] = []
+//    @Published var savedArtistsEntities: [ArtistEntity] = []
     
     init() {
         container = NSPersistentContainer(name: "UsersContainer")
@@ -22,37 +33,43 @@ class DataManager: ObservableObject {
                 print("error loading core data. \(error)")
             }
         }
-        fetchUsers()
-        fetchTracks()
-        fetchArtists()
+//        dataManagerModel.input.fetchDataSubject.send()
+//        fetchUsers()
+//        fetchTracks()
+//        fetchArtists()
     }
     
-    func fetchUsers() {
+    func fetchUsers() -> [UserEntity] {
+        var savedEntities: [UserEntity] = []
         let request = NSFetchRequest<UserEntity>(entityName: "UserEntity")
         do {
             savedEntities = try container.viewContext.fetch(request)
         } catch let error {
             print("error fetching. \(error)")
         }
-        
+        return savedEntities
     }
     
-    func fetchTracks() {
+    func fetchTracks() -> [TrackEntity] {
+        var savedTrackEntities: [TrackEntity] = []
         let request = NSFetchRequest<TrackEntity>(entityName: "TrackEntity")
         do {
             savedTrackEntities = try container.viewContext.fetch(request)
         } catch let error {
             print("error fetching. \(error)")
         }
+        return savedTrackEntities
     }
     
-    func fetchArtists() {
+    func fetchArtists() -> [ArtistEntity] {
+        var savedArtistsEntities: [ArtistEntity] = []
         let request = NSFetchRequest<ArtistEntity>(entityName: "ArtistEntity")
         do {
             savedArtistsEntities = try container.viewContext.fetch(request)
         } catch let error {
             print("error fetching. \(error)")
         }
+        return savedArtistsEntities
     }
     
     func addArtist(name: String, cover: URL, artistID: String) {
@@ -64,6 +81,8 @@ class DataManager: ObservableObject {
             request.predicate = NSPredicate(format: "email == %@", email)
         }
         artistRequest.predicate = NSPredicate(format: "artistID == %@", artistID)
+        
+        let savedArtistsEntities = fetchArtists()
         
         do {
             if savedArtistsEntities.contains(where: { artist in

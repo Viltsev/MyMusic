@@ -9,10 +9,15 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct RecentlyPlayedView: View {
-    @EnvironmentObject var dataManager: DataManager
+    
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
     @EnvironmentObject var viewModel: SearchViewModel
     
     @State private var showArtist: Bool = false
+    
+    private var savedArtistEntities: [ArtistEntity] {
+        return dataManager.fetchArtists()
+    }
     
     var body: some View {
         HStack {
@@ -24,7 +29,7 @@ struct RecentlyPlayedView: View {
         }
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
-                ForEach(dataManager.savedArtistsEntities, id: \.id) { artist in
+                ForEach(savedArtistEntities, id: \.id) { artist in
                     if let name = artist.name, let image = artist.image, let id = artist.artistID {
                         Button {
                             viewModel.input.artistInfoSubject.send(id)

@@ -17,15 +17,6 @@ struct SignInScreenView: View {
     var body: some View {
         VStack(spacing: 15) {
             HStack {
-//                Button {
-//                   
-//                } label: {
-//                    Text("back")
-//                        .font(Font.custom("Chillax-Semibold", size: 20))
-//                        .foregroundColor(Color.greenLight)
-//                        
-//                }
-//                .padding(.horizontal, -50)
                 Text("Sign In")
                     .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
@@ -105,11 +96,5 @@ extension SignInScreenView {
     
     func signIn(_ email: String, _ password: String) {
         signViewModel.input.signInSubject.send((email, password))
-    }
-}
-
-struct SignInScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInScreenView()
     }
 }

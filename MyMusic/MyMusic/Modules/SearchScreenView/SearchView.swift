@@ -70,33 +70,6 @@ struct SearchView: View {
                             )
                     }
                 }
-                
-//                VStack {
-//                    let artistNames = mockTrack.artists.map { $0.name }
-//                    TrackView(isActive: $isMPActive,
-//                              trackTitle: mockTrack.name,
-//                              trackArtists: artistNames.joined(separator: ", "),
-//                              trackImage: mockTrack.album.cover.first?.url,
-//                              trackID: mockTrack.trackID)
-//                }
-//                
-//                VStack {
-//                    let artistNames = mockTrack2.artists.map { $0.name }
-//                    TrackView(isActive: $isMPActive,
-//                              trackTitle: mockTrack2.name,
-//                              trackArtists: artistNames.joined(separator: ", "),
-//                              trackImage: mockTrack2.album.cover.first?.url,
-//                              trackID: mockTrack2.trackID)
-//                }
-//                
-//                VStack {
-//                    let artistNames = mockTrack3.artists.map { $0.name }
-//                    TrackView(isActive: $isMPActive,
-//                              trackTitle: mockTrack2.name,
-//                              trackArtists: artistNames.joined(separator: ", "),
-//                              trackImage: mockTrack2.album.cover.first?.url,
-//                              trackID: mockTrack3.trackID)
-//                }
             }
             .background(Color.purpleMid)
             .navigationBarBackButtonHidden(true)

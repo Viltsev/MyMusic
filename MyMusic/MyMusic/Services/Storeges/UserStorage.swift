@@ -9,7 +9,6 @@ import Foundation
 
 enum UserStorageKey: String {
     case authStatus
-    case userEmail
 }
 
 
@@ -27,15 +26,6 @@ struct UserStorage {
         }
         set {
             userDefaults.set(newValue, forKey: UserStorageKey.authStatus.rawValue)
-        }
-    }
-    
-    var userEmail: String {
-        get {
-            userDefaults.string(forKey: UserStorageKey.userEmail.rawValue).orEmpty
-        }
-        set {
-            userDefaults.set(newValue, forKey: UserStorageKey.userEmail.rawValue)
         }
     }
 }

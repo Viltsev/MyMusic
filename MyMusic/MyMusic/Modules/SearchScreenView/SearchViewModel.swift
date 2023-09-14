@@ -12,8 +12,7 @@ import CombineExt
 import AVFoundation
 
 final class SearchViewModel: ObservableObject {
-    
-    var dataManager: DataManager? = nil
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
     var audioPlayer: AudioPlayer? = nil
     var router: NavigationRouter? = nil
     
@@ -30,11 +29,7 @@ final class SearchViewModel: ObservableObject {
     func setAudioPlayer(_ player: AudioPlayer) {
         self.audioPlayer = player
     }
-    
-    func setDataManager(_ dataManager: DataManager) {
-        self.dataManager = dataManager
-    }
-    
+//
     var successArtistReceive: AnyPublisher<Bool, Never> {
         return input.successArtistReceiveSubject.eraseToAnyPublisher()
     }
@@ -184,13 +179,11 @@ extension SearchViewModel {
     func saveRecentlyPlayedArtist() {
         input.recentlyPlayedArtistSubject
             .sink { artists in
-                if let dataManager = self.dataManager {
-                    for artist in artists {
-                        if let currentCover = artist.visuals.avatar.first?.url {
-                            dataManager.addArtist(name: artist.name,
-                                                  cover: currentCover,
-                                                  artistID: artist.artistID)
-                        }
+                for artist in artists {
+                    if let currentCover = artist.visuals.avatar.first?.url {
+                        self.dataManager.addArtist(name: artist.name,
+                                              cover: currentCover,
+                                              artistID: artist.artistID)
                     }
                 }
             }

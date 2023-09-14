@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var dataManager: DataManager
-    //@EnvironmentObject var router: NavigationRouter
-    //@EnvironmentObject var startViewModel: StartScreenViewModel
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
+    
+    private var savedEntities: [UserEntity] {
+        return dataManager.fetchUsers()
+    }
     
     private var name: String {
         var name = ""
-        for user in dataManager.savedEntities {
+        for user in savedEntities {
             if let email = UserDefaults.standard.string(forKey: "email"), user.email == email {
                 name = user.name ?? ""
             }
@@ -30,7 +32,6 @@ struct ProfileView: View {
                     .frame(width: 20, height: 20)
                 Text(name)
                     .font(Font.custom("Chillax-Regular", size: 20))
-                    //.foregroundColor(Color.greenLight)
             }
             .foregroundColor(Color.purpleDark)
             HStack(spacing: 20) {
@@ -39,7 +40,6 @@ struct ProfileView: View {
                     .frame(width: 20, height: 15)
                 Text(UserDefaults.standard.string(forKey: "email") ?? "")
                     .font(Font.custom("Chillax-Regular", size: 20))
-                    //.foregroundColor(Color.greenLight)
             }
             .foregroundColor(Color.purpleDark)
             HStack(spacing: 20) {
@@ -48,13 +48,10 @@ struct ProfileView: View {
                     .frame(width: 20, height: 20)
                 Text("Favorite Tracks")
                     .font(Font.custom("Chillax-Regular", size: 20))
-                    //.foregroundColor(Color.greenLight)
             }
             .foregroundColor(Color.purpleDark)
             Button {
                 AuthenticationLocalService.shared.status.send(false)
-//                router.pushView(Navigation.pushStartScreen)
-//                startViewModel.input.accountCompleteSubject.send()
                 UserDefaults.standard.removeObject(forKey: "email")
                 UserDefaults.standard.removeObject(forKey: "name")
             } label: {

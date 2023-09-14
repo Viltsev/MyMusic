@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LogInScreenView: View {
-    @EnvironmentObject var dataManager: DataManager
     @StateObject var logViewModel = LogInViewModel()
     
     @State private var name: String = ""
@@ -19,15 +18,6 @@ struct LogInScreenView: View {
     var body: some View {
         VStack(spacing: 15) {
             HStack {
-//                Button {
-//                    //router.popToRoot()
-//                } label: {
-//                    Text("back")
-//                        .font(Font.custom("Chillax-Semibold", size: 20))
-//                        .foregroundColor(Color.greenLight)
-//
-//                }
-//                .padding(.horizontal, -55)
                 Text("Sign Up")
                     .font(Font.custom("Chillax-Semibold", size: 45))
                     .foregroundColor(Color.greenLight)
@@ -102,9 +92,6 @@ struct LogInScreenView: View {
             .disabled(logViewModel.output.isDisabledButton)
             Spacer()
         }
-        .onAppear {
-            logViewModel.setDataBase(dataManager)
-        }
         .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.purpleMid)
@@ -129,8 +116,3 @@ extension LogInScreenView {
     }
 }
 
-//struct LogInScreenView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LogInScreenView()
-//    }
-//}

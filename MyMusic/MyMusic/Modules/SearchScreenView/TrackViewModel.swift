@@ -10,14 +10,15 @@ import Combine
 import CombineExt
 
 final class TrackViewModel: ObservableObject {
-    var dataManager: DataManager? = nil
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
+
     
     let input: Input = Input()
     @Published var output: Output = Output()
     var cancellable = Set<AnyCancellable>()
     
-    func setDataManager(_ dataManager: DataManager) {
-        self.dataManager = dataManager
+    private var savedTrackEntities: [TrackEntity] {
+        return dataManager.fetchTracks()
     }
     
     init() {
@@ -36,11 +37,12 @@ extension TrackViewModel {
         input.saveTrackSubject
             .sink { (trackTitle, trackArtists, trackImage, trackID) in
                 self.output.isLiked = true
-                if let dataManager = self.dataManager, let currentImage = trackImage {
-                    dataManager.addTrack(trackTitle: trackTitle,
+                if let currentImage = trackImage {
+                    self.dataManager.addTrack(trackTitle: trackTitle,
                                          trackArtists: trackArtists,
                                          trackCover: currentImage,
                                          trackID: trackID)
+                    //self.dataManagerModel.input.fetchDataSubject.send()
                 }
             }
             .store(in: &cancellable)
@@ -49,9 +51,8 @@ extension TrackViewModel {
     func deleteTrack() {
         input.deleteTrackSubject
             .sink { trackID in
-                if let dataManager = self.dataManager {
-                    dataManager.deleteTrack(trackID: trackID)
-                }
+                self.dataManager.deleteTrack(trackID: trackID)
+                //self.dataManagerModel.input.fetchDataSubject.send()
             }
             .store(in: &cancellable)
     }
@@ -59,14 +60,12 @@ extension TrackViewModel {
     func checkFavoriteTrack() {
         input.checkFavoriteTrackSubject
             .sink { trackID in
-                if let dataManager = self.dataManager {
-                    for track in dataManager.savedTrackEntities {
-                        if let currentUser = UserDefaults.standard.string(forKey: "email"),
-                           track.userEmail == currentUser,
-                           let id = track.trackID {
-                            if id == trackID {
-                                self.output.isLiked = true
-                            }
+                for track in self.savedTrackEntities {
+                    if let currentUser = UserDefaults.standard.string(forKey: "email"),
+                       track.userEmail == currentUser,
+                       let id = track.trackID {
+                        if id == trackID {
+                            self.output.isLiked = true
                         }
                     }
                 }
