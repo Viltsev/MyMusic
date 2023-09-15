@@ -7,8 +7,15 @@
 
 import Foundation
 import AVFoundation
+import Combine
+import CombineExt
 
-class AudioPlayer: ObservableObject {
+final class AudioPlayer: ObservableObject {
+    
+    let input: Input = Input()
+    @Published var output: Output = Output()
+    var cancellable = Set<AnyCancellable>()
+    
     private var player: AVPlayer
     @Published var currentTimeSliderValue: Double = 0.0
     @Published var isPlaying: Bool = false
@@ -19,6 +26,10 @@ class AudioPlayer: ObservableObject {
     init() {
         player = AVPlayer()
         addTimeObserver()
+    }
+    
+    var isTrackEnded: AnyPublisher<Bool, Never> {
+        return input.trackEndedSubject.eraseToAnyPublisher()
     }
     
     func getTrackURL(from url: URL) -> AVPlayerItem {
@@ -40,7 +51,8 @@ class AudioPlayer: ObservableObject {
             guard let self = self else { return }
             self.currentTimeSliderValue = time.seconds
             if self.currentTimeSliderValue >= self.totalTime! {
-                self.pauseAudio()
+                self.input.trackEndedSubject.send(true)
+                //self.pauseAudio()
             }
         }
     }
@@ -78,5 +90,15 @@ class AudioPlayer: ObservableObject {
         player.pause()
         currentTime = player.currentTime()
         self.isPlaying.toggle()
+    }
+}
+
+extension AudioPlayer {
+    struct Input {
+        let trackEndedSubject = PassthroughSubject<Bool, Never>()
+    }
+    
+    struct Output {
+        var isTrackEnded: Bool = false
     }
 }

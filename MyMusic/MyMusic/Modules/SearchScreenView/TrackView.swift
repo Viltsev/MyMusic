@@ -91,6 +91,7 @@ struct TrackView: View {
                     TrackInfoView(trackTitle: trackTitle,
                                   trackArtists: trackArtists,
                                   trackImage: trackImage)
+                        .environmentObject(viewModel)
                         .presentationDetents([.large, .large, .fraction(0.75)])
                 }
             })

@@ -22,6 +22,7 @@ struct MiniPlayer: View {
     @Binding var expand: Bool
     @Binding var playerItem: AVPlayerItem?
     
+    
     var height = UIScreen.main.bounds.height / 3
     
     var body: some View {
@@ -126,15 +127,26 @@ struct MiniPlayer: View {
                                             audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
                                         }
                                     }
-                                    
                                 }
                             } label: {
                                 Image(systemName: audioPlayer.isPlaying ? "stop.fill" : "play.fill")
                                     .font(.largeTitle)
                                     .foregroundColor(.black)
                             }
-                            Image(systemName: "forward.fill")
-                                .font(.title2)
+                            Button {
+                                audioPlayer.pauseAudio()
+                                if !viewModel.output.nextTracksArray.isEmpty {
+                                    let nextTrack = viewModel.output.nextTracksArray[0]
+                                    viewModel.input.searchButtonTapSubject.send(nextTrack)
+                                    viewModel.output.nextTracksArray.removeFirst()
+                                    audioPlayer.restartAudio(newTrack: true)
+                                }
+                            } label: {
+                                Image(systemName: "forward.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.black)
+                            }
+                            
                             Spacer()
                             Image(systemName: "heart")
                                 .font(.title)
@@ -198,6 +210,17 @@ struct MiniPlayer: View {
             .padding(expand ? 0 : 16)
             Spacer()
         }
+        .onReceive(audioPlayer.isTrackEnded, perform: { result in
+            if result {
+                audioPlayer.pauseAudio()
+                if !viewModel.output.nextTracksArray.isEmpty {
+                    let nextTrack = viewModel.output.nextTracksArray[0]
+                    viewModel.input.searchButtonTapSubject.send(nextTrack)
+                    viewModel.output.nextTracksArray.removeFirst()
+                    audioPlayer.restartAudio(newTrack: true)
+                }
+            }
+        })
         .frame(maxWidth: expand ? .infinity : nil, maxHeight: expand ? .infinity : 80)
         .background(
             VStack(spacing: 0) {

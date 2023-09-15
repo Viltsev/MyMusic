@@ -9,6 +9,9 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct TrackInfoView: View {
+    
+    @EnvironmentObject var viewModel: SearchViewModel
+    
     var trackTitle: String
     var trackArtists: String
     var trackImage: URL?
@@ -41,7 +44,7 @@ struct TrackInfoView: View {
             .padding(.vertical, 35)
             .padding(.horizontal, 25)
             Button {
-                // play next action
+                viewModel.input.nextTrackSubject.send("\(trackTitle) \(trackArtists)")
             } label: {
                 HStack(spacing: 25) {
                     Image(systemName: "arrow.turn.right.down")
