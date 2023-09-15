@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		830744642AB3279A005A66DE /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830744632AB3279A005A66DE /* Assembler.swift */; };
 		830744662AB32EB5005A66DE /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830744652AB32EB5005A66DE /* ServiceAssembly.swift */; };
+		832DFCF82AB49EF00090DEA5 /* TrackInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */; };
 		83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */; };
 		83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC22AAC8BED00ED870A /* DataManager.swift */; };
 		83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC52AACAE7C00ED870A /* ProfileView.swift */; };
@@ -90,6 +91,7 @@
 /* Begin PBXFileReference section */
 		830744632AB3279A005A66DE /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		830744652AB32EB5005A66DE /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
+		832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoView.swift; sourceTree = "<group>"; };
 		83495FC02AAC8B7600ED870A /* UsersContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UsersContainer.xcdatamodel; sourceTree = "<group>"; };
 		83495FC22AAC8BED00ED870A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		83495FC52AACAE7C00ED870A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,14 @@
 				830744652AB32EB5005A66DE /* ServiceAssembly.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		832DFCF62AB49ECA0090DEA5 /* TrackInfoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */,
+			);
+			path = TrackInfoScreen;
 			sourceTree = "<group>";
 		};
 		83495FBE2AAC8B5D00ED870A /* Data */ = {
@@ -417,6 +427,7 @@
 		83C024132A949EF300FE6B03 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				832DFCF62AB49ECA0090DEA5 /* TrackInfoScreen */,
 				838AEC572AADC8350081F7C6 /* FavoriteMusicScreen */,
 				83495FC42AACAE6600ED870A /* ProfileScreen */,
 				839DA0F32AAA15B50001DF8C /* LogInScreen */,
@@ -617,6 +628,7 @@
 			files = (
 				838AEC5E2AADF6340081F7C6 /* TrackViewModel.swift in Sources */,
 				83C0241E2A94A6D700FE6B03 /* TrackModelMapper.swift in Sources */,
+				832DFCF82AB49EF00090DEA5 /* TrackInfoView.swift in Sources */,
 				839DA0F72AAA214E0001DF8C /* LowerCaseStringFormatter.swift in Sources */,
 				83B3BB8B2AA5BFE6008D4063 /* ArtistsView.swift in Sources */,
 				83B05A992A99448B0057CA72 /* TrackScreenView.swift in Sources */,

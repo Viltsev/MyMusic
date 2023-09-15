@@ -9,18 +9,6 @@ import SwiftUI
 import AVFoundation
 
 struct SearchView: View {
-    
-    private var mockTrack: TopTracks =
-        TopTracks(trackID: "123", name: "FE!N", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 1", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
-    
-    private var mockTrack2: TopTracks =
-        TopTracks(trackID: "456", name: "MELTDOWN", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 2", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
-    
-    private var mockTrack3: TopTracks =
-        TopTracks(trackID: "789", name: "TOPIA TWIND", durationMs: 10000, playCount: 0, artists: [Artist(idArtist: "", name: "Artist 3", shareUrl: nil)], album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44") )]))
-    
-    
-    
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var viewModel: SearchViewModel
     @Environment(\.dismiss) var dismiss
@@ -37,7 +25,6 @@ struct SearchView: View {
                 HStack {
                     Button {
                         dismiss()
-                        //viewModel.input.backButtonSubject.send()
                     } label: {
                         Image(systemName: "chevron.backward")
                             .font(.title2)

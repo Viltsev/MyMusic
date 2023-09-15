@@ -31,6 +31,7 @@ extension TrackViewModel {
         saveTrack()
         deleteTrack()
         checkFavoriteTrack()
+        bindTrackInfo()
     }
     
     func saveTrack() {
@@ -52,7 +53,6 @@ extension TrackViewModel {
         input.deleteTrackSubject
             .sink { trackID in
                 self.dataManager.deleteTrack(trackID: trackID)
-                //self.dataManagerModel.input.fetchDataSubject.send()
             }
             .store(in: &cancellable)
     }
@@ -73,6 +73,16 @@ extension TrackViewModel {
             .store(in: &cancellable)
     }
     
+    func bindTrackInfo() {
+        input.sheetButtonSubject
+            .sink { [weak self] in
+                switch $0 {
+                    case .trackInfo:
+                        self?.output.sheet = .trackInfo
+                }
+            }
+            .store(in: &cancellable)
+    }
     
 }
 
@@ -81,9 +91,24 @@ extension TrackViewModel {
         let saveTrackSubject = PassthroughSubject<(String, String, URL?, String), Never>()
         let deleteTrackSubject = PassthroughSubject<String, Never>()
         let checkFavoriteTrackSubject = PassthroughSubject<String, Never>()
+        let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
     }
     
     struct Output {
         var isLiked: Bool = false
+        var sheet: Sheet? = nil
+    }
+    
+    enum Sheet: Identifiable {
+        case trackInfo
+
+        var id: Int {
+            self.hashValue
+        }
     }
 }
+
+
+
+
+

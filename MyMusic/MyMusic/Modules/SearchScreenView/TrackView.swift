@@ -52,30 +52,49 @@ struct TrackView: View {
                     .cornerRadius(15)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(trackTitle)
-                        .font(Font.custom("Chillax-Semibold", size: 20))
+                        .font(Font.custom("Chillax-Semibold", size: 18))
                         .lineLimit(0)
                         .foregroundColor(Color.white)
                     Text(trackArtists)
-                        .font(Font.custom("Chillax-Regular", size: 20))
+                        .font(Font.custom("Chillax-Regular", size: 15))
                         .foregroundColor(Color.gray)
                 }
                 Spacer()
             }
-            Button {
-                if isLiked {
-                    print("delete: \(trackTitle)")
-                    trackViewModel.input.deleteTrackSubject.send(trackID)
-                    isLiked.toggle()
-                } else {
-                    isLiked.toggle()
-                    trackViewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
+            HStack {
+                Button {
+                    if isLiked {
+                        print("delete: \(trackTitle)")
+                        trackViewModel.input.deleteTrackSubject.send(trackID)
+                        isLiked.toggle()
+                    } else {
+                        isLiked.toggle()
+                        trackViewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
+                    }
+                } label: {
+                    ZStack {
+                        image(Image(systemName: "heart.fill"), show: isLiked)
+                        image(Image(systemName: "heart"), show: !isLiked)
+                    }
                 }
-            } label: {
-                ZStack {
-                    image(Image(systemName: "heart.fill"), show: isLiked)
-                    image(Image(systemName: "heart"), show: !isLiked)
+                Button {
+                    trackViewModel.input.sheetButtonSubject.send(.trackInfo)
+                } label: {
+                    Image(systemName: "list.bullet")
+                        .font(.title)
+                        .foregroundColor(Color.white)
                 }
             }
+            .sheet(item: $trackViewModel.output.sheet, content: { sheet in
+                switch sheet {
+                    case .trackInfo:
+                    TrackInfoView(trackTitle: trackTitle,
+                                  trackArtists: trackArtists,
+                                  trackImage: trackImage)
+                        .presentationDetents([.large, .large, .fraction(0.75)])
+                }
+            })
+            
         }
         .onAppear {
             isFavoriteTrack()
