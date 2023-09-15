@@ -47,10 +47,28 @@ final class TopTracksModelMapper: BaseModelMapper<ServerTopTracks, TopTracks> {
     }
 }
 
+final class AlbumItemMapper: BaseModelMapper<ServerAlbumItem, AlbumItem> {
+    
+    override func toLocal(serverEntity: ServerAlbumItem) -> AlbumItem {
+        AlbumItem(albumID: serverEntity.id ?? "",
+                  name: serverEntity.name ?? "",
+                  cover: CoverModelMapper().toLocal(list: serverEntity.cover))
+    }
+}
+
+final class AlbumArtistMapper: BaseModelMapper<ServerAlbumArtist, AlbumArtist> {
+    
+    override func toLocal(serverEntity: ServerAlbumArtist) -> AlbumArtist {
+        AlbumArtist(items: AlbumItemMapper().toLocal(list: serverEntity.items))
+    }
+}
+
+
 final class DiscographyModelMapper: BaseModelMapper<ServerDiscography, Discography> {
     
     override func toLocal(serverEntity: ServerDiscography) -> Discography {
-        Discography(topTracks: TopTracksModelMapper().toLocal(list: serverEntity.topTracks))
+        Discography(topTracks: TopTracksModelMapper().toLocal(list: serverEntity.topTracks),
+                    albums: AlbumArtistMapper().toLocal(serverEntity: serverEntity.albums ?? ServerAlbumArtist())) //?
     }
 }
 

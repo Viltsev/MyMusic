@@ -64,6 +64,45 @@ struct ArtistView: View {
                 }
             }
             .padding(16)
+            VStack(spacing: 25) {
+                Text("Albums")
+                    .font(Font.custom("Chillax-Semibold", size: 25))
+                    .foregroundColor(Color.greenLight)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(receivedArtist.discography.albums.items) { album in
+                            if let cover = album.cover.first?.url {
+                                Button {
+                                    // go to album info
+                                } label: {
+                                    VStack {
+                                        WebImage(url: cover)
+                                            .resizable()
+                                            .frame(width: 200, height: 200)
+                                            .shadow(color: .black.opacity(0.7), radius: 30)
+                                            .cornerRadius(20)
+                                        Spacer()
+                                        VStack {
+                                            Text("\(album.name)")
+                                                .font(Font.custom("Chillax-Regular", size: 18))
+                                                .foregroundColor(Color.white)
+                                                .lineLimit(2)
+                                                .multilineTextAlignment(.leading)
+                                                .frame(width: 200)
+                                        }
+                                        Spacer()
+                                    }
+                                    .frame(height: 280)
+                                }
+                                .padding(.horizontal, 10)
+                            }
+                        }
+                    }
+                }
+                //.padding(16)
+            }
+            
+            Spacer()
         }
         .background(Color.purpleMid)
         .ignoresSafeArea()

@@ -58,6 +58,8 @@ struct TrackView: View {
                     Text(trackArtists)
                         .font(Font.custom("Chillax-Regular", size: 15))
                         .foregroundColor(Color.gray)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                 }
                 Spacer()
             }

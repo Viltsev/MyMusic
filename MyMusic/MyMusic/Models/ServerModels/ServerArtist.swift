@@ -31,6 +31,17 @@ struct ServerAvatar: Codable {
 
 struct ServerDiscography: Codable {
     var topTracks: [ServerTopTracks]?
+    var albums: ServerAlbumArtist?
+}
+
+struct ServerAlbumArtist: Codable {
+    var items: [ServerAlbumItem]?
+}
+
+struct ServerAlbumItem: Codable {
+    var id: String?
+    var name: String?
+    var cover: [ServerCover]?
 }
 
 struct ServerTopTracks: Codable {

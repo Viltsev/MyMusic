@@ -36,6 +36,19 @@ struct Avatar: Identifiable {
 struct Discography: Identifiable {
     var id = UUID()
     var topTracks: [TopTracks]
+    var albums: AlbumArtist
+}
+
+struct AlbumArtist: Identifiable {
+    var id = UUID()
+    let items: [AlbumItem]
+}
+
+struct AlbumItem: Identifiable {
+    var id = UUID()
+    let albumID: String
+    let name: String
+    let cover: [Cover]
 }
 
 struct TopTracks: Identifiable {

@@ -19,10 +19,13 @@ struct RecommendationsCircleView: View {
                         .foregroundColor(Color.purpleDark)
                         .frame(width: 250, height: 250)
                         .shadow(color: Color.purpleLight, radius: CGFloat(shadowRadius))
+                        .onTapGesture {
+                            withAnimation(.linear(duration: 3).repeatForever()) {
+                                shadowRadius = 10
+                            }
+                        }
 //                        .onAppear {
-//                            withAnimation(.linear(duration: 3).repeatForever()) {
-//                                shadowRadius = 10
-//                            }
+
 //                        }
                     Text(.myRecommendations)
                         .font(Font.custom("Chillax-Regular", size: 20))
