@@ -16,6 +16,7 @@ struct MiniPlayer: View {
     
     @State var offset: CGFloat = 0
     @State private var showArtists: Bool = false
+    @State private var repeatTrack: Bool = false
     
     @Binding var newTrack: Track
     @Binding var artists: [ReceivedArtist]
@@ -97,8 +98,13 @@ struct MiniPlayer: View {
                         }
                         .padding(.vertical, 30)
                         HStack(spacing: 25) {
-                            Image(systemName: "repeat")
-                                .font(.title2)
+                            Button {
+                                self.repeatTrack.toggle()
+                            } label: {
+                                Image(systemName: "repeat")
+                                    .font(.title2)
+                                    .foregroundColor(repeatTrack ? Color.greenLight : Color.black)
+                            }
                             Spacer()
                             Button {
                                 if audioPlayer.isPlaying {
@@ -212,12 +218,17 @@ struct MiniPlayer: View {
         }
         .onReceive(audioPlayer.isTrackEnded, perform: { result in
             if result {
-                audioPlayer.pauseAudio()
-                if !viewModel.output.nextTracksArray.isEmpty {
-                    let nextTrack = viewModel.output.nextTracksArray[0]
-                    viewModel.input.searchButtonTapSubject.send(nextTrack)
-                    viewModel.output.nextTracksArray.removeFirst()
-                    audioPlayer.restartAudio(newTrack: true)
+                
+                if self.repeatTrack {
+                    audioPlayer.restartAudio(newTrack: false)
+                } else {
+                    audioPlayer.pauseAudio()
+                    if !viewModel.output.nextTracksArray.isEmpty {
+                        let nextTrack = viewModel.output.nextTracksArray[0]
+                        viewModel.input.searchButtonTapSubject.send(nextTrack)
+                        viewModel.output.nextTracksArray.removeFirst()
+                        audioPlayer.restartAudio(newTrack: true)
+                    }
                 }
             }
         })

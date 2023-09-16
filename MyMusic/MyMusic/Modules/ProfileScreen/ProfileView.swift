@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject var router: NavigationRouter
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
     
     private var savedEntities: [UserEntity] {
@@ -42,12 +43,16 @@ struct ProfileView: View {
                     .font(Font.custom("Chillax-Regular", size: 20))
             }
             .foregroundColor(Color.purpleDark)
-            HStack(spacing: 20) {
-                Image(systemName: "heart.fill")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                Text("Favorite Tracks")
-                    .font(Font.custom("Chillax-Regular", size: 20))
+            Button {
+                router.pushView(Navigation.pushFavoriteMusic)
+            } label: {
+                HStack(spacing: 20) {
+                    Image(systemName: "heart.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                    Text("Favorite Tracks")
+                        .font(Font.custom("Chillax-Regular", size: 20))
+                }
             }
             .foregroundColor(Color.purpleDark)
             Button {

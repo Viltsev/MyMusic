@@ -31,6 +31,7 @@ struct ContentView: View {
                         self.show.toggle()
                     } label: {
                         ProfileView()
+                            .environmentObject(router)
                     }
                     .frame(height: UIScreen.main.bounds.height / 1.1)
                     .background(Color.greenLight)

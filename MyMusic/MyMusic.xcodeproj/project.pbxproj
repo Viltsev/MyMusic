@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		830744642AB3279A005A66DE /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830744632AB3279A005A66DE /* Assembler.swift */; };
 		830744662AB32EB5005A66DE /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830744652AB32EB5005A66DE /* ServiceAssembly.swift */; };
+		8320534D2AB5A87700B6A8DF /* ReceiveAlbumEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320534C2AB5A87700B6A8DF /* ReceiveAlbumEndpoint.swift */; };
+		8320534F2AB5A90600B6A8DF /* ServerAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320534E2AB5A90600B6A8DF /* ServerAlbum.swift */; };
+		832053512AB5AA6300B6A8DF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832053502AB5AA6300B6A8DF /* Album.swift */; };
+		832053532AB5AAEA00B6A8DF /* AlbumModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832053522AB5AAEA00B6A8DF /* AlbumModelMapper.swift */; };
+		832053562AB5B14500B6A8DF /* AlbumInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832053552AB5B14500B6A8DF /* AlbumInfoView.swift */; };
 		832DFCF82AB49EF00090DEA5 /* TrackInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */; };
 		83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */; };
 		83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC22AAC8BED00ED870A /* DataManager.swift */; };
@@ -88,6 +93,11 @@
 /* Begin PBXFileReference section */
 		830744632AB3279A005A66DE /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		830744652AB32EB5005A66DE /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
+		8320534C2AB5A87700B6A8DF /* ReceiveAlbumEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAlbumEndpoint.swift; sourceTree = "<group>"; };
+		8320534E2AB5A90600B6A8DF /* ServerAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAlbum.swift; sourceTree = "<group>"; };
+		832053502AB5AA6300B6A8DF /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		832053522AB5AAEA00B6A8DF /* AlbumModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModelMapper.swift; sourceTree = "<group>"; };
+		832053552AB5B14500B6A8DF /* AlbumInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInfoView.swift; sourceTree = "<group>"; };
 		832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoView.swift; sourceTree = "<group>"; };
 		83495FC02AAC8B7600ED870A /* UsersContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UsersContainer.xcdatamodel; sourceTree = "<group>"; };
 		83495FC22AAC8BED00ED870A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -185,6 +195,14 @@
 				830744652AB32EB5005A66DE /* ServiceAssembly.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		832053542AB5B13200B6A8DF /* AlbumInfoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				832053552AB5B14500B6A8DF /* AlbumInfoView.swift */,
+			);
+			path = AlbumInfoScreen;
 			sourceTree = "<group>";
 		};
 		832DFCF62AB49ECA0090DEA5 /* TrackInfoScreen */ = {
@@ -372,6 +390,7 @@
 			children = (
 				83C024312A95423B00FE6B03 /* GeneralEndpoint.swift */,
 				83B3BB992AA71AFF008D4063 /* ReceiveArtistEndpoint.swift */,
+				8320534C2AB5A87700B6A8DF /* ReceiveAlbumEndpoint.swift */,
 				83C024332A9542E500FE6B03 /* GeneralAPI.swift */,
 			);
 			path = GeneralAPI;
@@ -411,6 +430,7 @@
 		83C024132A949EF300FE6B03 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				832053542AB5B13200B6A8DF /* AlbumInfoScreen */,
 				832DFCF62AB49ECA0090DEA5 /* TrackInfoScreen */,
 				838AEC572AADC8350081F7C6 /* FavoriteMusicScreen */,
 				83495FC42AACAE6600ED870A /* ProfileScreen */,
@@ -431,6 +451,7 @@
 			children = (
 				83C024172A94A07A00FE6B03 /* ServerTrack.swift */,
 				83B3BB952AA715AE008D4063 /* ServerArtist.swift */,
+				8320534E2AB5A90600B6A8DF /* ServerAlbum.swift */,
 			);
 			path = ServerModels;
 			sourceTree = "<group>";
@@ -440,6 +461,7 @@
 			children = (
 				83C024192A94A5DE00FE6B03 /* Track.swift */,
 				83B3BB8C2AA5CAC3008D4063 /* Artist.swift */,
+				832053502AB5AA6300B6A8DF /* Album.swift */,
 			);
 			path = LocalModels;
 			sourceTree = "<group>";
@@ -450,6 +472,7 @@
 				83C0241B2A94A6AD00FE6B03 /* BaseModelMapper.swift */,
 				83C0241D2A94A6D700FE6B03 /* TrackModelMapper.swift */,
 				83B3BB972AA716D6008D4063 /* ArtistModelMapper.swift */,
+				832053522AB5AAEA00B6A8DF /* AlbumModelMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -624,6 +647,7 @@
 				83CEAEF72A914C530044F2CF /* ContentView.swift in Sources */,
 				83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */,
 				83B3BB962AA715AE008D4063 /* ServerArtist.swift in Sources */,
+				832053532AB5AAEA00B6A8DF /* AlbumModelMapper.swift in Sources */,
 				838EF06C2AB1D440004EC180 /* OptionalString+Extension.swift in Sources */,
 				83C0241C2A94A6AD00FE6B03 /* BaseModelMapper.swift in Sources */,
 				83C024342A9542E500FE6B03 /* GeneralAPI.swift in Sources */,
@@ -641,6 +665,7 @@
 				8373A9F02A9B7E6300CA4A44 /* Strings.swift in Sources */,
 				83CEAEF52A914C530044F2CF /* MyMusicApp.swift in Sources */,
 				839DA0F52AAA15CF0001DF8C /* LogInScreenView.swift in Sources */,
+				8320534F2AB5A90600B6A8DF /* ServerAlbum.swift in Sources */,
 				83C024182A94A07A00FE6B03 /* ServerTrack.swift in Sources */,
 				83B3BB922AA62588008D4063 /* ArtistsViewModel.swift in Sources */,
 				838EF06A2AB1D3FE004EC180 /* UserStorage.swift in Sources */,
@@ -649,14 +674,17 @@
 				83B05A902A9666AD0057CA72 /* SearchView.swift in Sources */,
 				838EF07A2AB2487F004EC180 /* DataManagerModel.swift in Sources */,
 				830744662AB32EB5005A66DE /* ServiceAssembly.swift in Sources */,
+				8320534D2AB5A87700B6A8DF /* ReceiveAlbumEndpoint.swift in Sources */,
 				83C024362A95436F00FE6B03 /* Provider.swift in Sources */,
 				83C024302A94BE8800FE6B03 /* RecentlyPlayedView.swift in Sources */,
 				83C0241A2A94A5DE00FE6B03 /* Track.swift in Sources */,
 				838EF0672AB1D340004EC180 /* AppContainer.swift in Sources */,
 				83B3BB9A2AA71AFF008D4063 /* ReceiveArtistEndpoint.swift in Sources */,
+				832053512AB5AA6300B6A8DF /* Album.swift in Sources */,
 				83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */,
 				83C0242C2A94BDFF00FE6B03 /* RecommendationsCircleView.swift in Sources */,
 				83ADC6BE2AAB7EA800CD62E5 /* LogInScreenViewModel.swift in Sources */,
+				832053562AB5B14500B6A8DF /* AlbumInfoView.swift in Sources */,
 				830744642AB3279A005A66DE /* Assembler.swift in Sources */,
 				8388E6A72A9F7F1800A2520E /* NavigationRouter.swift in Sources */,
 				838EF06F2AB1D4E1004EC180 /* AuthenticationLocalService.swift in Sources */,

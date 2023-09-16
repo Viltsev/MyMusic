@@ -69,9 +69,9 @@ final class AudioPlayer: ObservableObject {
             //self.currentTime = nil
         }
         
-        if self.currentTimeSliderValue >= self.totalTime! {
-            restartAudio(newTrack: false)
-        }
+//        if self.currentTimeSliderValue >= self.totalTime! {
+//            restartAudio(newTrack: false)
+//        }
         
         player.play()
 

@@ -14,11 +14,12 @@ struct ArtistView: View {
     
     @State private var isMPActive = false
     @State private var isLiked = false
+    @State private var showAlbum: Bool = false
     
     var receivedArtist: ReceivedArtist
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack {
                 Spacer()
                 VStack(spacing: 15) {
@@ -73,7 +74,8 @@ struct ArtistView: View {
                         ForEach(receivedArtist.discography.albums.items) { album in
                             if let cover = album.cover.first?.url {
                                 Button {
-                                    // go to album info
+                                    viewModel.input.albumInfoSubject.send(album.albumID)
+                                    viewModel.input.albumTitleAndCoverSubject.send((album.name, cover))
                                 } label: {
                                     VStack {
                                         WebImage(url: cover)
@@ -95,9 +97,21 @@ struct ArtistView: View {
                                     .frame(height: 280)
                                 }
                                 .padding(.horizontal, 10)
+                                .sheet(isPresented: $showAlbum) {
+                                    if viewModel.output.selectedAlbum != nil {
+                                        AlbumInfoView(albumTitle: viewModel.output.albumTitle ?? "",
+                                                      albumCover: viewModel.output.albumCover!,
+                                                      receivedAlbum: viewModel.output.selectedAlbum!)
+                                    }
+                                }
                             }
                         }
                     }
+                    .onReceive(viewModel.successAlbumReceive, perform: { success in
+                        if success {
+                            showAlbum.toggle()
+                        }
+                    })
                 }
                 //.padding(16)
             }
