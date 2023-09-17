@@ -10,6 +10,7 @@ import Combine
 import CombineExt
 
 final class TrackViewModel: ObservableObject {
+    
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
 
     

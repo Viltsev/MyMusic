@@ -92,7 +92,8 @@ struct TrackView: View {
                     case .trackInfo:
                     TrackInfoView(trackTitle: trackTitle,
                                   trackArtists: trackArtists,
-                                  trackImage: trackImage)
+                                  trackImage: trackImage,
+                                  trackID: trackID)
                         .environmentObject(viewModel)
                         .presentationDetents([.large, .large, .fraction(0.75)])
                 }

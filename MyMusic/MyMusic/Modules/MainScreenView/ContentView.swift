@@ -24,7 +24,7 @@ struct ContentView: View {
                         FavoriteTracksView()
                             .environmentObject(router)
                         RecentlyPlayedView()
-                            .environmentObject(viewModel)
+                            //.environmentObject(viewModel)
                         Spacer()
                     }
                     Button {
@@ -52,7 +52,7 @@ struct ContentView: View {
                         SearchView()
                     case .pushFavoriteMusic:
                         FavoriteMusicView()
-                            .environmentObject(viewModel)
+                            //.environmentObject(viewModel)
                     }
                 }
                 .environmentObject(router)

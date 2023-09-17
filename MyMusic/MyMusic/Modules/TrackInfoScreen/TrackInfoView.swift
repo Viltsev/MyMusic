@@ -11,10 +11,11 @@ import SDWebImageSwiftUI
 struct TrackInfoView: View {
     
     @EnvironmentObject var viewModel: SearchViewModel
-    
+    @State private var showLyrics: Bool = false
     var trackTitle: String
     var trackArtists: String
     var trackImage: URL?
+    var trackID: String
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -83,7 +84,7 @@ struct TrackInfoView: View {
                 .padding(25)
             }
             Button {
-                // show lyrics action
+                viewModel.input.lyricsTrackSubject.send(trackID)
             } label: {
                 HStack(spacing: 22) {
                     Image(systemName: "music.note.list")
@@ -95,8 +96,20 @@ struct TrackInfoView: View {
                 }
                 .padding(25)
             }
+            .sheet(isPresented: $showLyrics) {
+                if viewModel.output.lyrics != nil {
+                    LyricsView(trackTitle: trackTitle,
+                               trackArtists: trackArtists,
+                               receivedLyrics: viewModel.output.lyrics!)
+                }
+            }
             Spacer()
         }
+        .onReceive(viewModel.successLyricsReceive, perform: { success in
+            if success {
+                showLyrics.toggle()
+            }
+        })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.purpleDark)
     }
@@ -107,3 +120,6 @@ struct TrackInfoView: View {
 //        TrackInfoView()
 //    }
 //}
+
+                    
+        

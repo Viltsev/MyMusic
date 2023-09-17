@@ -38,6 +38,10 @@ final class SearchViewModel: ObservableObject {
         return input.successAlbumReceiveSubject.eraseToAnyPublisher()
     }
     
+    var successLyricsReceive: AnyPublisher<Bool, Never> {
+        return input.successLyricsReceiveSubject.eraseToAnyPublisher()
+    }
+    
     init() {
         bind()
     }
@@ -55,6 +59,7 @@ extension SearchViewModel {
         getArtistInfo()
         bindNextTrack()
         bindAlbumInfo()
+        bindTrackLyrics()
     }
     
     func bindSearchButton() {
@@ -239,6 +244,32 @@ extension SearchViewModel {
             .store(in: &cancellable)
     }
     
+    func bindTrackLyrics() {
+        let request = input.lyricsTrackSubject
+            .map { [unowned self] trackID in
+                self.apiService.receiveLyrics(byID: trackID)
+                    .materialize()
+            }
+            .switchToLatest()
+            .share()
+        
+        request
+            .failures()
+            .sink { error in
+                print(error)
+            }
+            .store(in: &cancellable)
+        
+        request
+            .values()
+            .sink { [weak self] lyrics in
+                guard let self else { return }
+                self.input.successLyricsReceiveSubject.send(true)
+                self.output.lyrics = lyrics
+            }
+            .store(in: &cancellable)
+    }
+    
 }
 
 extension SearchViewModel {
@@ -255,6 +286,8 @@ extension SearchViewModel {
         let albumInfoSubject = PassthroughSubject<String, Never>()
         let successAlbumReceiveSubject = PassthroughSubject<Bool, Never>()
         let albumTitleAndCoverSubject = PassthroughSubject<(String, URL?), Never>()
+        let lyricsTrackSubject = PassthroughSubject<String, Never>()
+        let successLyricsReceiveSubject = PassthroughSubject<Bool, Never>()
     }
     
     struct Output {
@@ -268,5 +301,6 @@ extension SearchViewModel {
         var selectedAlbum: ReceivedArtistAlbums?
         var albumCover: URL?
         var albumTitle: String?
+        var lyrics: TrackText?
     }
 }

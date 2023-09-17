@@ -13,6 +13,7 @@ struct GenaralApi {
     let provider = Provider<GeneralEndpoint>()
     let artistProvider = Provider<ReceiveArtistEndpoint>()
     let albumProvider = Provider<ReceiveAlbumEndpoint>()
+    let lyricsProvider = Provider<ReceiveLyricsEndpoint>()
 }
 
 extension GenaralApi {
@@ -60,6 +61,23 @@ extension GenaralApi {
             .map(ServerReceivedArtistAlbums.self)
             .map {
                 ReceivedArtistAlbumsMapper().toLocal(serverEntity: $0)
+            }
+            .mapError { error in
+                if error.response?.statusCode == 404 {
+                    return ErrorAPI.notFound
+                } else {
+                    return ErrorAPI.network
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func receiveLyrics(byID id: String) -> AnyPublisher<TrackText, ErrorAPI> {
+        lyricsProvider.requestPublisher(.receiveLyrics(id: id))
+            .map(ServerTrackText.self)
+            .map {
+                TrackTextMapper().toLocal(serverEntity: $0)
             }
             .mapError { error in
                 if error.response?.statusCode == 404 {

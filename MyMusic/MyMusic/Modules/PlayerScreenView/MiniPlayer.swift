@@ -245,7 +245,7 @@ struct MiniPlayer: View {
             }
         )
         .cornerRadius(expand ? 20 : 0)
-        .offset(y: expand ? 0 : -48)
+        .offset(y: expand ? 0 : -48) // 35
         .offset(y: offset)
         .gesture(DragGesture().onEnded(onEnded(value: )).onChanged(onChanged(value: )))
         .ignoresSafeArea()
