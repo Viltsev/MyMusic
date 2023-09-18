@@ -24,6 +24,7 @@ struct TrackView: View {
     var trackArtists: String
     var trackImage: URL?
     var trackID: String
+    var isTopTrack: Bool
     
     private var savedTrackEntities: [TrackEntity] {
         return dataManager.fetchTracks()
@@ -32,18 +33,7 @@ struct TrackView: View {
     var body: some View {
         HStack(spacing: 20) {
             Button {
-                if viewModel.output.isTopTrackLoad {
-                    viewModelArtist.input.selectTopTrackSubject.send("\(trackTitle) \(trackArtists)")
-                    viewModel.input.searchButtonTapSubject.send(viewModelArtist.output.selectedTopTrack!)
-                    if isActive {
-                        isActive.toggle()
-                    }
-                }
-                isActive.toggle()
-                if audioPlayer.isPlaying {
-                    audioPlayer.pauseAudio()
-                }
-                audioPlayer.restartAudio(newTrack: true)
+                playTrack()
             } label: {
                 WebImage(url: trackImage)
                     .resizable()
@@ -125,5 +115,22 @@ struct TrackView: View {
                 }
             }
         }
+    }
+}
+
+extension TrackView {
+    private func playTrack() {
+        if isTopTrack {
+            viewModelArtist.input.selectTopTrackSubject.send("\(trackTitle) \(trackArtists)")
+            viewModel.input.searchButtonTapSubject.send(viewModelArtist.output.selectedTopTrack!)
+            if isActive {
+                isActive.toggle()
+            }
+        }
+        isActive.toggle()
+        if audioPlayer.isPlaying {
+            audioPlayer.pauseAudio()
+        }
+        audioPlayer.restartAudio(newTrack: true)
     }
 }

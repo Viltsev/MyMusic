@@ -37,7 +37,7 @@ extension FavoriteMusicViewModel {
 
 
 /*
- final class FavoriteMusicViewModel: ObservableObject {
+final class FavoriteMusicViewModel: ObservableObject {
      let input: Input = Input()
      @Published var output: Output = Output()
      var cancellable = Set<AnyCancellable>()
@@ -47,13 +47,13 @@ extension FavoriteMusicViewModel {
      }
  }
 
- extension FavoriteMusicViewModel {
+extension FavoriteMusicViewModel {
      func bind() {
          
      }
  }
 
- extension FavoriteMusicViewModel {
+extension FavoriteMusicViewModel {
      struct Input {
          
      }

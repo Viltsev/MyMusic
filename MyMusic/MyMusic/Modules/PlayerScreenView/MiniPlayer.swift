@@ -218,7 +218,6 @@ struct MiniPlayer: View {
         }
         .onReceive(audioPlayer.isTrackEnded, perform: { result in
             if result {
-                
                 if self.repeatTrack {
                     audioPlayer.restartAudio(newTrack: false)
                 } else {

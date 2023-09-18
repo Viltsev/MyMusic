@@ -18,8 +18,9 @@ struct LyricsView: View {
             Text(trackTitle)
                 .font(Font.custom("Chillax-Semibold", size: 35))
                 .foregroundColor(Color.greenLight)
+                .padding(25)
             Text(trackArtists)
-                .font(Font.custom("Chillax-Semibold", size: 20))
+                .font(Font.custom("Chillax-Semibold", size: 25))
                 .foregroundColor(Color.greenLight)
             ScrollView(showsIndicators: false) {
                 ForEach(receivedLyrics.lyrics.lines) { words in

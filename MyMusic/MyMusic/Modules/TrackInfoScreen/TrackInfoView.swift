@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct TrackInfoView: View {
     
     @EnvironmentObject var viewModel: SearchViewModel
+    @StateObject var viewModelTrack = TrackInfoViewModel()
     @State private var showLyrics: Bool = false
     var trackTitle: String
     var trackArtists: String
@@ -84,7 +85,7 @@ struct TrackInfoView: View {
                 .padding(25)
             }
             Button {
-                viewModel.input.lyricsTrackSubject.send(trackID)
+                viewModelTrack.input.lyricsTrackSubject.send(trackID)
             } label: {
                 HStack(spacing: 22) {
                     Image(systemName: "music.note.list")
@@ -97,15 +98,15 @@ struct TrackInfoView: View {
                 .padding(25)
             }
             .sheet(isPresented: $showLyrics) {
-                if viewModel.output.lyrics != nil {
+                if viewModelTrack.output.lyrics != nil {
                     LyricsView(trackTitle: trackTitle,
                                trackArtists: trackArtists,
-                               receivedLyrics: viewModel.output.lyrics!)
+                               receivedLyrics: viewModelTrack.output.lyrics!)
                 }
             }
             Spacer()
         }
-        .onReceive(viewModel.successLyricsReceive, perform: { success in
+        .onReceive(viewModelTrack.successLyricsReceive, perform: { success in
             if success {
                 showLyrics.toggle()
             }
@@ -114,12 +115,3 @@ struct TrackInfoView: View {
         .background(Color.purpleDark)
     }
 }
-
-//struct TrackInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TrackInfoView()
-//    }
-//}
-
-                    
-        

@@ -12,7 +12,7 @@ struct FavoriteMusicView: View {
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var viewModel: SearchViewModel
-    //@StateObject private var viewModel = SearchViewModel()
+    
     @State private var playerItem: AVPlayerItem?
     @State private var isMPActive = false
     @State private var isLiked = false
@@ -77,15 +77,13 @@ struct FavoriteMusicView: View {
                                           trackTitle: title,
                                           trackArtists: artists,
                                           trackImage: track.trackImage,
-                                          trackID: id
+                                          trackID: id,
+                                          isTopTrack: true
                                 )
                             }
                         }
                     }
                     .frame(height: UIScreen.main.bounds.height / 1.8)
-                    .onAppear {
-                        viewModel.input.isTopTrackLoadSubject.send()
-                    }
                 }
                 .navigationBarBackButtonHidden(true)
                 Spacer()

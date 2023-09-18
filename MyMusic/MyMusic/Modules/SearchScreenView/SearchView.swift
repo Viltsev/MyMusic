@@ -53,7 +53,8 @@ struct SearchView: View {
                                 trackTitle: viewModel.output.tracks.spotifyTrack.name,
                                 trackArtists: artistNames.joined(separator: ", "),
                                 trackImage: viewModel.output.tracks.spotifyTrack.album.cover.first?.url,
-                                trackID: viewModel.output.tracks.spotifyTrack.trackID
+                                trackID: viewModel.output.tracks.spotifyTrack.trackID,
+                                isTopTrack: false
                             )
                     }
                 }

@@ -10,8 +10,7 @@ import SDWebImageSwiftUI
 
 struct ArtistView: View {
     
-    @EnvironmentObject var viewModel: SearchViewModel
-    
+    @StateObject var viewModel = ArtistViewModel()
     @State private var isMPActive = false
     @State private var isLiked = false
     @State private var showAlbum: Bool = false
@@ -56,13 +55,14 @@ struct ArtistView: View {
                                   trackTitle: track.name,
                                   trackArtists: artistNames.joined(separator: ", "),
                                   trackImage: track.album.cover.first?.url,
-                                  trackID: track.trackID
+                                  trackID: track.trackID,
+                                  isTopTrack: true
                         )
                     }
                 }
-                .onAppear {
-                    viewModel.input.isTopTrackLoadSubject.send()
-                }
+//                .onAppear {
+//                    viewModel.input.isTopTrackLoadSubject.send()
+//                }
             }
             .padding(16)
             VStack(spacing: 25) {

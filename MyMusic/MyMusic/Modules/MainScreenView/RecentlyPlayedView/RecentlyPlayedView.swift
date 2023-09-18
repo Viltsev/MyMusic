@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct RecentlyPlayedView: View {
     
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
-    @EnvironmentObject var viewModel: SearchViewModel
+    @StateObject var viewModel = RecentlyPlayedViewModel()
     
     @State private var showArtist: Bool = false
     

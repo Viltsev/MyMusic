@@ -29,18 +29,6 @@ final class SearchViewModel: ObservableObject {
     func setAudioPlayer(_ player: AudioPlayer) {
         self.audioPlayer = player
     }
-
-    var successArtistReceive: AnyPublisher<Bool, Never> {
-        return input.successArtistReceiveSubject.eraseToAnyPublisher()
-    }
-    
-    var successAlbumReceive: AnyPublisher<Bool, Never> {
-        return input.successAlbumReceiveSubject.eraseToAnyPublisher()
-    }
-    
-    var successLyricsReceive: AnyPublisher<Bool, Never> {
-        return input.successLyricsReceiveSubject.eraseToAnyPublisher()
-    }
     
     init() {
         bind()
@@ -54,12 +42,8 @@ extension SearchViewModel {
         backToMainScreen()
         loadTopTrack()
         loadCurrentTrack()
-        checkTopTrackLoad()
         saveRecentlyPlayedArtist()
-        getArtistInfo()
         bindNextTrack()
-        bindAlbumInfo()
-        bindTrackLyrics()
     }
     
     func bindSearchButton() {
@@ -121,14 +105,6 @@ extension SearchViewModel {
             .store(in: &cancellable)
     }
     
-    func checkTopTrackLoad() {
-        input.isTopTrackLoadSubject
-            .sink {
-                self.output.isTopTrackLoad.toggle()
-            }
-            .store(in: &cancellable)
-    }
-    
     func getArtistsInfo() {
         if !self.output.artists.isEmpty {
             self.output.artists.removeAll()
@@ -157,36 +133,6 @@ extension SearchViewModel {
             .store(in: &cancellable)
     }
     
-    func getArtistInfo() {
-        let request = input.artistInfoSubject
-            .map { [unowned self] artistID in
-                self.apiService.receiveArtist(byID: artistID)
-                    .materialize()
-            }
-            .switchToLatest()
-            .share()
-        
-        request
-            .failures()
-            .sink { error in
-                print(error)
-            }
-            .store(in: &cancellable)
-        
-        request
-            .values()
-            .sink { [weak self] artist in
-                guard let self else { return }
-                if !self.output.artists.isEmpty {
-                    self.output.artists.removeAll()
-                }
-                self.input.successArtistReceiveSubject.send(true)
-                self.output.selectedArtist = artist
-                //self.output.artists.append(artist)
-            }
-            .store(in: &cancellable)
-    }
-    
     func saveRecentlyPlayedArtist() {
         input.recentlyPlayedArtistSubject
             .sink { artists in
@@ -209,67 +155,6 @@ extension SearchViewModel {
             .store(in: &cancellable)
     }
     
-    func bindAlbumInfo() {
-        let request = input.albumInfoSubject
-            .map { [unowned self] albumID in
-                self.apiService.receiveAlbum(byID: albumID)
-                    .materialize()
-            }
-            .switchToLatest()
-            .share()
-        
-        request
-            .failures()
-            .sink { error in
-                print(error)
-            }
-            .store(in: &cancellable)
-        
-        request
-            .values()
-            .sink { [weak self] album in
-                guard let self else { return }
-                self.input.successAlbumReceiveSubject.send(true)
-                self.output.selectedAlbum = album
-            }
-            .store(in: &cancellable)
-        
-        input.albumTitleAndCoverSubject
-            .sink { title, cover in
-                self.output.albumTitle = title
-                if let albumCover = cover {
-                    self.output.albumCover = albumCover
-                }
-            }
-            .store(in: &cancellable)
-    }
-    
-    func bindTrackLyrics() {
-        let request = input.lyricsTrackSubject
-            .map { [unowned self] trackID in
-                self.apiService.receiveLyrics(byID: trackID)
-                    .materialize()
-            }
-            .switchToLatest()
-            .share()
-        
-        request
-            .failures()
-            .sink { error in
-                print(error)
-            }
-            .store(in: &cancellable)
-        
-        request
-            .values()
-            .sink { [weak self] lyrics in
-                guard let self else { return }
-                self.input.successLyricsReceiveSubject.send(true)
-                self.output.lyrics = lyrics
-            }
-            .store(in: &cancellable)
-    }
-    
 }
 
 extension SearchViewModel {
@@ -278,29 +163,15 @@ extension SearchViewModel {
         let backButtonSubject = PassthroughSubject<Void, Never>()
         let selectedTopTrackSubject = PassthroughSubject<TopTracks, Never>()
         let loadTrackSubject = PassthroughSubject<(URL?, AudioPlayer), Never>()
-        let isTopTrackLoadSubject = PassthroughSubject<Void, Never>()
         let recentlyPlayedArtistSubject = PassthroughSubject<[ReceivedArtist], Never>()
-        let artistInfoSubject = PassthroughSubject<String, Never>()
-        let successArtistReceiveSubject = PassthroughSubject<Bool, Never>()
         let nextTrackSubject = PassthroughSubject<String, Never>()
-        let albumInfoSubject = PassthroughSubject<String, Never>()
-        let successAlbumReceiveSubject = PassthroughSubject<Bool, Never>()
-        let albumTitleAndCoverSubject = PassthroughSubject<(String, URL?), Never>()
-        let lyricsTrackSubject = PassthroughSubject<String, Never>()
-        let successLyricsReceiveSubject = PassthroughSubject<Bool, Never>()
     }
     
     struct Output {
         var tracks: Track = Track(youtubeVideo: YoutubeVideo(id: "", audio: []), spotifyTrack: SpotifyTrack(trackID: "", name: "", artists: [], album: Album(name: "", shareUrl: URL(string: ""), cover: []), durationMs: 0))
         var artists: [ReceivedArtist] = []
-        var selectedArtist: ReceivedArtist?
         var isTrackLoaded: Bool = false
         var playerItem: AVPlayerItem?
-        var isTopTrackLoad: Bool = false
         var nextTracksArray: [String] = []
-        var selectedAlbum: ReceivedArtistAlbums?
-        var albumCover: URL?
-        var albumTitle: String?
-        var lyrics: TrackText?
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct AlbumInfoView: View {
-    @EnvironmentObject var viewModel: SearchViewModel
     @State private var isMPActive = false
     @State private var isLiked = false
     var albumTitle: String
@@ -51,11 +50,10 @@ struct AlbumInfoView: View {
                                   trackTitle: track.name,
                                   trackArtists: artistNames.joined(separator: ", "),
                                   trackImage: albumCover,
-                                  trackID: track.itemID)
+                                  trackID: track.itemID,
+                                  isTopTrack: true
+                        )
                     }
-                }
-                .onAppear {
-                    viewModel.input.isTopTrackLoadSubject.send()
                 }
             }
             .padding(16)
@@ -64,17 +62,3 @@ struct AlbumInfoView: View {
         .ignoresSafeArea()
     }
 }
-
-//struct AlbumInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AlbumInfoView()
-//    }
-//}
-
-//let artistNames = track.artists.map( { $0.name } )
-//TrackView(isActive: $isMPActive,
-//          trackTitle: track.name,
-//          trackArtists: artistNames.joined(separator: ", "),
-//          trackImage: track.album.cover.first?.url,
-//          trackID: track.trackID
-//)
