@@ -21,17 +21,23 @@ final class FavoriteMusicViewModel: ObservableObject {
 
 extension FavoriteMusicViewModel {
     func bind() {
-        
+        input.addTopTrack
+            .sink { title, artists in
+                self.output.topTracks.append("\(title) \(artists)")
+            }
+            .store(in: &cancellable)
     }
 }
 
 extension FavoriteMusicViewModel {
     struct Input {
         let isTopTrackLoadSubject = PassthroughSubject<Void, Never>()
+        let addTopTrack = PassthroughSubject<(String, String), Never>()
     }
     
     struct Output {
         var isTopTrackLoad: Bool = false
+        var topTracks: [String] = []
     }
 }
 

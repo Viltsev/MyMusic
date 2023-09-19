@@ -13,6 +13,8 @@ struct FavoriteMusicView: View {
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var viewModel: SearchViewModel
     
+    @StateObject var viewModelFM = FavoriteMusicViewModel()
+    
     @State private var playerItem: AVPlayerItem?
     @State private var isMPActive = false
     @State private var isLiked = false
@@ -49,7 +51,12 @@ struct FavoriteMusicView: View {
                 }
                 .padding(25)
                 Button {
-                    
+//                    savedTrackEntities.map { track in
+//                        if let trackTitle = track.trackTitle,
+//                           let trackArtists = track.trackArtists {
+//                            viewModel.input.searchButtonTapSubject.send("\(trackTitle) \(trackArtists)")
+//                        }
+//                    }
                 } label: {
                     VStack {
                         HStack(spacing: 20) {
@@ -88,7 +95,14 @@ struct FavoriteMusicView: View {
                 .navigationBarBackButtonHidden(true)
                 Spacer()
             }
-            
+//           .onAppear {
+//                savedTrackEntities.map { track in
+//                    if let title = track.trackTitle,
+//                       let artists = track.trackArtists {
+//                        viewModelFM.input.addTopTrack.send((title, artists))
+//                    }
+//                }
+//            }
             
             if viewModel.output.tracks.spotifyTrack.album.cover.first?.url != nil  {
                 Spacer()

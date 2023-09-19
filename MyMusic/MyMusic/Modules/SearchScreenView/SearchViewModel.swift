@@ -44,6 +44,7 @@ extension SearchViewModel {
         loadCurrentTrack()
         saveRecentlyPlayedArtist()
         bindNextTrack()
+        bindFullTopTracks()
     }
     
     func bindSearchButton() {
@@ -155,6 +156,15 @@ extension SearchViewModel {
             .store(in: &cancellable)
     }
     
+    func bindFullTopTracks() {
+        input.topTrackFullSubject
+            .sink { title, artists in
+                let trackString = "\(title) \(artists)"
+                self.output.topTracksToPlay.insert(trackString, at: 0)
+            }
+            .store(in: &cancellable)
+    }
+    
 }
 
 extension SearchViewModel {
@@ -165,6 +175,7 @@ extension SearchViewModel {
         let loadTrackSubject = PassthroughSubject<(URL?, AudioPlayer), Never>()
         let recentlyPlayedArtistSubject = PassthroughSubject<[ReceivedArtist], Never>()
         let nextTrackSubject = PassthroughSubject<String, Never>()
+        let topTrackFullSubject = PassthroughSubject<(String, String), Never>()
     }
     
     struct Output {
@@ -173,5 +184,6 @@ extension SearchViewModel {
         var isTrackLoaded: Bool = false
         var playerItem: AVPlayerItem?
         var nextTracksArray: [String] = []
+        var topTracksToPlay: [String] = []
     }
 }

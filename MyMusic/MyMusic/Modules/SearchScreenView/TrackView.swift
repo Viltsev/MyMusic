@@ -105,7 +105,7 @@ struct TrackView: View {
             .animation(.interpolatingSpring(stiffness: 170, damping: 15), value: show)
     }
     
-    func isFavoriteTrack() {
+    private func isFavoriteTrack() {
         for track in savedTrackEntities {
             if let currentUser = UserDefaults.standard.string(forKey: "email"),
                track.userEmail == currentUser,

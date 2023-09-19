@@ -11,18 +11,25 @@ import SDWebImageSwiftUI
 
 
 struct MiniPlayer: View {
+    private let dataManager = AppAssembler.resolve(DataProtocol.self)
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var viewModel: SearchViewModel
+    
+    @StateObject var trackViewModel = TrackViewModel()
     
     @State var offset: CGFloat = 0
     @State private var showArtists: Bool = false
     @State private var repeatTrack: Bool = false
+    @State var isLiked: Bool = false
     
     @Binding var newTrack: Track
     @Binding var artists: [ReceivedArtist]
     @Binding var expand: Bool
     @Binding var playerItem: AVPlayerItem?
     
+    private var savedTrackEntities: [TrackEntity] {
+        return dataManager.fetchTracks()
+    }
     
     var height = UIScreen.main.bounds.height / 3
     
@@ -154,9 +161,23 @@ struct MiniPlayer: View {
                             }
                             
                             Spacer()
-                            Image(systemName: "heart")
-                                .font(.title)
-                                .foregroundColor(.black)
+                            Button {
+                                if isLiked {
+                                    trackViewModel.input.deleteTrackSubject.send(newTrack.spotifyTrack.trackID)
+                                    isLiked.toggle()
+                                } else {
+                                    let artistNames = newTrack.spotifyTrack.artists.map { $0.name }
+                                    let trackImage = newTrack.spotifyTrack.album.cover.first?.url
+                                    trackViewModel.input.saveTrackSubject.send((newTrack.spotifyTrack.name, artistNames.joined(separator: ", "), trackImage, newTrack.spotifyTrack.trackID))
+                                    isLiked.toggle()
+                                }
+                            } label:
+                            {
+                                ZStack {
+                                    image(Image(systemName: "heart.fill"), show: isLiked)
+                                    image(Image(systemName: "heart"), show: !isLiked)
+                                }
+                            }
                         }
                         .padding(.vertical, 15)
                         HStack {
@@ -181,40 +202,58 @@ struct MiniPlayer: View {
                         .fontWeight(.bold)
                     Spacer()
                     Button {
-//                        if audioPlayer.isPlaying {
-//                            audioPlayer.pauseAudio()
-//                        } else {
-//                            if viewModel.output.isTrackLoaded {
-//                                if let unwrappedPlayer = viewModel.output.playerItem {
-//                                    audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
-//                                    viewModel.output.isTrackLoaded.toggle()
-//                                }
-//                            } else {
-//                                if let unwrappedPlayer = viewModel.output.playerItem {
-//                                    audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
-//                                }
-//                            }
-//
-//                        }
                         if audioPlayer.isPlaying {
                             audioPlayer.pauseAudio()
                         } else {
-                            if let unwrappedPlayerItem = playerItem {
-                                audioPlayer.playAudio(from: unwrappedPlayerItem, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
+                            if viewModel.output.isTrackLoaded {
+                                if let unwrappedPlayer = viewModel.output.playerItem {
+                                    audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
+                                    viewModel.output.isTrackLoaded.toggle()
+                                }
+                            } else {
+                                if let unwrappedPlayer = viewModel.output.playerItem {
+                                    audioPlayer.playAudio(from: unwrappedPlayer, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
+                                }
                             }
+
                         }
+//                        if audioPlayer.isPlaying {
+//                            audioPlayer.pauseAudio()
+//                        } else {
+//                            if let unwrappedPlayerItem = playerItem {
+//                                audioPlayer.playAudio(from: unwrappedPlayerItem, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
+//                            }
+//                        }
                     } label: {
                         Image(systemName: audioPlayer.isPlaying ? "stop.fill" : "play.fill")
                             .font(.title2)
                             .foregroundColor(.black)
                     }
-                    Image(systemName: "heart")
-                        .font(.title2)
-                        .foregroundColor(.black)
+                    
+                    Button {
+                        if isLiked {
+                            trackViewModel.input.deleteTrackSubject.send(newTrack.spotifyTrack.trackID)
+                            isLiked.toggle()
+                        } else {
+                            let artistNames = newTrack.spotifyTrack.artists.map { $0.name }
+                            let trackImage = newTrack.spotifyTrack.album.cover.first?.url
+                            trackViewModel.input.saveTrackSubject.send((newTrack.spotifyTrack.name, artistNames.joined(separator: ", "), trackImage, newTrack.spotifyTrack.trackID))
+                            isLiked.toggle()
+                        }
+                    } label:
+                    {
+                        ZStack {
+                            image(Image(systemName: "heart.fill"), show: isLiked)
+                            image(Image(systemName: "heart"), show: !isLiked)
+                        }
+                    }
                 }
             }
             .padding(expand ? 0 : 16)
             Spacer()
+        }
+        .onAppear {
+            isFavoriteTrack()
         }
         .onReceive(audioPlayer.isTrackEnded, perform: { result in
             if result {
@@ -227,6 +266,8 @@ struct MiniPlayer: View {
                         viewModel.input.searchButtonTapSubject.send(nextTrack)
                         viewModel.output.nextTracksArray.removeFirst()
                         audioPlayer.restartAudio(newTrack: true)
+                    } else if !viewModel.output.topTracksToPlay.isEmpty {
+                        let nextTrack = viewModel.output.topTracksToPlay[0]
                     }
                 }
             }
@@ -270,9 +311,29 @@ struct MiniPlayer: View {
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    private func image(_ image: Image, show: Bool) -> some View {
+        image
+            .tint(isLiked ? Color.greenLight : Color.black)
+            .font(.title)
+            .scaleEffect(show ? 1 : 0)
+            .opacity(show ? 1 : 0)
+            .animation(.interpolatingSpring(stiffness: 170, damping: 15), value: show)
+    }
+    
+    private func isFavoriteTrack() {
+        for track in savedTrackEntities {
+            if let currentUser = UserDefaults.standard.string(forKey: "email"),
+               track.userEmail == currentUser,
+               let id = track.trackID {
+                if id == newTrack.spotifyTrack.trackID {
+                    self.isLiked = true
+                }
+            }
+        }
+    }
 
 }
-
 
 /* MOCK DATA
  
