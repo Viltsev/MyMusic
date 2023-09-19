@@ -160,7 +160,7 @@ extension SearchViewModel {
         input.topTrackFullSubject
             .sink { title, artists in
                 let trackString = "\(title) \(artists)"
-                self.output.topTracksToPlay.insert(trackString, at: 0)
+                self.output.topTracksToPlay.append(trackString)
             }
             .store(in: &cancellable)
     }
@@ -185,5 +185,6 @@ extension SearchViewModel {
         var playerItem: AVPlayerItem?
         var nextTracksArray: [String] = []
         var topTracksToPlay: [String] = []
+        var currentTopTrackIndex: Int = 1
     }
 }

@@ -22,7 +22,8 @@ struct FavoriteMusicView: View {
     @State var expand = false
     
     private var savedTrackEntities: [TrackEntity] {
-        return dataManager.fetchTracks()
+        let favoriteTrakcs = dataManager.fetchTracks()
+        return favoriteTrakcs.reversed()
     }
     
     var body: some View {
@@ -51,12 +52,10 @@ struct FavoriteMusicView: View {
                 }
                 .padding(25)
                 Button {
-//                    savedTrackEntities.map { track in
-//                        if let trackTitle = track.trackTitle,
-//                           let trackArtists = track.trackArtists {
-//                            viewModel.input.searchButtonTapSubject.send("\(trackTitle) \(trackArtists)")
-//                        }
-//                    }
+                    if let title = savedTrackEntities.first?.trackTitle,
+                       let artists = savedTrackEntities.first?.trackArtists {
+                        viewModel.input.searchButtonTapSubject.send("\(title) \(artists)")
+                    }
                 } label: {
                     VStack {
                         HStack(spacing: 20) {
@@ -95,14 +94,14 @@ struct FavoriteMusicView: View {
                 .navigationBarBackButtonHidden(true)
                 Spacer()
             }
-//           .onAppear {
-//                savedTrackEntities.map { track in
-//                    if let title = track.trackTitle,
-//                       let artists = track.trackArtists {
-//                        viewModelFM.input.addTopTrack.send((title, artists))
-//                    }
-//                }
-//            }
+           .onAppear {
+               for track in savedTrackEntities {
+                   if let title = track.trackTitle,
+                      let artists = track.trackArtists {
+                       viewModel.input.topTrackFullSubject.send((title, artists))
+                   }
+               }
+            }
             
             if viewModel.output.tracks.spotifyTrack.album.cover.first?.url != nil  {
                 Spacer()

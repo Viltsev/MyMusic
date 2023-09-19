@@ -153,6 +153,11 @@ struct MiniPlayer: View {
                                     viewModel.input.searchButtonTapSubject.send(nextTrack)
                                     viewModel.output.nextTracksArray.removeFirst()
                                     audioPlayer.restartAudio(newTrack: true)
+                                } else if !viewModel.output.topTracksToPlay.isEmpty {
+                                    viewModel.output.topTracksToPlay.removeFirst()
+                                    let nextTrack = viewModel.output.topTracksToPlay[0]
+                                    viewModel.input.searchButtonTapSubject.send(nextTrack)
+                                    audioPlayer.restartAudio(newTrack: true)
                                 }
                             } label: {
                                 Image(systemName: "forward.fill")
@@ -267,7 +272,10 @@ struct MiniPlayer: View {
                         viewModel.output.nextTracksArray.removeFirst()
                         audioPlayer.restartAudio(newTrack: true)
                     } else if !viewModel.output.topTracksToPlay.isEmpty {
+                        viewModel.output.topTracksToPlay.removeFirst()
                         let nextTrack = viewModel.output.topTracksToPlay[0]
+                        viewModel.input.searchButtonTapSubject.send(nextTrack)
+                        audioPlayer.restartAudio(newTrack: true)
                     }
                 }
             }
