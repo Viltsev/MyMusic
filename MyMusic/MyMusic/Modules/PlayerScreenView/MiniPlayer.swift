@@ -16,16 +16,19 @@ struct MiniPlayer: View {
     @EnvironmentObject var viewModel: SearchViewModel
     
     @StateObject var trackViewModel = TrackViewModel()
+    @StateObject var viewModelTrackInfo = TrackInfoViewModel()
     
     @State var offset: CGFloat = 0
     @State private var showArtists: Bool = false
     @State private var repeatTrack: Bool = false
     @State var isLiked: Bool = false
+    @State private var showLyrics: Bool = false
     
     @Binding var newTrack: Track
     @Binding var artists: [ReceivedArtist]
     @Binding var expand: Bool
     @Binding var playerItem: AVPlayerItem?
+    @Binding var nextTrackArray: [String]
     
     private var savedTrackEntities: [TrackEntity] {
         return dataManager.fetchTracks()
@@ -80,6 +83,8 @@ struct MiniPlayer: View {
                                         .font(Font.custom("Chillax-Regular", size: 20))
                                         //.font(.headline)
                                         .foregroundColor(.black)
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.leading)
                                 }
                                     .sheet(isPresented: $showArtists) {
                                         ArtistsView(artists: artists)
@@ -148,10 +153,10 @@ struct MiniPlayer: View {
                             }
                             Button {
                                 audioPlayer.pauseAudio()
-                                if !viewModel.output.nextTracksArray.isEmpty {
-                                    let nextTrack = viewModel.output.nextTracksArray[0]
+                                if !nextTrackArray.isEmpty {
+                                    let nextTrack = nextTrackArray[0]
                                     viewModel.input.searchButtonTapSubject.send(nextTrack)
-                                    viewModel.output.nextTracksArray.removeFirst()
+                                    nextTrackArray.removeFirst()
                                     audioPlayer.restartAudio(newTrack: true)
                                 } else if !viewModel.output.topTracksToPlay.isEmpty {
                                     viewModel.output.topTracksToPlay.removeFirst()
@@ -187,8 +192,19 @@ struct MiniPlayer: View {
                         .padding(.vertical, 15)
                         HStack {
                             Spacer()
-                            Image(systemName: "text.aligncenter")
-                                .font(.title2)
+                            Button {
+                                viewModelTrackInfo.input.lyricsTrackSubject.send(newTrack.spotifyTrack.trackID)
+                            } label: {
+                                Image(systemName: "text.aligncenter")
+                                    .font(.title2)
+                            }
+                            .sheet(isPresented: $showLyrics) {
+                                if viewModelTrackInfo.output.lyrics != nil {
+                                    LyricsView(trackTitle: newTrack.spotifyTrack.name,
+                                               trackArtists: artistNames.joined(separator: ", "),
+                                               receivedLyrics: viewModelTrackInfo.output.lyrics!)
+                                }
+                            }
                             Spacer()
                         }
                     }
@@ -222,13 +238,6 @@ struct MiniPlayer: View {
                             }
 
                         }
-//                        if audioPlayer.isPlaying {
-//                            audioPlayer.pauseAudio()
-//                        } else {
-//                            if let unwrappedPlayerItem = playerItem {
-//                                audioPlayer.playAudio(from: unwrappedPlayerItem, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
-//                            }
-//                        }
                     } label: {
                         Image(systemName: audioPlayer.isPlaying ? "stop.fill" : "play.fill")
                             .font(.title2)
@@ -266,10 +275,10 @@ struct MiniPlayer: View {
                     audioPlayer.restartAudio(newTrack: false)
                 } else {
                     audioPlayer.pauseAudio()
-                    if !viewModel.output.nextTracksArray.isEmpty {
-                        let nextTrack = viewModel.output.nextTracksArray[0]
+                    if !nextTrackArray.isEmpty {
+                        let nextTrack = nextTrackArray[0]
                         viewModel.input.searchButtonTapSubject.send(nextTrack)
-                        viewModel.output.nextTracksArray.removeFirst()
+                        nextTrackArray.removeFirst()
                         audioPlayer.restartAudio(newTrack: true)
                     } else if !viewModel.output.topTracksToPlay.isEmpty {
                         viewModel.output.topTracksToPlay.removeFirst()
@@ -278,6 +287,11 @@ struct MiniPlayer: View {
                         audioPlayer.restartAudio(newTrack: true)
                     }
                 }
+            }
+        })
+        .onReceive(viewModelTrackInfo.successLyricsReceive, perform: { success in
+            if success {
+                showLyrics.toggle()
             }
         })
         .frame(maxWidth: expand ? .infinity : nil, maxHeight: expand ? .infinity : 80)

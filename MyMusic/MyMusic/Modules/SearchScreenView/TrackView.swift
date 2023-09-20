@@ -18,6 +18,7 @@ struct TrackView: View {
     @StateObject var trackViewModel = TrackViewModel()
     
     @Binding var isActive: Bool
+    @Binding var nextTrackArray: [String]
     
     @State var isLiked: Bool = false
     var trackTitle: String
@@ -83,7 +84,8 @@ struct TrackView: View {
                     TrackInfoView(trackTitle: trackTitle,
                                   trackArtists: trackArtists,
                                   trackImage: trackImage,
-                                  trackID: trackID)
+                                  trackID: trackID,
+                                  nextTracksArray: $nextTrackArray)
                         .environmentObject(viewModel)
                         .presentationDetents([.large, .large, .fraction(0.75)])
                 }

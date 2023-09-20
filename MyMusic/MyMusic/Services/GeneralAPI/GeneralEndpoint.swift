@@ -40,7 +40,7 @@ extension GeneralEndpoint: TargetType {
     }
     
     var headers: [String : String]? {
-        [ "X-RapidAPI-Key" : "8ceeca0d31msh51965b02e60d34ep1bf7e2jsnec6f9ba5ea32",
+        [ "X-RapidAPI-Key" : "cd02c58415mshb53743187d9ff8ap1c314fjsn07806753884e",
           "X-RapidAPI-Host" : "spotify-scraper.p.rapidapi.com"
         ]
     }

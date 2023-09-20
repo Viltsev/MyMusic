@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct AlbumInfoView: View {
     @State private var isMPActive = false
     @State private var isLiked = false
+    @State private var nextTrackArray: [String] = []
     var albumTitle: String
     var albumCover: URL?
     var receivedAlbum: ReceivedArtistAlbums
@@ -47,6 +48,7 @@ struct AlbumInfoView: View {
                     ForEach(receivedAlbum.tracks.items) { track in
                         let artistNames = track.artists.map( { $0.name } )
                         TrackView(isActive: $isMPActive,
+                                  nextTrackArray: $nextTrackArray,
                                   trackTitle: track.name,
                                   trackArtists: artistNames.joined(separator: ", "),
                                   trackImage: albumCover,

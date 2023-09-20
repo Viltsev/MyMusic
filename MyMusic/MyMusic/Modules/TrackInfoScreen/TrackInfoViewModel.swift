@@ -20,6 +20,10 @@ final class TrackInfoViewModel: ObservableObject {
         return input.successLyricsReceiveSubject.eraseToAnyPublisher()
     }
     
+    var successNextTrackReceive: AnyPublisher<Bool, Never> {
+        return input.successNextTrackReceiveSubject.eraseToAnyPublisher()
+    }
+    
     init() {
      bind()
     }
@@ -28,6 +32,7 @@ final class TrackInfoViewModel: ObservableObject {
  extension TrackInfoViewModel {
      func bind() {
          bindTrackLyrics()
+         bindNextTrack()
      }
      
      func bindTrackLyrics() {
@@ -55,20 +60,27 @@ final class TrackInfoViewModel: ObservableObject {
              }
              .store(in: &cancellable)
      }
+     
+     func bindNextTrack() {
+         input.nextTrackSubject
+             .sink { nextTrack in
+                 self.output.nextTracksArray.insert(nextTrack, at: 0)
+                 self.input.successNextTrackReceiveSubject.send(true)
+             }
+             .store(in: &cancellable)
+     }
  }
 
  extension TrackInfoViewModel {
      struct Input {
          let lyricsTrackSubject = PassthroughSubject<String, Never>()
          let successLyricsReceiveSubject = PassthroughSubject<Bool, Never>()
+         let nextTrackSubject = PassthroughSubject<String, Never>()
+         let successNextTrackReceiveSubject = PassthroughSubject<Bool, Never>()
      }
      
      struct Output {
          var lyrics: TrackText?
+         var nextTracksArray: [String] = []
      }
  }
-
-
-
-    
-    

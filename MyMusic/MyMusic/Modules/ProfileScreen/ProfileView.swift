@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var router: NavigationRouter
+    @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var audioPlayer: AudioPlayer
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
     
     private var savedEntities: [UserEntity] {
@@ -56,6 +58,8 @@ struct ProfileView: View {
             }
             .foregroundColor(Color.purpleDark)
             Button {
+                viewModel.output.tracks = Track(youtubeVideo: YoutubeVideo(id: "", audio: []), spotifyTrack: SpotifyTrack(trackID: "", name: "", artists: [], album: Album(name: "", shareUrl: URL(string: ""), cover: []), durationMs: 0))
+                audioPlayer.pauseAudio()
                 AuthenticationLocalService.shared.status.send(false)
                 UserDefaults.standard.removeObject(forKey: "email")
                 UserDefaults.standard.removeObject(forKey: "name")

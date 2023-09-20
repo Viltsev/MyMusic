@@ -7,103 +7,23 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "941F61A4-1B0A-4FC3-85FA-3ED885837D51"
+            uuid = "1FDB7171-D1FE-4177-8FB4-7E66C1BC84E4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "941F61A4-1B0A-4FC3-85FA-3ED885837D51 - 5c7ce20163b2a46f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (Swift.Bool) -&gt; () in MyMusic.MiniPlayer.body.getter : some"
-                  moduleName = "MyMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "271"
-                  endingLineNumber = "271"
-                  offsetFromSymbolStart = "1757">
-               </Location>
-               <Location
-                  uuid = "941F61A4-1B0A-4FC3-85FA-3ED885837D51 - 5c7ce20163b2a7c2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (Swift.Bool) -&gt; () in MyMusic.MiniPlayer.body.getter : some"
-                  moduleName = "MyMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276"
-                  offsetFromSymbolStart = "1807">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5E752E75-594A-4981-94EF-F6F415070BE6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "5E752E75-594A-4981-94EF-F6F415070BE6 - 5c7ce20163b2a44e"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (Swift.Bool) -&gt; () in MyMusic.MiniPlayer.body.getter : some"
-                  moduleName = "MyMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "272"
-                  endingLineNumber = "272"
-                  offsetFromSymbolStart = "1914">
-               </Location>
-               <Location
-                  uuid = "5E752E75-594A-4981-94EF-F6F415070BE6 - 5c7ce20163b2a725"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (Swift.Bool) -&gt; () in MyMusic.MiniPlayer.body.getter : some"
-                  moduleName = "MyMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "277"
-                  endingLineNumber = "277"
-                  offsetFromSymbolStart = "1979">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1E6E8466-B6F0-4A52-A3CC-12A3DE5D6E10"
+            uuid = "6DDD9C62-0A05-46A2-8288-77B1C448B8F5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -114,36 +34,116 @@
             endingLineNumber = "278"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3F318B6-B2DA-4335-9CDD-62A0CAD9F766"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD87B790-9AE9-42A2-9ACA-780F94FE0E2F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2856523-FD4C-47A6-A338-14938BC61F74"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B56DDDB4-C847-4C41-97BC-26BD0E0CFD47"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "bindNextTrack()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3FB8C78-27CE-4639-A900-FE8C2482EFB0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "bindNextTrack()"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "1E6E8466-B6F0-4A52-A3CC-12A3DE5D6E10 - 5c7ce20163b2a780"
+                  uuid = "C3FB8C78-27CE-4639-A900-FE8C2482EFB0 - 7179eacee8fde1fb"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (Swift.Bool) -&gt; () in MyMusic.MiniPlayer.body.getter : some"
+                  symbolName = "MyMusic.TrackInfoViewModel.bindNextTrack() -&gt; ()"
                   moduleName = "MyMusic"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "274"
-                  endingLineNumber = "274"
-                  offsetFromSymbolStart = "2229">
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "56">
                </Location>
                <Location
-                  uuid = "1E6E8466-B6F0-4A52-A3CC-12A3DE5D6E10 - 5c7ce20163b2a704"
+                  uuid = "C3FB8C78-27CE-4639-A900-FE8C2482EFB0 - b068afb62ecfa16a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (Swift.Bool) -&gt; () in MyMusic.MiniPlayer.body.getter : some"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in MyMusic.TrackInfoViewModel.bindNextTrack() -&gt; ()"
                   moduleName = "MyMusic"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+                  urlString = "file:///Users/danila/Desktop/GitHub/MyMusic/MyMusic/MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "278"
-                  endingLineNumber = "278"
-                  offsetFromSymbolStart = "2115">
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -151,81 +151,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "491964D7-8C66-45FF-8F9E-4C7D3DBF93AF"
+            uuid = "A3002270-042A-4C63-B162-3E955CBBB931"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+            filePath = "MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "bindNextTrack()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5226D49D-9EE7-4C3D-9BC2-6D40AFAE5260"
+            uuid = "E84CA8B8-1DDB-4320-96A4-A05C197F6351"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+            filePath = "MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "bindNextTrack()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C025BCDA-FD1B-4CC0-AECA-D729E97505FD"
+            uuid = "CAC76630-758A-41DB-9D3A-327311A8FF9B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+            filePath = "MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "bindNextTrack()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "66ED1532-E2C5-42DA-9441-2131D64D7260"
+            uuid = "8B306457-6941-4B26-9D1B-08593B6630A3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
+            filePath = "MyMusic/Modules/TrackInfoScreen/TrackInfoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "67B7F5F6-B568-41A8-83D0-DA78E54EC689"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Modules/PlayerScreenView/MiniPlayer.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "bindNextTrack()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

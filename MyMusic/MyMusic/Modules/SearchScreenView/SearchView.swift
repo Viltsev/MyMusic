@@ -11,6 +11,7 @@ import AVFoundation
 struct SearchView: View {
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var audioPlayer: AudioPlayer
     @Environment(\.dismiss) var dismiss
     
     @State private var playerItem: AVPlayerItem?
@@ -18,6 +19,7 @@ struct SearchView: View {
     @State private var isMPActive = false
     @State private var isLiked = false
     @State var expand = false
+    @State private var nextTrackArray: [String] = []
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
@@ -37,6 +39,10 @@ struct SearchView: View {
                         if isMPActive {
                             isMPActive.toggle()
                         }
+                        if audioPlayer.isPlaying {
+                            audioPlayer.pauseAudio()
+                        }
+                        audioPlayer.restartAudio(newTrack: true)
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .font(.title2)
@@ -47,10 +53,10 @@ struct SearchView: View {
                 .padding(25)
                 VStack {
                     if !viewModel.output.tracks.spotifyTrack.name.isEmpty {
-                        let artistNames =  viewModel.output.tracks.spotifyTrack.artists.map { $0.name }
+                        let artistNames = viewModel.output.tracks.spotifyTrack.artists.map { $0.name }
                             TrackView(
                                 isActive: $isMPActive,
-                                trackTitle: viewModel.output.tracks.spotifyTrack.name,
+                                nextTrackArray: $nextTrackArray, trackTitle: viewModel.output.tracks.spotifyTrack.name,
                                 trackArtists: artistNames.joined(separator: ", "),
                                 trackImage: viewModel.output.tracks.spotifyTrack.album.cover.first?.url,
                                 trackID: viewModel.output.tracks.spotifyTrack.trackID,
@@ -70,7 +76,7 @@ struct SearchView: View {
                     newTrack: $viewModel.output.tracks,
                     artists: $viewModel.output.artists,
                     expand: $expand,
-                    playerItem: $playerItem
+                    playerItem: $playerItem, nextTrackArray: $nextTrackArray
                 )
                     .opacity(isMPActive ? 0 : 1)
             }
