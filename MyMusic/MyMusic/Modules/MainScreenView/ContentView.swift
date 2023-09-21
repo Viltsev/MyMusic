@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var viewModel: SearchViewModel
     @EnvironmentObject var router: NavigationRouter
     
     @State var show = false
@@ -24,7 +23,6 @@ struct ContentView: View {
                         FavoriteTracksView()
                             .environmentObject(router)
                         RecentlyPlayedView()
-                            //.environmentObject(viewModel)
                         Spacer()
                     }
                     Button {
@@ -52,7 +50,6 @@ struct ContentView: View {
                         SearchView()
                     case .pushFavoriteMusic:
                         FavoriteMusicView()
-                            //.environmentObject(viewModel)
                     }
                 }
                 .environmentObject(router)

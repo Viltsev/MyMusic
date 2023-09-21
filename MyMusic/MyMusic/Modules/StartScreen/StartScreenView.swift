@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StartScreenView: View {
-    @EnvironmentObject var startViewModel: StartScreenViewModel
+    @StateObject var startViewModel = StartScreenViewModel()
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     

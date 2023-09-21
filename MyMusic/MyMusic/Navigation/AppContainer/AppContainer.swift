@@ -12,9 +12,9 @@ struct AppContainer: View {
     @State private var isAuth = AuthenticationLocalService.shared.status.value
     @State private var isFetchData: Bool = false
     @StateObject private var audioPlayer = AudioPlayer()
-    @StateObject private var viewModel = SearchViewModel()
+    @StateObject private var viewModel = TrackViewModel()
     @StateObject var router = NavigationRouter()
-    @StateObject var startViewModel = StartScreenViewModel()
+
     
     var body: some View {
         Group {
@@ -28,7 +28,6 @@ struct AppContainer: View {
                     }
             } else {
                 StartScreenView()
-                    .environmentObject(startViewModel)
             }
         }
         .onReceive(AuthenticationLocalService.shared.status) { status in

@@ -13,7 +13,7 @@ import SDWebImageSwiftUI
 struct MiniPlayer: View {
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
     @EnvironmentObject var audioPlayer: AudioPlayer
-    @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var viewModel: TrackViewModel
     
     @StateObject var trackViewModel = TrackViewModel()
     @StateObject var viewModelTrackInfo = TrackInfoViewModel()

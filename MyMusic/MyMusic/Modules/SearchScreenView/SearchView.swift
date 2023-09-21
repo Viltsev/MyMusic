@@ -10,7 +10,7 @@ import AVFoundation
 
 struct SearchView: View {
     @EnvironmentObject var router: NavigationRouter
-    @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var viewModel: TrackViewModel
     @EnvironmentObject var audioPlayer: AudioPlayer
     @Environment(\.dismiss) var dismiss
     
@@ -34,14 +34,7 @@ struct SearchView: View {
                     SearchField(text: $trackName, fieldSize: 15, isPassword: false, isEmail: false)
                     Spacer()
                     Button {
-                        viewModel.input.searchButtonTapSubject.send(self.trackName)
-                        if isMPActive {
-                            isMPActive.toggle()
-                        }
-                        if audioPlayer.isPlaying {
-                            audioPlayer.pauseAudio()
-                        }
-                        audioPlayer.restartAudio(newTrack: true)
+                        playSearchedTrack()
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .font(.title2)
@@ -70,7 +63,7 @@ struct SearchView: View {
                 viewModel.setRouter(router)
             }
             
-            if viewModel.output.tracks.spotifyTrack.album.cover.first?.url != nil  {
+            if viewModel.output.tracks.spotifyTrack.album.cover.first?.url != nil {
                 MiniPlayer(
                     newTrack: $viewModel.output.tracks,
                     artists: $viewModel.output.artists,
@@ -144,5 +137,22 @@ struct customViewModifier: ViewModifier {
             .overlay(RoundedRectangle(cornerRadius: roundedCornes)
                 .stroke(Color.greenLight))
             .padding(.horizontal, 16)
+    }
+}
+
+extension SearchView {
+    private func playSearchedTrack() {
+        if audioPlayer.isPlaying {
+            viewModel.input.nextTrackSubject.send(self.trackName)
+        } else {
+            viewModel.input.searchButtonTapSubject.send(self.trackName)
+            if isMPActive {
+                isMPActive.toggle()
+            }
+//            if audioPlayer.isPlaying {
+//                audioPlayer.pauseAudio()
+//            }
+//            audioPlayer.restartAudio(newTrack: true)
+        }
     }
 }

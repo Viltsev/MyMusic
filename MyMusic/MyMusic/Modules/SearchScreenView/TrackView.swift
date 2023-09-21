@@ -12,7 +12,7 @@ struct TrackView: View {
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
 
     @EnvironmentObject var audioPlayer: AudioPlayer
-    @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var viewModel: TrackViewModel
     
     @StateObject var viewModelArtist = ArtistsViewModel()
     @StateObject var trackViewModel = TrackViewModel()

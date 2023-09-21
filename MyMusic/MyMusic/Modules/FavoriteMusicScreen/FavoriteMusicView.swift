@@ -11,7 +11,7 @@ import AVFoundation
 struct FavoriteMusicView: View {
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
     @EnvironmentObject var router: NavigationRouter
-    @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var viewModel: TrackViewModel
     
     @StateObject var viewModelFM = FavoriteMusicViewModel()
     

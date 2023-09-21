@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var router: NavigationRouter
-    @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var viewModel: TrackViewModel
     @EnvironmentObject var audioPlayer: AudioPlayer
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
     

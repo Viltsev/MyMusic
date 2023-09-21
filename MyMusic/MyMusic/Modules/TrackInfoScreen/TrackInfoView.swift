@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct TrackInfoView: View {
     
-    @EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var viewModel: TrackViewModel
     @StateObject var viewModelTrack = TrackInfoViewModel()
     @State private var showLyrics: Bool = false
     var trackTitle: String

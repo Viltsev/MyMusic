@@ -13,13 +13,5 @@ struct ServiceAssembly: Assembly {
         container.register(DataProtocol.self) { _ in
             return DataManager()
         }.inObjectScope(.container)
-        
-        container.register(DataManagerModel.self) { _ in
-            return DataManagerModel()
-        }.inObjectScope(.container)
-        
-        container.register(AudioPlayer.self) { _ in
-            return AudioPlayer()
-        }.inObjectScope(.container)
     }
 }
