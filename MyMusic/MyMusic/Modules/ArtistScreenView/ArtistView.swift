@@ -14,7 +14,6 @@ struct ArtistView: View {
     @State private var isMPActive = false
     @State private var isLiked = false
     @State private var showAlbum: Bool = false
-    @State private var nextTrackArray: [String] = []
     
     var receivedArtist: ReceivedArtist
     
@@ -53,7 +52,6 @@ struct ArtistView: View {
                     ForEach(receivedArtist.discography.topTracks) { track in
                         let artistNames = track.artists.map( { $0.name } )
                         TrackView(isActive: $isMPActive,
-                                  nextTrackArray: $nextTrackArray,
                                   trackTitle: track.name,
                                   trackArtists: artistNames.joined(separator: ", "),
                                   trackImage: track.album.cover.first?.url,

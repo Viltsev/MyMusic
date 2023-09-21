@@ -10,14 +10,13 @@ import SDWebImageSwiftUI
 
 struct TrackInfoView: View {
     
-    //@EnvironmentObject var viewModel: SearchViewModel
+    @EnvironmentObject var viewModel: SearchViewModel
     @StateObject var viewModelTrack = TrackInfoViewModel()
     @State private var showLyrics: Bool = false
     var trackTitle: String
     var trackArtists: String
     var trackImage: URL?
     var trackID: String
-    @Binding var nextTracksArray: [String]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -47,7 +46,7 @@ struct TrackInfoView: View {
             .padding(.vertical, 35)
             .padding(.horizontal, 25)
             Button {
-                nextTrackInsert()
+                viewModel.input.nextTrackSubject.send("\(trackTitle) \(trackArtists)")
             } label: {
                 HStack(spacing: 25) {
                     Image(systemName: "arrow.turn.right.down")
@@ -114,11 +113,5 @@ struct TrackInfoView: View {
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.purpleDark)
-    }
-}
-
-extension TrackInfoView {
-    private func nextTrackInsert() {
-        nextTracksArray.insert("\(trackTitle) \(trackArtists)", at: 0)
     }
 }

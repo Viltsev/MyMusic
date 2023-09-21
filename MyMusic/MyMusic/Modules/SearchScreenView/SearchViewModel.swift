@@ -39,7 +39,6 @@ extension SearchViewModel {
     
     func bind() {
         bindSearchButton()
-        backToMainScreen()
         loadTopTrack()
         loadCurrentTrack()
         saveRecentlyPlayedArtist()
@@ -80,14 +79,6 @@ extension SearchViewModel {
         input.selectedTopTrackSubject
             .sink { topTrack in
                 self.input.searchButtonTapSubject.send(topTrack.name)
-            }
-            .store(in: &cancellable)
-    }
-    
-    func backToMainScreen() {
-        input.backButtonSubject
-            .sink { [weak self] in
-                self?.router?.popToRoot()
             }
             .store(in: &cancellable)
     }
@@ -170,7 +161,6 @@ extension SearchViewModel {
 extension SearchViewModel {
     struct Input {
         let searchButtonTapSubject = PassthroughSubject<String, Never>()
-        let backButtonSubject = PassthroughSubject<Void, Never>()
         let selectedTopTrackSubject = PassthroughSubject<TopTracks, Never>()
         let loadTrackSubject = PassthroughSubject<(URL?, AudioPlayer), Never>()
         let recentlyPlayedArtistSubject = PassthroughSubject<[ReceivedArtist], Never>()
@@ -185,6 +175,5 @@ extension SearchViewModel {
         var playerItem: AVPlayerItem?
         var nextTracksArray: [String] = []
         var topTracksToPlay: [String] = []
-        var currentTopTrackIndex: Int = 1
     }
 }

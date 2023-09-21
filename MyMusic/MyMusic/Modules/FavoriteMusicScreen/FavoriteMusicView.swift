@@ -19,7 +19,6 @@ struct FavoriteMusicView: View {
     @State private var isMPActive = false
     @State private var isLiked = false
     @State private var favoriteTracks: [TrackEntity] = []
-    @State private var nextTrackArray: [String] = []
     @State var expand = false
     
     private var savedTrackEntities: [TrackEntity] {
@@ -81,7 +80,6 @@ struct FavoriteMusicView: View {
                                track.userEmail == email,
                                let id = track.trackID {
                                 TrackView(isActive: $isMPActive,
-                                          nextTrackArray: $nextTrackArray,
                                           trackTitle: title,
                                           trackArtists: artists,
                                           trackImage: track.trackImage,
@@ -111,8 +109,7 @@ struct FavoriteMusicView: View {
                     MiniPlayer(
                         newTrack: $viewModel.output.tracks,
                         artists: $viewModel.output.artists,
-                        expand: $expand,
-                        playerItem: $playerItem, nextTrackArray: $nextTrackArray
+                        expand: $expand
                     )
                 }
             }

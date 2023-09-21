@@ -27,8 +27,6 @@ struct MiniPlayer: View {
     @Binding var newTrack: Track
     @Binding var artists: [ReceivedArtist]
     @Binding var expand: Bool
-    @Binding var playerItem: AVPlayerItem?
-    @Binding var nextTrackArray: [String]
     
     private var savedTrackEntities: [TrackEntity] {
         return dataManager.fetchTracks()
@@ -153,10 +151,10 @@ struct MiniPlayer: View {
                             }
                             Button {
                                 audioPlayer.pauseAudio()
-                                if !nextTrackArray.isEmpty {
-                                    let nextTrack = nextTrackArray[0]
+                                if !viewModel.output.nextTracksArray.isEmpty {
+                                    let nextTrack = viewModel.output.nextTracksArray[0]
                                     viewModel.input.searchButtonTapSubject.send(nextTrack)
-                                    nextTrackArray.removeFirst()
+                                    viewModel.output.nextTracksArray.removeFirst()
                                     audioPlayer.restartAudio(newTrack: true)
                                 } else if !viewModel.output.topTracksToPlay.isEmpty {
                                     viewModel.output.topTracksToPlay.removeFirst()
@@ -197,6 +195,7 @@ struct MiniPlayer: View {
                             } label: {
                                 Image(systemName: "text.aligncenter")
                                     .font(.title2)
+                                    .foregroundColor(.black)
                             }
                             .sheet(isPresented: $showLyrics) {
                                 if viewModelTrackInfo.output.lyrics != nil {
@@ -275,10 +274,10 @@ struct MiniPlayer: View {
                     audioPlayer.restartAudio(newTrack: false)
                 } else {
                     audioPlayer.pauseAudio()
-                    if !nextTrackArray.isEmpty {
-                        let nextTrack = nextTrackArray[0]
+                    if !viewModel.output.nextTracksArray.isEmpty {
+                        let nextTrack = viewModel.output.nextTracksArray[0]
                         viewModel.input.searchButtonTapSubject.send(nextTrack)
-                        nextTrackArray.removeFirst()
+                        viewModel.output.nextTracksArray.removeFirst()
                         audioPlayer.restartAudio(newTrack: true)
                     } else if !viewModel.output.topTracksToPlay.isEmpty {
                         viewModel.output.topTracksToPlay.removeFirst()
@@ -356,68 +355,3 @@ struct MiniPlayer: View {
     }
 
 }
-
-/* MOCK DATA
- 
- private let mockURL = "https://scd.dlod.link/?expire=1693184542704&p=7Babcu6aZeR3y3s4bIjB6Au1CEpIDh4D8-LZvVjfvcW0wb2e5ykmgb2rGqkUJTNjDuyr3ggeuYg8CyAmMvKqPojhZK09kgHXNyg3UBXin9lNczsTuRXdPVYz4TO7mT9LxHe84Qbz3u-UThYLe4FwW7pZNbII8PNHxNbkK7YcSLYDbTNyghffSlNa1y0izunQ&s=lr49wzblKU86Kq3GrhJGtbFHdSCBKLBvU9OZTzRywHI"
- 
- // ---
-//                                    if isLoadTrack {
-//                                        //viewModel.input.isTrackLoading.send()
-//                                        let queue = DispatchQueue(label: "", qos: .background)
-//                                        queue.async {
-//                                            if let unwrappedAudioURL = newTrack.youtubeVideo.audio.first?.url {
-//                                                playerItem = audioPlayer.getTrackURL(from: unwrappedAudioURL)
-//                                            }
-//                                        }
-//                                        isLoadTrack = false
-//                                    } else {
-//                                        if let unwrappedPlayerItem = playerItem {
-//                                            audioPlayer.playAudio(from: unwrappedPlayerItem, totalTime: Double(newTrack.spotifyTrack.durationMs) / 1000)
-//                                        }
-//                                    }
- // ---
- 
- 
- 
- var mockTrack: Track =
- Track(youtubeVideo: YoutubeVideo(id: "dqdbVlU1f0M", audio: [Audio(url: URL(string: mockURL))]),
-       spotifyTrack: SpotifyTrack(name: "MELTDOWN (feat. Drake)",
-                                  artists:
-                                     [Artist(idArtist: "0Y5tJX1MQlPlqiwlOH1tJY", name: "Travis Scott",
-                                             shareUrl: nil),
-                                      Artist(idArtist: "3TVXtAsR1Inumwj472S9r4", name: "Drake",
-                                             shareUrl: nil)
-                                     ],
-                                  album: Album(name: "Utopia",
-                                               shareUrl: nil,
-                                               cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44"))]), durationMs: 246133))
- 
- let mockReceivedArtists: [ReceivedArtist] =
-     [
-         ReceivedArtist(name: "Travis Scott",
-                        stats: Stats(followers: 3000000, worldRank: 5),
-                        visuals: Visuals(avatar: [Avatar(url: URL(string: "https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9"))]),
-                        discography: Discography(topTracks: [
-                         TopTracks(trackID: "67nepsnrcZkowTxMWigSbb",
-                                   name: "MELTDOWN (feat. Drake)",
-                                   durationMs: 246133,
-                                   playCount: 117961553,
-                                   artists: [Artist(idArtist: "", name: "Travis Scott", shareUrl: nil),
-                                            Artist(idArtist: "", name: "Drake", shareUrl: nil)],
-                                   album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44"))]))
-                        ])),
-         ReceivedArtist(name: "Drake",
-                        stats: Stats(followers: 3000000, worldRank: 5),
-                        visuals: Visuals(avatar: [Avatar(url: URL(string: "https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9"))]),
-                        discography: Discography(topTracks: [
-                         TopTracks(trackID: "67nepsnrcZkowTxMWigSbb",
-                                   name: "MELTDOWN (feat. Drake)",
-                                   durationMs: 246133,
-                                   playCount: 117961553,
-                                   artists: [Artist(idArtist: "", name: "Travis Scott", shareUrl: nil),
-                                            Artist(idArtist: "", name: "Drake", shareUrl: nil)],
-                                   album: ReceivedAlbum(cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44"))]))
-                        ]))
-     ]
- */

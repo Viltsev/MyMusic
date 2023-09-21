@@ -38,7 +38,7 @@ extension ReceiveAlbumEndpoint: TargetType {
     }
     
     var headers: [String : String]? {
-        [ "X-RapidAPI-Key" : "cd02c58415mshb53743187d9ff8ap1c314fjsn07806753884e",
+        [ "X-RapidAPI-Key" : "ce72a72248msh3e1ca172609fb8ep1fb1f9jsndb647a2d2726",
           "X-RapidAPI-Host" : "spotify-scraper.p.rapidapi.com"
         ]
     }

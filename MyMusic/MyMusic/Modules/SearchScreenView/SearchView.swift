@@ -19,7 +19,6 @@ struct SearchView: View {
     @State private var isMPActive = false
     @State private var isLiked = false
     @State var expand = false
-    @State private var nextTrackArray: [String] = []
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
@@ -56,7 +55,7 @@ struct SearchView: View {
                         let artistNames = viewModel.output.tracks.spotifyTrack.artists.map { $0.name }
                             TrackView(
                                 isActive: $isMPActive,
-                                nextTrackArray: $nextTrackArray, trackTitle: viewModel.output.tracks.spotifyTrack.name,
+                                trackTitle: viewModel.output.tracks.spotifyTrack.name,
                                 trackArtists: artistNames.joined(separator: ", "),
                                 trackImage: viewModel.output.tracks.spotifyTrack.album.cover.first?.url,
                                 trackID: viewModel.output.tracks.spotifyTrack.trackID,
@@ -75,8 +74,7 @@ struct SearchView: View {
                 MiniPlayer(
                     newTrack: $viewModel.output.tracks,
                     artists: $viewModel.output.artists,
-                    expand: $expand,
-                    playerItem: $playerItem, nextTrackArray: $nextTrackArray
+                    expand: $expand
                 )
                     .opacity(isMPActive ? 0 : 1)
             }
@@ -148,22 +146,3 @@ struct customViewModifier: ViewModifier {
             .padding(.horizontal, 16)
     }
 }
-
-/* MOCK DATA
- private let mockURL = "https://scd.dlod.link/?expire=1693234265682&p=nWlbmNxObVPe43PyMm2Bqwt0ySXvANh_vgKNhRBSAmLMmlrgvNKvR9-9wAfHTqhWRmTICEbz4u19rGxBpE3ImKX9oIdzCSCzMErv25uWDwZgGdmyaTNir44XAQ1i5KiWsYpImwezFmsGaVBl7sN8WFsm6jCulQm6f4Olyr_M1GV-Gaok6d-kFrM9ugM6EPZQ&s=hryB-jPYVokDjeRN72UWHspmM5StgtCaQGHupRgS7QQ"
- @State private var mockTrack: Track =
- Track(youtubeVideo: YoutubeVideo(id: "dqdbVlU1f0M", audio: [Audio(url: URL(string: mockURL))]),
-       spotifyTrack: SpotifyTrack(name: "MELTDOWN (feat. Drake)",
-                                  artists:
-                                     [Artist(idArtist: "0Y5tJX1MQlPlqiwlOH1tJY", name: "Travis Scott",
-                                             shareUrl: nil),
-                                      Artist(idArtist: "3TVXtAsR1Inumwj472S9r4", name: "Drake",
-                                             shareUrl: nil)
-                                     ],
-                                  album: Album(name: "Utopia",
-                                               shareUrl: nil,
-                                               cover: [Cover(url: URL(string: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44"))]), durationMs: 246133))
- 
- 
- */
-
