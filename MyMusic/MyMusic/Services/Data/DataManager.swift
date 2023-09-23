@@ -21,10 +21,6 @@ protocol DataProtocol {
 
 class DataManager: DataProtocol {
     let container: NSPersistentContainer
-    //private var dataManagerModel = AppDelegate.shared.container.resolve(DataManagerModel.self)!
-//    @Published var savedEntities: [UserEntity] = []
-//    @Published var savedTrackEntities: [TrackEntity] = []
-//    @Published var savedArtistsEntities: [ArtistEntity] = []
     
     init() {
         container = NSPersistentContainer(name: "UsersContainer")
@@ -33,10 +29,6 @@ class DataManager: DataProtocol {
                 print("error loading core data. \(error)")
             }
         }
-//        dataManagerModel.input.fetchDataSubject.send()
-//        fetchUsers()
-//        fetchTracks()
-//        fetchArtists()
     }
     
     func fetchUsers() -> [UserEntity] {

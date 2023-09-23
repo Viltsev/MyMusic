@@ -6,10 +6,7 @@
 //
 
 import SwiftUI
-import AVFoundation
-import SDWebImage
 import FirebaseCore
-import Swinject
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
