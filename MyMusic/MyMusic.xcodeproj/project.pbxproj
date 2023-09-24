@@ -24,7 +24,6 @@
 		83495FCE2AACD99A00ED870A /* Chillax-Extralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FCD2AACD99A00ED870A /* Chillax-Extralight.otf */; };
 		83495FD02AACD9A500ED870A /* Chillax-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FCF2AACD9A500ED870A /* Chillax-Regular.otf */; };
 		83495FD22AACDBC000ED870A /* Durer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83495FD12AACDBBF00ED870A /* Durer.ttf */; };
-		835A25832AA85CF50020E6A9 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A25822AA85CF40020E6A9 /* AppData.swift */; };
 		8373A9E42A9B603E00CA4A44 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373A9E32A9B603E00CA4A44 /* AudioPlayer.swift */; };
 		8373A9E82A9B793100CA4A44 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373A9E72A9B793100CA4A44 /* Colors.swift */; };
 		8373A9EB2A9B7C2900CA4A44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8373A9ED2A9B7C2900CA4A44 /* Localizable.strings */; };
@@ -116,7 +115,6 @@
 		83495FCD2AACD99A00ED870A /* Chillax-Extralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chillax-Extralight.otf"; sourceTree = "<group>"; };
 		83495FCF2AACD9A500ED870A /* Chillax-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chillax-Regular.otf"; sourceTree = "<group>"; };
 		83495FD12AACDBBF00ED870A /* Durer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Durer.ttf; sourceTree = "<group>"; };
-		835A25822AA85CF40020E6A9 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		8373A9E32A9B603E00CA4A44 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		8373A9E72A9B793100CA4A44 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		8373A9EC2A9B7C2900CA4A44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -422,7 +420,6 @@
 				83C0240F2A949EC800FE6B03 /* GeneralAPI */,
 				83C024352A95436F00FE6B03 /* Provider.swift */,
 				83C024372A95438300FE6B03 /* ErrorAPI.swift */,
-				835A25822AA85CF40020E6A9 /* AppData.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -742,7 +739,6 @@
 				830744642AB3279A005A66DE /* Assembler.swift in Sources */,
 				8388E6A72A9F7F1800A2520E /* NavigationRouter.swift in Sources */,
 				838EF06F2AB1D4E1004EC180 /* AuthenticationLocalService.swift in Sources */,
-				835A25832AA85CF50020E6A9 /* AppData.swift in Sources */,
 				838B23282AB7956D005074CE /* LyricsModelMapper.swift in Sources */,
 				838B232A2AB79665005074CE /* ReceiveLyricsEndpoint.swift in Sources */,
 				839DA0F92AAA34060001DF8C /* StartScreenViewModel.swift in Sources */,

@@ -17,7 +17,7 @@ final class StatsModelMapper: BaseModelMapper<ServerStats, Stats> {
 final class AvatarModelMapper: BaseModelMapper<ServerAvatar, Avatar> {
     
     override func toLocal(serverEntity: ServerAvatar) -> Avatar {
-        Avatar(url: URL(string: serverEntity.url ?? "")) // change to string?
+        Avatar(url: URL(string: serverEntity.url ?? ""))
     }
 }
 

@@ -40,6 +40,7 @@ struct TrackView: View {
                     .frame(width: 70, height: 70)
                     .shadow(color: .black.opacity(0.7), radius: 30)
                     .cornerRadius(15)
+                    
                 VStack(alignment: .leading, spacing: 10) {
                     Text(trackTitle)
                         .font(Font.custom("Chillax-Semibold", size: 18))

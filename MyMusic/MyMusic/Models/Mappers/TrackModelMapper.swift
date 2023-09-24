@@ -8,14 +8,12 @@
 import Foundation
 
 final class AudioModelMapper: BaseModelMapper<ServerAudio, Audio> {
-    
     override func toLocal(serverEntity: ServerAudio) -> Audio {
         Audio(url: URL(string: serverEntity.url ?? ""))
     }
 }
 
 final class YoutubeVideoModelMapper: BaseModelMapper<ServerYoutubeVideo, YoutubeVideo> {
-    
     override func toLocal(serverEntity: ServerYoutubeVideo) -> YoutubeVideo {
         YoutubeVideo(id: serverEntity.id ?? UUID().uuidString,
                      audio: AudioModelMapper().toLocal(list: serverEntity.audio))
@@ -52,9 +50,3 @@ final class TrackModelMapper: BaseModelMapper<ServerTrack, Track> {
         Track(youtubeVideo: YoutubeVideoModelMapper().toLocal(serverEntity: serverEntity.youtubeVideo ?? ServerYoutubeVideo(id: "", audio: [])), spotifyTrack: SpotifyTrackModelMapper().toLocal(serverEntity: serverEntity.spotifyTrack ?? ServerSpotifyTrack(id: nil, name: "", artists: [], album: ServerAlbum(name: "", shareUrl: "", cover: []), durationMs: 0)))
     }
 }
-
-//final class TrackModelMapper: BaseModelMapper<ServerTrack, Track> {
-//    override func toLocal(serverEntity: ServerTrack) -> Track {
-//        Track(youtubeVideo: YoutubeVideoModelMapper().toLocal(serverEntity: serverEntity.youtubeVideo!), spotifyTrack: SpotifyTrackModelMapper().toLocal(serverEntity: serverEntity.spotifyTrack!))
-//    }
-//}

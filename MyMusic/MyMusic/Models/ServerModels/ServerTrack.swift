@@ -19,7 +19,6 @@ struct ServerYoutubeVideo: Codable {
 
 struct ServerAudio: Codable {
     let url: String?
-    //let durationText: String?
 }
 
 struct ServerSpotifyTrack: Codable {

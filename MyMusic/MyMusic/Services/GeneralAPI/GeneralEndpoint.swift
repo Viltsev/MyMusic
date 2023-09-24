@@ -8,8 +8,6 @@
 import Foundation
 import Moya
 
-//typealias IdentifableElement = Int
-
 enum GeneralEndpoint {
     case getTrack(track: String)
 }

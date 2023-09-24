@@ -159,7 +159,6 @@ class DataManager: DataProtocol {
     private func saveData() {
         do {
             try container.viewContext.save()
-            fetchUsers()
         } catch let error {
             print("error saving. \(error)")
         }
@@ -169,7 +168,6 @@ class DataManager: DataProtocol {
     private func saveTrackData() {
         do {
             try container.viewContext.save()
-            fetchTracks()
         } catch let error {
             print("error saving. \(error)")
         }
@@ -178,7 +176,6 @@ class DataManager: DataProtocol {
     private func saveArtistData() {
         do {
             try container.viewContext.save()
-            fetchArtists()
         } catch let error {
             print("error saving. \(error)")
         }

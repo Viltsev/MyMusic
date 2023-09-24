@@ -21,7 +21,6 @@ struct YoutubeVideo: Identifiable {
 struct Audio: Identifiable {
     var id = UUID()
     let url: URL?
-    //let durationText: String
 }
 
 struct SpotifyTrack: Identifiable {
