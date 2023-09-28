@@ -17,12 +17,13 @@ struct MiniPlayer: View {
     
     @StateObject var trackViewModel = TrackViewModel()
     @StateObject var viewModelTrackInfo = TrackInfoViewModel()
+    @StateObject var miniPlayerViewModel = MiniPlayerViewModel()
     
     @State var offset: CGFloat = 0
-    @State private var showArtists: Bool = false
+    //@State private var showArtists: Bool = false
     @State private var repeatTrack: Bool = false
     @State var isLiked: Bool = false
-    @State private var showLyrics: Bool = false
+    //@State private var showLyrics: Bool = false
     
     @Binding var newTrack: Track
     @Binding var artists: [ReceivedArtist]
@@ -75,7 +76,8 @@ struct MiniPlayer: View {
                         HStack {
                             VStack {
                                 Button {
-                                    showArtists.toggle()
+                                    //showArtists.toggle()
+                                    miniPlayerViewModel.input.sheetButtonSubject.send(.artistsView)
                                 } label: {
                                     Text(artistNames.joined(separator: ", "))
                                         .font(Font.custom("Chillax-Regular", size: 20))
@@ -84,12 +86,19 @@ struct MiniPlayer: View {
                                         .lineLimit(2)
                                         .multilineTextAlignment(.leading)
                                 }
-                                    .sheet(isPresented: $showArtists) {
-                                        ArtistsView(artists: artists)
-                                            .presentationDetents([.large, .medium, .fraction(0.75)])
-                                    }
+//                                    .sheet(isPresented: $showArtists) {
+//                                        ArtistsView(artists: artists)
+//                                            .presentationDetents([.large, .medium, .fraction(0.75)])
+//                                    }
                                 
                             }
+                            .sheet(item: $miniPlayerViewModel.output.sheet, content: { sheet in
+                                switch sheet {
+                                case .artistsView:
+                                    ArtistsView(artists: artists)
+                                        .presentationDetents([.large, .medium, .fraction(0.75)])
+                                }
+                            })
                         }
                         VStack(spacing: 5) {
                             Slider(value: $audioPlayer.currentTimeSliderValue, in: 0...Double(newTrack.spotifyTrack.durationMs) / 1000, step: 1.0, onEditingChanged: { editing in
@@ -197,13 +206,23 @@ struct MiniPlayer: View {
                                     .font(.title2)
                                     .foregroundColor(.black)
                             }
-                            .sheet(isPresented: $showLyrics) {
-                                if viewModelTrackInfo.output.lyrics != nil {
-                                    LyricsView(trackTitle: newTrack.spotifyTrack.name,
-                                               trackArtists: artistNames.joined(separator: ", "),
-                                               receivedLyrics: viewModelTrackInfo.output.lyrics!)
+                            .sheet(item: $viewModelTrackInfo.output.sheet, content: { sheet in
+                                switch sheet {
+                                case .trackInfo:
+                                    if let lyrics = viewModelTrackInfo.output.lyrics {
+                                        LyricsView(trackTitle: newTrack.spotifyTrack.name,
+                                                   trackArtists: artistNames.joined(separator: ", "),
+                                                   receivedLyrics: lyrics)
+                                    }
                                 }
-                            }
+                            })
+//                            .sheet(isPresented: $showLyrics) {
+//                                if viewModelTrackInfo.output.lyrics != nil {
+//                                    LyricsView(trackTitle: newTrack.spotifyTrack.name,
+//                                               trackArtists: artistNames.joined(separator: ", "),
+//                                               receivedLyrics: viewModelTrackInfo.output.lyrics!)
+//                                }
+//                            }
                             Spacer()
                         }
                     }
@@ -288,11 +307,11 @@ struct MiniPlayer: View {
                 }
             }
         })
-        .onReceive(viewModelTrackInfo.successLyricsReceive, perform: { success in
-            if success {
-                showLyrics.toggle()
-            }
-        })
+//        .onReceive(viewModelTrackInfo.successLyricsReceive, perform: { success in
+//            if success {
+//                showLyrics.toggle()
+//            }
+//        })
         .frame(maxWidth: expand ? .infinity : nil, maxHeight: expand ? .infinity : 80)
         .background(
             VStack(spacing: 0) {

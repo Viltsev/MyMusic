@@ -41,9 +41,3 @@ struct LyricsView: View {
         .background(Color.purpleMid)
     }
 }
-
-//struct LyricsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LyricsView()
-//    }
-//}

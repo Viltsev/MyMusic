@@ -9,9 +9,9 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ArtistsView: View {
-    @StateObject var viewModelArtist = ArtistsViewModel()
+    @StateObject var viewModel = ArtistsViewModel()
     
-    @State private var showArtist: Bool = false
+    //@State private var showArtist: Bool = false
     
     var artists: [ReceivedArtist]
     
@@ -25,8 +25,9 @@ struct ArtistsView: View {
             ForEach(artists) { artist in
                 HStack {
                     Button {
-                        viewModelArtist.input.selectArtistSubject.send(artist)
-                        showArtist.toggle()
+                        viewModel.input.selectArtistSubject.send(artist)
+                        viewModel.input.sheetButtonSubject.send(.artistView)
+                        //showArtist.toggle()
                     } label: {
                         WebImage(url: artist.visuals.avatar.first?.url)
                             .resizable()
@@ -37,13 +38,21 @@ struct ArtistsView: View {
                             .font(Font.custom("Chillax-Regular", size: 20))
                             .foregroundColor(Color.white)
                     }
-                    .sheet(isPresented: $showArtist) {
-                        if viewModelArtist.output.selectedArtist != nil {
-                            ArtistView(receivedArtist: viewModelArtist.output.selectedArtist!)
-                        }
-                    }
+//                    .sheet(isPresented: $showArtist) {
+//                        if viewModel.output.selectedArtist != nil {
+//                            ArtistView(receivedArtist: viewModel.output.selectedArtist!)
+//                        }
+//                    }
                     Spacer()
                 }
+                .sheet(item: $viewModel.output.sheet, content: { sheet in
+                    switch sheet {
+                    case .artistView:
+                        if let selectedArtist = viewModel.output.selectedArtist {
+                            ArtistView(receivedArtist: selectedArtist)
+                        }
+                    }
+                })
             }
             Spacer()
         }

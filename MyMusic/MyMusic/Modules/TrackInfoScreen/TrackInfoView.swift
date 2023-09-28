@@ -97,20 +97,30 @@ struct TrackInfoView: View {
                 }
                 .padding(25)
             }
-            .sheet(isPresented: $showLyrics) {
-                if viewModelTrack.output.lyrics != nil {
-                    LyricsView(trackTitle: trackTitle,
-                               trackArtists: trackArtists,
-                               receivedLyrics: viewModelTrack.output.lyrics!)
+            .sheet(item: $viewModelTrack.output.sheet, content: { sheet in
+                switch sheet {
+                case .trackInfo:
+                    if let lyrics = viewModelTrack.output.lyrics {
+                        LyricsView(trackTitle: trackTitle,
+                                   trackArtists: trackArtists,
+                                   receivedLyrics: lyrics)
+                    }
                 }
-            }
+            })
+//            .sheet(isPresented: $showLyrics) {
+//                if viewModelTrack.output.lyrics != nil {
+//                    LyricsView(trackTitle: trackTitle,
+//                               trackArtists: trackArtists,
+//                               receivedLyrics: viewModelTrack.output.lyrics!)
+//                }
+//            }
             Spacer()
         }
-        .onReceive(viewModelTrack.successLyricsReceive, perform: { success in
-            if success {
-                showLyrics.toggle()
-            }
-        })
+//        .onReceive(viewModelTrack.successLyricsReceive, perform: { success in
+//            if success {
+//                showLyrics.toggle()
+//            }
+//        })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.purpleDark)
     }

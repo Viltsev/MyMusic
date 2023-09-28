@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecommendationsCircleView: View {
     @State private var shadowRadius = 50
+    
     var body: some View {
         HStack {
             Button {
@@ -24,9 +25,6 @@ struct RecommendationsCircleView: View {
                                 shadowRadius = 10
                             }
                         }
-//                        .onAppear {
-
-//                        }
                     Text(.myRecommendations)
                         .font(Font.custom("Chillax-Regular", size: 20))
                         .foregroundColor(Color.white)

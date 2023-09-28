@@ -56,14 +56,7 @@ struct TrackView: View {
             }
             HStack {
                 Button {
-                    if isLiked {
-                        print("delete: \(trackTitle)")
-                        trackViewModel.input.deleteTrackSubject.send(trackID)
-                        isLiked.toggle()
-                    } else {
-                        isLiked.toggle()
-                        trackViewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
-                    }
+                    addToFavorite()
                 } label: {
                     ZStack {
                         image(Image(systemName: "heart.fill"), show: isLiked)
@@ -125,14 +118,25 @@ extension TrackView {
         if isTopTrack {
             viewModelArtist.input.selectTopTrackSubject.send("\(trackTitle) \(trackArtists)")
             viewModel.input.searchButtonTapSubject.send(viewModelArtist.output.selectedTopTrack!)
-            if isActive {
-                isActive.toggle()
-            }
+//            if isActive {
+//                isActive.toggle()
+//            }
         }
         isActive.toggle()
         if audioPlayer.isPlaying {
             audioPlayer.pauseAudio()
         }
         audioPlayer.restartAudio(newTrack: true)
+    }
+    
+    private func addToFavorite() {
+        if isLiked {
+            print("delete: \(trackTitle)")
+            viewModel.input.deleteTrackSubject.send(trackID)
+            isLiked.toggle()
+        } else {
+            isLiked.toggle()
+            viewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
+        }
     }
 }

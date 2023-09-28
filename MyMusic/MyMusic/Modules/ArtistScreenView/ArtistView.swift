@@ -12,8 +12,8 @@ struct ArtistView: View {
     
     @StateObject var viewModel = ArtistViewModel()
     @State private var isMPActive = false
-    @State private var isLiked = false
-    @State private var showAlbum: Bool = false
+    //@State private var isLiked = false
+    //@State private var showAlbum: Bool = false
     
     var receivedArtist: ReceivedArtist
     
@@ -94,21 +94,31 @@ struct ArtistView: View {
                                     .frame(height: 280)
                                 }
                                 .padding(.horizontal, 10)
-                                .sheet(isPresented: $showAlbum) {
-                                    if viewModel.output.selectedAlbum != nil {
-                                        AlbumInfoView(albumTitle: viewModel.output.albumTitle ?? "",
-                                                      albumCover: viewModel.output.albumCover!,
-                                                      receivedAlbum: viewModel.output.selectedAlbum!)
-                                    }
-                                }
+//                                .sheet(isPresented: $showAlbum) {
+//                                    if viewModel.output.selectedAlbum != nil {
+//                                        AlbumInfoView(albumTitle: viewModel.output.albumTitle ?? "",
+//                                                      albumCover: viewModel.output.albumCover!,
+//                                                      receivedAlbum: viewModel.output.selectedAlbum!)
+//                                    }
+//                                }
                             }
                         }
                     }
-                    .onReceive(viewModel.successAlbumReceive, perform: { success in
-                        if success {
-                            showAlbum.toggle()
+                    .sheet(item: $viewModel.output.sheet, content: { sheet in
+                        switch sheet {
+                        case .albumView:
+                            if let selectedAlbum = viewModel.output.selectedAlbum {
+                                AlbumInfoView(albumTitle: viewModel.output.albumTitle ?? "",
+                                              albumCover: viewModel.output.albumCover!,
+                                              receivedAlbum: selectedAlbum)
+                            }
                         }
                     })
+//                    .onReceive(viewModel.successAlbumReceive, perform: { success in
+//                        if success {
+//                            showAlbum.toggle()
+//                        }
+//                    })
                 }
                 //.padding(16)
             }

@@ -24,12 +24,12 @@ struct StartScreenView: View {
                         VStack {
                             Text("Sign In")
                                 .font(Font.custom("Chillax-Semibold", size: 25))
-                                .foregroundColor(Color.greenLight)
+                                .foregroundColor(Color.purpleDark)
                         }
                         .frame(width: 200, height: 70)
-                        .background(Color.purpleMid)
+                        .background(Color.greenLight)
                         .cornerRadius(30)
-                        .shadow(color: .black, radius: 10)
+                        //.shadow(color: .black, radius: 10)
                         .padding(25)
                         
                     }
@@ -37,14 +37,14 @@ struct StartScreenView: View {
                         startViewModel.input.sheetButtonSubject.send(.logIn)
                     } label: {
                         VStack {
-                            Text("Log In")
+                            Text("Sign Up")
                                 .font(Font.custom("Chillax-Semibold", size: 25))
-                                .foregroundColor(Color.greenLight)
+                                .foregroundColor(Color.purpleDark)
                         }
                         .frame(width: 200, height: 70)
-                        .background(Color.purpleMid)
+                        .background(Color.greenLight)
                         .cornerRadius(30)
-                        .shadow(color: .black, radius: 10)
+                        //.shadow(color: .black, radius: 10)
                     }
                 }
                 .sheet(item: $startViewModel.output.sheet, content: { sheet in

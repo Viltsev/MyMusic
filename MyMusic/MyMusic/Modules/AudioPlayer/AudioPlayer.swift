@@ -52,7 +52,6 @@ final class AudioPlayer: ObservableObject {
             self.currentTimeSliderValue = time.seconds
             if self.currentTimeSliderValue >= self.totalTime! {
                 self.input.trackEndedSubject.send(true)
-                //self.pauseAudio()
             }
         }
     }
@@ -66,12 +65,7 @@ final class AudioPlayer: ObservableObject {
 
         if let currentTime = currentTime {
             player.seek(to: currentTime)
-            //self.currentTime = nil
         }
-        
-//        if self.currentTimeSliderValue >= self.totalTime! {
-//            restartAudio(newTrack: false)
-//        }
         
         player.play()
 

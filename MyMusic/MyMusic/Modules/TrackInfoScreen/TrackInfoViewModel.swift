@@ -16,9 +16,9 @@ final class TrackInfoViewModel: ObservableObject {
     
     let apiService = GenaralApi()
     
-    var successLyricsReceive: AnyPublisher<Bool, Never> {
-        return input.successLyricsReceiveSubject.eraseToAnyPublisher()
-    }
+//    var successLyricsReceive: AnyPublisher<Bool, Never> {
+//        return input.successLyricsReceiveSubject.eraseToAnyPublisher()
+//    }
     
     var successNextTrackReceive: AnyPublisher<Bool, Never> {
         return input.successNextTrackReceiveSubject.eraseToAnyPublisher()
@@ -33,6 +33,7 @@ final class TrackInfoViewModel: ObservableObject {
      func bind() {
          bindTrackLyrics()
          bindNextTrack()
+         bindSheetAction()
      }
      
      func bindTrackLyrics() {
@@ -55,7 +56,8 @@ final class TrackInfoViewModel: ObservableObject {
              .values()
              .sink { [weak self] lyrics in
                  guard let self else { return }
-                 self.input.successLyricsReceiveSubject.send(true)
+                 self.input.sheetButtonSubject.send(.trackInfo)
+                 //self.input.successLyricsReceiveSubject.send(true)
                  self.output.lyrics = lyrics
              }
              .store(in: &cancellable)
@@ -69,18 +71,39 @@ final class TrackInfoViewModel: ObservableObject {
              }
              .store(in: &cancellable)
      }
+     
+     func bindSheetAction() {
+         input.sheetButtonSubject
+             .sink { [weak self] in
+                 switch $0 {
+                     case .trackInfo:
+                         self?.output.sheet = .trackInfo
+                 }
+             }
+             .store(in: &cancellable)
+     }
  }
 
  extension TrackInfoViewModel {
      struct Input {
          let lyricsTrackSubject = PassthroughSubject<String, Never>()
-         let successLyricsReceiveSubject = PassthroughSubject<Bool, Never>()
+         //let successLyricsReceiveSubject = PassthroughSubject<Bool, Never>()
          let nextTrackSubject = PassthroughSubject<String, Never>()
          let successNextTrackReceiveSubject = PassthroughSubject<Bool, Never>()
+         let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
      }
      
      struct Output {
          var lyrics: TrackText?
          var nextTracksArray: [String] = []
+         var sheet: Sheet? = nil
+     }
+     
+     enum Sheet: Identifiable {
+         case trackInfo
+
+         var id: Int {
+             self.hashValue
+         }
      }
  }

@@ -20,13 +20,14 @@ final class ArtistViewModel: ObservableObject {
     }
     
     init() {
-     bind()
+        bind()
     }
  }
 
 extension ArtistViewModel {
     func bind() {
         bindAlbumInfo()
+        bindSheetAction()
     }
     
     func bindAlbumInfo() {
@@ -49,7 +50,8 @@ extension ArtistViewModel {
             .values()
             .sink { [weak self] album in
                 guard let self else { return }
-                self.input.successAlbumReceiveSubject.send(true)
+                self.input.sheetButtonSubject.send(.albumView)
+                //self.input.successAlbumReceiveSubject.send(true)
                 self.output.selectedAlbum = album
             }
             .store(in: &cancellable)
@@ -63,6 +65,17 @@ extension ArtistViewModel {
             }
             .store(in: &cancellable)
     }
+    
+    func bindSheetAction() {
+        input.sheetButtonSubject
+            .sink { [weak self] in
+                switch $0 {
+                    case .albumView:
+                        self?.output.sheet = .albumView
+                }
+            }
+            .store(in: &cancellable)
+    }
  }
 
 extension ArtistViewModel {
@@ -71,18 +84,22 @@ extension ArtistViewModel {
         let albumInfoSubject = PassthroughSubject<String, Never>()
         let successAlbumReceiveSubject = PassthroughSubject<Bool, Never>()
         let albumTitleAndCoverSubject = PassthroughSubject<(String, URL?), Never>()
+        let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
     }
 
     struct Output {
         var selectedAlbum: ReceivedArtistAlbums?
         var albumCover: URL?
         var albumTitle: String?
+        var sheet: Sheet? = nil
+    }
+    
+    enum Sheet: Identifiable {
+        case albumView
+
+        var id: Int {
+            self.hashValue
+        }
     }
     
 }
-
-
-
-
-    
-    

@@ -15,6 +15,7 @@
 		832053532AB5AAEA00B6A8DF /* AlbumModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832053522AB5AAEA00B6A8DF /* AlbumModelMapper.swift */; };
 		832053562AB5B14500B6A8DF /* AlbumInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832053552AB5B14500B6A8DF /* AlbumInfoView.swift */; };
 		832DFCF82AB49EF00090DEA5 /* TrackInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */; };
+		8341B1DD2AC2F14E009B6F14 /* MiniPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341B1DC2AC2F14E009B6F14 /* MiniPlayerViewModel.swift */; };
 		83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83495FBF2AAC8B7600ED870A /* UsersContainer.xcdatamodeld */; };
 		83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC22AAC8BED00ED870A /* DataManager.swift */; };
 		83495FC62AACAE7C00ED870A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83495FC52AACAE7C00ED870A /* ProfileView.swift */; };
@@ -106,6 +107,7 @@
 		832053522AB5AAEA00B6A8DF /* AlbumModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModelMapper.swift; sourceTree = "<group>"; };
 		832053552AB5B14500B6A8DF /* AlbumInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInfoView.swift; sourceTree = "<group>"; };
 		832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoView.swift; sourceTree = "<group>"; };
+		8341B1DC2AC2F14E009B6F14 /* MiniPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewModel.swift; sourceTree = "<group>"; };
 		83495FC02AAC8B7600ED870A /* UsersContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UsersContainer.xcdatamodel; sourceTree = "<group>"; };
 		83495FC22AAC8BED00ED870A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		83495FC52AACAE7C00ED870A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 			children = (
 				8373AA182A9B9A6300CA4A44 /* MiniPlayer.swift */,
 				8373AA162A9B9A3D00CA4A44 /* BlurView.swift */,
+				8341B1DC2AC2F14E009B6F14 /* MiniPlayerViewModel.swift */,
 			);
 			path = PlayerScreenView;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				83B3BB962AA715AE008D4063 /* ServerArtist.swift in Sources */,
 				832053532AB5AAEA00B6A8DF /* AlbumModelMapper.swift in Sources */,
 				838EF06C2AB1D440004EC180 /* OptionalString+Extension.swift in Sources */,
+				8341B1DD2AC2F14E009B6F14 /* MiniPlayerViewModel.swift in Sources */,
 				83C0241C2A94A6AD00FE6B03 /* BaseModelMapper.swift in Sources */,
 				83C024342A9542E500FE6B03 /* GeneralAPI.swift in Sources */,
 				83495FC32AAC8BED00ED870A /* DataManager.swift in Sources */,

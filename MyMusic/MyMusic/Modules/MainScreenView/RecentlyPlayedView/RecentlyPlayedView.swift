@@ -30,7 +30,7 @@ struct RecentlyPlayedView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
                 ForEach(savedArtistEntities, id: \.id) { artist in
-                    if let name = artist.name, let image = artist.image, let id = artist.artistID {
+                    if let name = artist.name, let image = artist.image, let id = artist.artistID, artist.userEmail == UserDefaults.standard.string(forKey: "email") {
                         Button {
                             viewModel.input.artistInfoSubject.send(id)
                         } label: {

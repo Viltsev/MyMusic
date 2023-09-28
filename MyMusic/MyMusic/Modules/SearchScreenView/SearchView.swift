@@ -14,10 +14,8 @@ struct SearchView: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
     @Environment(\.dismiss) var dismiss
     
-    @State private var playerItem: AVPlayerItem?
     @State private var trackName: String = ""
     @State private var isMPActive = false
-    @State private var isLiked = false
     @State var expand = false
     
     var body: some View {
@@ -41,7 +39,6 @@ struct SearchView: View {
                             .foregroundColor(Color.greenLight)
                     }
                 }
-                
                 .padding(25)
                 VStack {
                     if !viewModel.output.tracks.spotifyTrack.name.isEmpty {
@@ -106,17 +103,23 @@ struct SearchField: View {
         HStack {
             if isPassword {
                 SecureField("Search...", text: $text)
-                    .font(.system(size: CGFloat(fieldSize)))
+                    .font(Font.custom("Chillax-Regular", size: CGFloat(fieldSize)))
+                    .foregroundColor(Color.white)
+                    //.font(.system(size: CGFloat(fieldSize)))
                     .disableAutocorrection(true)
             } else {
                 if isEmail {
                     TextField("Search...", value: $text, formatter: LowerCaseStringFormatter())
-                        .font(.system(size: CGFloat(fieldSize)))
+                        .font(Font.custom("Chillax-Regular", size: CGFloat(fieldSize)))
+                        .foregroundColor(Color.white)
+                        //.font(.system(size: CGFloat(fieldSize)))
                         .disableAutocorrection(true)
                 }
                 else {
                     TextField("Search...", text: $text)
-                        .font(.system(size: CGFloat(fieldSize)))
+                        .font(Font.custom("Chillax-Regular", size: CGFloat(fieldSize)))
+                        .foregroundColor(Color.white)
+                        //.font(.system(size: CGFloat(fieldSize)))
                         .disableAutocorrection(true)
                 }
             }
@@ -149,10 +152,6 @@ extension SearchView {
             if isMPActive {
                 isMPActive.toggle()
             }
-//            if audioPlayer.isPlaying {
-//                audioPlayer.pauseAudio()
-//            }
-//            audioPlayer.restartAudio(newTrack: true)
         }
     }
 }

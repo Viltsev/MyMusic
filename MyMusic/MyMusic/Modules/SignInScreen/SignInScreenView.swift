@@ -24,7 +24,7 @@ struct SignInScreenView: View {
             }
             VStack(alignment: .leading, spacing: -10) {
                 Text("Email")
-                    .font(Font.custom("Chillax-Semibold", size: 20))
+                    .font(Font.custom("Chillax-Regular", size: 20))
                     .foregroundColor(Color.greenLight)
                     .padding(.horizontal, 60)
                 SearchField(text: $email,
@@ -37,7 +37,7 @@ struct SignInScreenView: View {
             VStack(alignment: .leading, spacing: -10) {
                 HStack {
                     Text("Password")
-                        .font(Font.custom("Chillax-Semibold", size: 20))
+                        .font(Font.custom("Chillax-Regular", size: 20))
                         .foregroundColor(Color.greenLight)
                         .padding(.horizontal, 60)
                     Spacer()
@@ -46,11 +46,11 @@ struct SignInScreenView: View {
                     } label: {
                         if isHidePassword {
                             Text("show")
-                                .font(Font.custom("Chillax-Semibold", size: 15))
+                                .font(Font.custom("Chillax-Regular", size: 15))
                                 .foregroundColor(Color.greenLight)
                         } else {
                             Text("hide")
-                                .font(Font.custom("Chillax-Semibold", size: 15))
+                                .font(Font.custom("Chillax-Regular", size: 15))
                                 .foregroundColor(Color.greenLight)
                         }
                     }
@@ -69,12 +69,12 @@ struct SignInScreenView: View {
                 VStack {
                     Text("Go to Music")
                         .font(Font.custom("Chillax-Semibold", size: 25))
-                        .foregroundColor(Color.greenLight)
+                        .foregroundColor(Color.purpleDark)
                 }
                 .frame(width: 305, height: 70)
-                .background(Color.purpleMid)
+                .background(Color.greenLight)
                 .cornerRadius(30)
-                .shadow(color: .black, radius: 10)
+                //.shadow(color: .black, radius: 10)
             }
             .disabled(signViewModel.output.isDisabledButton)
             Spacer()
