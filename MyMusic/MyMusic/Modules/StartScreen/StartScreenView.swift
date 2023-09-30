@@ -29,7 +29,6 @@ struct StartScreenView: View {
                         .frame(width: 200, height: 70)
                         .background(Color.greenLight)
                         .cornerRadius(30)
-                        //.shadow(color: .black, radius: 10)
                         .padding(25)
                         
                     }
@@ -44,7 +43,6 @@ struct StartScreenView: View {
                         .frame(width: 200, height: 70)
                         .background(Color.greenLight)
                         .cornerRadius(30)
-                        //.shadow(color: .black, radius: 10)
                     }
                 }
                 .sheet(item: $startViewModel.output.sheet, content: { sheet in

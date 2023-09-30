@@ -12,7 +12,7 @@ struct TrackInfoView: View {
     
     @EnvironmentObject var viewModel: TrackViewModel
     @StateObject var viewModelTrack = TrackInfoViewModel()
-    @State private var showLyrics: Bool = false
+
     var trackTitle: String
     var trackArtists: String
     var trackImage: URL?

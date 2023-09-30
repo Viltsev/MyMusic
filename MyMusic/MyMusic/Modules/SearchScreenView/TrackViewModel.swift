@@ -42,7 +42,7 @@ extension TrackViewModel {
     func bind() {
         saveTrack()
         deleteTrack()
-        checkFavoriteTrack()
+        //checkFavoriteTrack()
         bindTrackInfo()
         
         bindSearchButton()
@@ -51,6 +51,8 @@ extension TrackViewModel {
         saveRecentlyPlayedArtist()
         bindNextTrack()
         bindFullTopTracks()
+        bindSelectTopTrack()
+        defineFavoriteTrack()
     }
     
     func saveTrack() {
@@ -75,21 +77,21 @@ extension TrackViewModel {
             .store(in: &cancellable)
     }
     
-    func checkFavoriteTrack() {
-        input.checkFavoriteTrackSubject
-            .sink { trackID in
-                for track in self.savedTrackEntities {
-                    if let currentUser = UserDefaults.standard.string(forKey: "email"),
-                       track.userEmail == currentUser,
-                       let id = track.trackID {
-                        if id == trackID {
-                            self.output.isLiked = true
-                        }
-                    }
-                }
-            }
-            .store(in: &cancellable)
-    }
+//    func checkFavoriteTrack() {
+//        input.checkFavoriteTrackSubject
+//            .sink { trackID in
+//                for track in self.savedTrackEntities {
+//                    if let currentUser = UserDefaults.standard.string(forKey: "email"),
+//                       track.userEmail == currentUser,
+//                       let id = track.trackID {
+//                        if id == trackID {
+//                            self.output.isLiked = true
+//                        }
+//                    }
+//                }
+//            }
+//            .store(in: &cancellable)
+//    }
     
     func bindTrackInfo() {
         input.sheetButtonSubject
@@ -212,13 +214,36 @@ extension TrackViewModel {
             .store(in: &cancellable)
     }
     
+    func bindSelectTopTrack() {
+        input.selectTopTrackSubject
+            .sink { trackTitle in
+                self.output.selectedTopTrack = trackTitle
+            }
+            .store(in: &cancellable)
+    }
+    
+    func defineFavoriteTrack() {
+        input.isFavoriteTrackSubject
+            .sink { fetchedTracks, trackID in
+                for track in fetchedTracks {
+                    if let currentUser = UserDefaults.standard.string(forKey: "email"),
+                       track.userEmail == currentUser,
+                       let id = track.trackID {
+                        if id == trackID {
+                            self.output.isLiked = true
+                        }
+                    }
+                }
+            }
+            .store(in: &cancellable)
+    }
 }
 
 extension TrackViewModel {
     struct Input {
         let saveTrackSubject = PassthroughSubject<(String, String, URL?, String), Never>()
         let deleteTrackSubject = PassthroughSubject<String, Never>()
-        let checkFavoriteTrackSubject = PassthroughSubject<String, Never>()
+        //let checkFavoriteTrackSubject = PassthroughSubject<String, Never>()
         let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
         
         let searchButtonTapSubject = PassthroughSubject<String, Never>()
@@ -227,6 +252,8 @@ extension TrackViewModel {
         let recentlyPlayedArtistSubject = PassthroughSubject<[ReceivedArtist], Never>()
         let nextTrackSubject = PassthroughSubject<String, Never>()
         let topTrackFullSubject = PassthroughSubject<(String, String), Never>()
+        let selectTopTrackSubject = PassthroughSubject<String, Never>()
+        let isFavoriteTrackSubject = PassthroughSubject<([TrackEntity], String), Never>()
     }
     
     struct Output {
@@ -239,6 +266,7 @@ extension TrackViewModel {
         var playerItem: AVPlayerItem?
         var nextTracksArray: [String] = []
         var topTracksToPlay: [String] = []
+        var selectedTopTrack: String?
     }
     
     enum Sheet: Identifiable {

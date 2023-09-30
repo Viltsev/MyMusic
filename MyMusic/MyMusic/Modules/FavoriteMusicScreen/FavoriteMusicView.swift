@@ -13,12 +13,7 @@ struct FavoriteMusicView: View {
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var viewModel: TrackViewModel
     
-    @StateObject var viewModelFM = FavoriteMusicViewModel()
-    
-    //@State private var playerItem: AVPlayerItem?
     @State private var isMPActive = false
-    //@State private var isLiked = false
-    @State private var favoriteTracks: [TrackEntity] = []
     @State var expand = false
     
     private var savedTrackEntities: [TrackEntity] {

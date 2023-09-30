@@ -23,7 +23,6 @@ extension ArtistsViewModel {
     
     func bind() {
         bindSelectArtist()
-        bindSelectTopTrack()
         bindSheetAction()
     }
     
@@ -31,15 +30,6 @@ extension ArtistsViewModel {
         input.selectArtistSubject
             .sink { artist in
                 self.output.selectedArtist = artist
-            }
-            .store(in: &cancellable)
-    }
-    
-    func bindSelectTopTrack() {
-        input.selectTopTrackSubject
-            .sink { trackTitle in
-                self.output.selectedTopTrack = trackTitle
-                self.output.isTopTrackLoad = true
             }
             .store(in: &cancellable)
     }
@@ -59,14 +49,11 @@ extension ArtistsViewModel {
 extension ArtistsViewModel {
     struct Input {
         let selectArtistSubject = PassthroughSubject<ReceivedArtist, Never>()
-        let selectTopTrackSubject = PassthroughSubject<String, Never>()
         let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
     }
     
     struct Output {
         var selectedArtist: ReceivedArtist?
-        var selectedTopTrack: String?
-        var isTopTrackLoad: Bool?
         var sheet: Sheet? = nil
     }
     

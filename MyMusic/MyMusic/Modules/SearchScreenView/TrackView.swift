@@ -14,7 +14,6 @@ struct TrackView: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var viewModel: TrackViewModel
     
-    @StateObject var viewModelArtist = ArtistsViewModel()
     @StateObject var trackViewModel = TrackViewModel()
     
     @Binding var isActive: Bool
@@ -91,7 +90,33 @@ struct TrackView: View {
         .padding(25)
     }
     
-    func image(_ image: Image, show: Bool) -> some View {
+}
+
+extension TrackView {
+    private func playTrack() {
+        if isTopTrack {
+            viewModel.input.selectTopTrackSubject.send("\(trackTitle) \(trackArtists)")
+            viewModel.input.searchButtonTapSubject.send(viewModel.output.selectedTopTrack!)
+        }
+        isActive.toggle()
+        if audioPlayer.isPlaying {
+            audioPlayer.pauseAudio()
+        }
+        audioPlayer.restartAudio(newTrack: true)
+    }
+    
+    private func addToFavorite() {
+        if isLiked {
+            print("delete: \(trackTitle)")
+            viewModel.input.deleteTrackSubject.send(trackID)
+            isLiked.toggle()
+        } else {
+            isLiked.toggle()
+            viewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
+        }
+    }
+    
+    private func image(_ image: Image, show: Bool) -> some View {
         image
             .tint(isLiked ? Color.greenLight : Color.white)
             .font(.title)
@@ -109,34 +134,6 @@ struct TrackView: View {
                     self.isLiked = true
                 }
             }
-        }
-    }
-}
-
-extension TrackView {
-    private func playTrack() {
-        if isTopTrack {
-            viewModelArtist.input.selectTopTrackSubject.send("\(trackTitle) \(trackArtists)")
-            viewModel.input.searchButtonTapSubject.send(viewModelArtist.output.selectedTopTrack!)
-//            if isActive {
-//                isActive.toggle()
-//            }
-        }
-        isActive.toggle()
-        if audioPlayer.isPlaying {
-            audioPlayer.pauseAudio()
-        }
-        audioPlayer.restartAudio(newTrack: true)
-    }
-    
-    private func addToFavorite() {
-        if isLiked {
-            print("delete: \(trackTitle)")
-            viewModel.input.deleteTrackSubject.send(trackID)
-            isLiked.toggle()
-        } else {
-            isLiked.toggle()
-            viewModel.input.saveTrackSubject.send((trackTitle, trackArtists, trackImage, trackID))
         }
     }
 }

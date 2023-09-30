@@ -50,7 +50,6 @@ extension LogInViewModel {
                         print(error?.localizedDescription ?? "")
                     } else {
                         print("Success Log In")
-                        //self.dataManagerModel.input.fetchDataSubject.send()
                         AuthenticationLocalService.shared.status.send(true)
                         self.dataManager.addUser(name: name, email: email)
                         UserDefaults.standard.removeObject(forKey: "email")

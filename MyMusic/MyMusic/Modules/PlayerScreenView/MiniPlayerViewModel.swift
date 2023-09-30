@@ -22,6 +22,11 @@ final class MiniPlayerViewModel: ObservableObject {
 
 extension MiniPlayerViewModel {
     private func bind() {
+        bindSheetButton()
+        bindRepeatTrack()
+    }
+    
+    private func bindSheetButton() {
         input.sheetButtonSubject
             .sink { [weak self] in
                 switch $0 {
@@ -31,15 +36,25 @@ extension MiniPlayerViewModel {
             }
             .store(in: &cancellable)
     }
+    
+    private func bindRepeatTrack() {
+        input.repeatTrackSubject
+            .sink { [weak self] in
+                self?.output.repeatTrack.toggle()
+            }
+            .store(in: &cancellable)
+    }
 }
 
 extension MiniPlayerViewModel {
     struct Input {
         let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
+        let repeatTrackSubject = PassthroughSubject<Void, Never>()
     }
     
     struct Output {
         var sheet: Sheet? = nil
+        var repeatTrack: Bool = false
     }
     
     enum Sheet: Identifiable {
@@ -50,6 +65,3 @@ extension MiniPlayerViewModel {
         }
     }
 }
-
-
-

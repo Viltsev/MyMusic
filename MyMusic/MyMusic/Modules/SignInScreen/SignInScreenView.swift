@@ -74,7 +74,6 @@ struct SignInScreenView: View {
                 .frame(width: 305, height: 70)
                 .background(Color.greenLight)
                 .cornerRadius(30)
-                //.shadow(color: .black, radius: 10)
             }
             .disabled(signViewModel.output.isDisabledButton)
             Spacer()

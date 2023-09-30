@@ -16,10 +16,6 @@ final class TrackInfoViewModel: ObservableObject {
     
     let apiService = GenaralApi()
     
-//    var successLyricsReceive: AnyPublisher<Bool, Never> {
-//        return input.successLyricsReceiveSubject.eraseToAnyPublisher()
-//    }
-    
     var successNextTrackReceive: AnyPublisher<Bool, Never> {
         return input.successNextTrackReceiveSubject.eraseToAnyPublisher()
     }
@@ -57,7 +53,6 @@ final class TrackInfoViewModel: ObservableObject {
              .sink { [weak self] lyrics in
                  guard let self else { return }
                  self.input.sheetButtonSubject.send(.trackInfo)
-                 //self.input.successLyricsReceiveSubject.send(true)
                  self.output.lyrics = lyrics
              }
              .store(in: &cancellable)
@@ -87,7 +82,6 @@ final class TrackInfoViewModel: ObservableObject {
  extension TrackInfoViewModel {
      struct Input {
          let lyricsTrackSubject = PassthroughSubject<String, Never>()
-         //let successLyricsReceiveSubject = PassthroughSubject<Bool, Never>()
          let nextTrackSubject = PassthroughSubject<String, Never>()
          let successNextTrackReceiveSubject = PassthroughSubject<Bool, Never>()
          let sheetButtonSubject = PassthroughSubject<Sheet, Never>()

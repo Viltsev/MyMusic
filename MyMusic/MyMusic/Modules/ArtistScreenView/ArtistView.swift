@@ -12,8 +12,6 @@ struct ArtistView: View {
     
     @StateObject var viewModel = ArtistViewModel()
     @State private var isMPActive = false
-    //@State private var isLiked = false
-    //@State private var showAlbum: Bool = false
     
     var receivedArtist: ReceivedArtist
     

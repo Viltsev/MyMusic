@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct AlbumInfoView: View {
     @State private var isMPActive = false
-    //@State private var isLiked = false
+    
     var albumTitle: String
     var albumCover: URL?
     var receivedAlbum: ReceivedArtistAlbums

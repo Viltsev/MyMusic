@@ -40,32 +40,3 @@ extension FavoriteMusicViewModel {
         var topTracks: [String] = []
     }
 }
-
-
-/*
-final class FavoriteMusicViewModel: ObservableObject {
-     let input: Input = Input()
-     @Published var output: Output = Output()
-     var cancellable = Set<AnyCancellable>()
-     
-     init() {
-         bind()
-     }
- }
-
-extension FavoriteMusicViewModel {
-     func bind() {
-         
-     }
- }
-
-extension FavoriteMusicViewModel {
-     struct Input {
-         
-     }
-     
-     struct Output {
-         
-     }
- }
- */

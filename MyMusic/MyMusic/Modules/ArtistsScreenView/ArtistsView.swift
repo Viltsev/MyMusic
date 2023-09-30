@@ -9,10 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ArtistsView: View {
+    
     @StateObject var viewModel = ArtistsViewModel()
-    
-    //@State private var showArtist: Bool = false
-    
     var artists: [ReceivedArtist]
     
     var body: some View {

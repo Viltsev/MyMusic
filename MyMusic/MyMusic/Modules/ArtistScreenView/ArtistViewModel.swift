@@ -51,7 +51,6 @@ extension ArtistViewModel {
             .sink { [weak self] album in
                 guard let self else { return }
                 self.input.sheetButtonSubject.send(.albumView)
-                //self.input.successAlbumReceiveSubject.send(true)
                 self.output.selectedAlbum = album
             }
             .store(in: &cancellable)

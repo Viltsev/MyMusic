@@ -15,15 +15,11 @@ struct MiniPlayer: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var viewModel: TrackViewModel
     
-    @StateObject var trackViewModel = TrackViewModel()
     @StateObject var viewModelTrackInfo = TrackInfoViewModel()
     @StateObject var miniPlayerViewModel = MiniPlayerViewModel()
     
     @State var offset: CGFloat = 0
-    //@State private var showArtists: Bool = false
-    @State private var repeatTrack: Bool = false
     @State var isLiked: Bool = false
-    //@State private var showLyrics: Bool = false
     
     @Binding var newTrack: Track
     @Binding var artists: [ReceivedArtist]
@@ -76,21 +72,14 @@ struct MiniPlayer: View {
                         HStack {
                             VStack {
                                 Button {
-                                    //showArtists.toggle()
                                     miniPlayerViewModel.input.sheetButtonSubject.send(.artistsView)
                                 } label: {
                                     Text(artistNames.joined(separator: ", "))
                                         .font(Font.custom("Chillax-Regular", size: 20))
-                                        //.font(.headline)
                                         .foregroundColor(.black)
                                         .lineLimit(2)
                                         .multilineTextAlignment(.leading)
                                 }
-//                                    .sheet(isPresented: $showArtists) {
-//                                        ArtistsView(artists: artists)
-//                                            .presentationDetents([.large, .medium, .fraction(0.75)])
-//                                    }
-                                
                             }
                             .sheet(item: $miniPlayerViewModel.output.sheet, content: { sheet in
                                 switch sheet {
@@ -118,11 +107,11 @@ struct MiniPlayer: View {
                         .padding(.vertical, 30)
                         HStack(spacing: 25) {
                             Button {
-                                self.repeatTrack.toggle()
+                                miniPlayerViewModel.input.repeatTrackSubject.send()
                             } label: {
                                 Image(systemName: "repeat")
                                     .font(.title2)
-                                    .foregroundColor(repeatTrack ? Color.greenLight : Color.black)
+                                    .foregroundColor(miniPlayerViewModel.output.repeatTrack ? Color.greenLight : Color.black)
                             }
                             Spacer()
                             Button {
@@ -180,12 +169,12 @@ struct MiniPlayer: View {
                             Spacer()
                             Button {
                                 if isLiked {
-                                    trackViewModel.input.deleteTrackSubject.send(newTrack.spotifyTrack.trackID)
+                                    viewModel.input.deleteTrackSubject.send(newTrack.spotifyTrack.trackID)
                                     isLiked.toggle()
                                 } else {
                                     let artistNames = newTrack.spotifyTrack.artists.map { $0.name }
                                     let trackImage = newTrack.spotifyTrack.album.cover.first?.url
-                                    trackViewModel.input.saveTrackSubject.send((newTrack.spotifyTrack.name, artistNames.joined(separator: ", "), trackImage, newTrack.spotifyTrack.trackID))
+                                    viewModel.input.saveTrackSubject.send((newTrack.spotifyTrack.name, artistNames.joined(separator: ", "), trackImage, newTrack.spotifyTrack.trackID))
                                     isLiked.toggle()
                                 }
                             } label:
@@ -216,13 +205,6 @@ struct MiniPlayer: View {
                                     }
                                 }
                             })
-//                            .sheet(isPresented: $showLyrics) {
-//                                if viewModelTrackInfo.output.lyrics != nil {
-//                                    LyricsView(trackTitle: newTrack.spotifyTrack.name,
-//                                               trackArtists: artistNames.joined(separator: ", "),
-//                                               receivedLyrics: viewModelTrackInfo.output.lyrics!)
-//                                }
-//                            }
                             Spacer()
                         }
                     }
@@ -264,12 +246,12 @@ struct MiniPlayer: View {
                     
                     Button {
                         if isLiked {
-                            trackViewModel.input.deleteTrackSubject.send(newTrack.spotifyTrack.trackID)
+                            viewModel.input.deleteTrackSubject.send(newTrack.spotifyTrack.trackID)
                             isLiked.toggle()
                         } else {
                             let artistNames = newTrack.spotifyTrack.artists.map { $0.name }
                             let trackImage = newTrack.spotifyTrack.album.cover.first?.url
-                            trackViewModel.input.saveTrackSubject.send((newTrack.spotifyTrack.name, artistNames.joined(separator: ", "), trackImage, newTrack.spotifyTrack.trackID))
+                            viewModel.input.saveTrackSubject.send((newTrack.spotifyTrack.name, artistNames.joined(separator: ", "), trackImage, newTrack.spotifyTrack.trackID))
                             isLiked.toggle()
                         }
                     } label:
@@ -289,29 +271,9 @@ struct MiniPlayer: View {
         }
         .onReceive(audioPlayer.isTrackEnded, perform: { result in
             if result {
-                if self.repeatTrack {
-                    audioPlayer.restartAudio(newTrack: false)
-                } else {
-                    audioPlayer.pauseAudio()
-                    if !viewModel.output.nextTracksArray.isEmpty {
-                        let nextTrack = viewModel.output.nextTracksArray[0]
-                        viewModel.input.searchButtonTapSubject.send(nextTrack)
-                        viewModel.output.nextTracksArray.removeFirst()
-                        audioPlayer.restartAudio(newTrack: true)
-                    } else if !viewModel.output.topTracksToPlay.isEmpty {
-                        viewModel.output.topTracksToPlay.removeFirst()
-                        let nextTrack = viewModel.output.topTracksToPlay[0]
-                        viewModel.input.searchButtonTapSubject.send(nextTrack)
-                        audioPlayer.restartAudio(newTrack: true)
-                    }
-                }
+                trackEndedAction()
             }
         })
-//        .onReceive(viewModelTrackInfo.successLyricsReceive, perform: { success in
-//            if success {
-//                showLyrics.toggle()
-//            }
-//        })
         .frame(maxWidth: expand ? .infinity : nil, maxHeight: expand ? .infinity : 80)
         .background(
             VStack(spacing: 0) {
@@ -325,7 +287,7 @@ struct MiniPlayer: View {
             }
         )
         .cornerRadius(expand ? 20 : 0)
-        .offset(y: expand ? 0 : -48) // 35
+        .offset(y: expand ? 0 : -48)
         .offset(y: offset)
         .gesture(DragGesture().onEnded(onEnded(value: )).onChanged(onChanged(value: )))
         .ignoresSafeArea()
@@ -369,6 +331,25 @@ struct MiniPlayer: View {
                 if id == newTrack.spotifyTrack.trackID {
                     self.isLiked = true
                 }
+            }
+        }
+    }
+    
+    private func trackEndedAction() {
+        if miniPlayerViewModel.output.repeatTrack {
+            audioPlayer.restartAudio(newTrack: false)
+        } else {
+            audioPlayer.pauseAudio()
+            if !viewModel.output.nextTracksArray.isEmpty {
+                let nextTrack = viewModel.output.nextTracksArray[0]
+                viewModel.input.searchButtonTapSubject.send(nextTrack)
+                viewModel.output.nextTracksArray.removeFirst()
+                audioPlayer.restartAudio(newTrack: true)
+            } else if !viewModel.output.topTracksToPlay.isEmpty {
+                viewModel.output.topTracksToPlay.removeFirst()
+                let nextTrack = viewModel.output.topTracksToPlay[0]
+                viewModel.input.searchButtonTapSubject.send(nextTrack)
+                audioPlayer.restartAudio(newTrack: true)
             }
         }
     }
