@@ -50,7 +50,7 @@ struct StartScreenView: View {
                     case .signIn:
                         SignInScreenView()
                     case .logIn:
-                        LogInScreenView()
+                        SignUpScreenView()
                     }
                 })
                 .frame(width: screenWidth / 1.2, height: screenHeight / 1.3)

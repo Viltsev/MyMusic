@@ -14,6 +14,7 @@ import FirebaseAuth
 final class SignInViewModel: ObservableObject {
     let input: Input = Input()
     @Published var output: Output = Output()
+    @Published var errorSignIn: Bool = false
     var cancellable = Set<AnyCancellable>()
     
     init() {
@@ -45,9 +46,12 @@ extension SignInViewModel {
             .sink { (email, password) in
                 Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                     if error != nil {
-                        print(error?.localizedDescription ?? "")
+                        self.errorSignIn = true
+                        self.output.errorDescription = error?.localizedDescription ?? ""
                     } else {
                         print("Success Sign In")
+                        self.errorSignIn = false
+                        self.output.errorDescription = ""
                         AuthenticationLocalService.shared.status.send(true)
                         UserDefaults.standard.removeObject(forKey: "email")
                         UserDefaults.standard.removeObject(forKey: "name")
@@ -70,6 +74,7 @@ extension SignInViewModel {
     
     struct Output {
         var isDisabledButton: Bool = true
+        var errorDescription: String = ""
     }
     
 }

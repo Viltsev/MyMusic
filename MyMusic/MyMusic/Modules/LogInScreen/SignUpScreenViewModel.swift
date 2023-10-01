@@ -11,11 +11,13 @@ import CombineExt
 import FirebaseCore
 import FirebaseAuth
 
-final class LogInViewModel: ObservableObject {
+final class SignUpViewModel: ObservableObject {
     private let dataManager = AppAssembler.resolve(DataProtocol.self)
     
     let input: Input = Input()
     @Published var output: Output = Output()
+    @Published var errorSignUp: Bool = false
+    
     var cancellable = Set<AnyCancellable>()
  
     init() {
@@ -23,7 +25,7 @@ final class LogInViewModel: ObservableObject {
     }
 }
 
-extension LogInViewModel {
+extension SignUpViewModel {
     
     func bind() {
         bindAccessToLogIn()
@@ -43,13 +45,16 @@ extension LogInViewModel {
     }
     
     func logIn() {
-        input.logInSubject
+        input.signUpSubject
             .sink { (email, password, name) in
                 Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                     if error != nil {
-                        print(error?.localizedDescription ?? "")
+                        self.errorSignUp = true
+                        self.output.errorDescription = error?.localizedDescription ?? ""
                     } else {
                         print("Success Log In")
+                        self.errorSignUp = false
+                        self.output.errorDescription = ""
                         AuthenticationLocalService.shared.status.send(true)
                         self.dataManager.addUser(name: name, email: email)
                         UserDefaults.standard.removeObject(forKey: "email")
@@ -64,17 +69,18 @@ extension LogInViewModel {
     
 }
 
-extension LogInViewModel {
+extension SignUpViewModel {
     
     struct Input {
         let nameSubject = PassthroughSubject<String, Never>()
         let emailSubject = PassthroughSubject<String, Never>()
         let passwordSubject = PassthroughSubject<String, Never>()
-        let logInSubject = PassthroughSubject<(String, String, String), Never>()
+        let signUpSubject = PassthroughSubject<(String, String, String), Never>()
     }
     
     struct Output {
         var isDisabledButton: Bool = true
+        var errorDescription: String = ""
     }
     
 }

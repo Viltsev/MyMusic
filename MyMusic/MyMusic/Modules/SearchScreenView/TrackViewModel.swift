@@ -19,6 +19,8 @@ final class TrackViewModel: ObservableObject {
     let apiService = GenaralApi()
     let input: Input = Input()
     @Published var output: Output = Output()
+    @Published var isLiked: Bool = false
+    
     var cancellable = Set<AnyCancellable>()
     
     private var savedTrackEntities: [TrackEntity] {
@@ -230,7 +232,7 @@ extension TrackViewModel {
                        track.userEmail == currentUser,
                        let id = track.trackID {
                         if id == trackID {
-                            self.output.isLiked = true
+                            self.isLiked = true
                         }
                     }
                 }

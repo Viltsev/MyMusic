@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct LogInScreenView: View {
-    @StateObject var logViewModel = LogInViewModel()
+struct SignUpScreenView: View {
+    @StateObject var signUpViewModel = SignUpViewModel()
     
     @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isHidePassword = true
+    @State private var alert: Bool = false
     
     var body: some View {
         VStack(spacing: 15) {
@@ -77,7 +78,7 @@ struct LogInScreenView: View {
                     .padding(25)
             }
             Button {
-                logIn(email, password, name)
+                signUp(email, password, name)
             } label: {
                 VStack {
                     Text("Go to Music")
@@ -88,8 +89,25 @@ struct LogInScreenView: View {
                 .background(Color.greenLight)
                 .cornerRadius(30)
             }
-            .disabled(logViewModel.output.isDisabledButton)
+            .onReceive(signUpViewModel.$errorSignUp, perform: { error in
+                if error {
+                    alert.toggle()
+                }
+            })
+            .disabled(signUpViewModel.output.isDisabledButton)
             Spacer()
+        }
+        .alert(isPresented: $alert) {
+            Alert(
+                title: Text("Error!"),
+                message: Text(signUpViewModel.output.errorDescription),
+                primaryButton: .default(Text("OK")) {
+                    alert = false
+                },
+                secondaryButton: .cancel() {
+                    alert = false
+                }
+            )
         }
         .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -97,21 +115,21 @@ struct LogInScreenView: View {
     }
 }
 
-extension LogInScreenView {
+extension SignUpScreenView {
     func bindEmail(_ email: String) {
-        logViewModel.input.emailSubject.send(email)
+        signUpViewModel.input.emailSubject.send(email)
     }
     
     func bindPassword(_ password: String) {
-        logViewModel.input.passwordSubject.send(password)
+        signUpViewModel.input.passwordSubject.send(password)
     }
     
     func bindName(_ name: String) {
-        logViewModel.input.nameSubject.send(name)
+        signUpViewModel.input.nameSubject.send(name)
     }
     
-    func logIn(_ email: String, _ password: String, _ name: String) {
-        logViewModel.input.logInSubject.send((email, password, name))
+    func signUp(_ email: String, _ password: String, _ name: String) {
+        signUpViewModel.input.signUpSubject.send((email, password, name))
     }
 }
 

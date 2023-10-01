@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct SignInScreenView: View {
-    @StateObject var signViewModel = SignInViewModel()
+    @StateObject var signInViewModel = SignInViewModel()
 
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isHidePassword = true
+    @State private var alert: Bool = false
     
     var body: some View {
         VStack(spacing: 15) {
@@ -75,8 +76,25 @@ struct SignInScreenView: View {
                 .background(Color.greenLight)
                 .cornerRadius(30)
             }
-            .disabled(signViewModel.output.isDisabledButton)
+            .onReceive(signInViewModel.$errorSignIn, perform: { error in
+                if error {
+                    alert.toggle()
+                }
+            })
+            .disabled(signInViewModel.output.isDisabledButton)
             Spacer()
+        }
+        .alert(isPresented: $alert) {
+            Alert(
+                title: Text("Error!"),
+                message: Text(signInViewModel.output.errorDescription),
+                primaryButton: .default(Text("OK")) {
+                    alert = false
+                },
+                secondaryButton: .cancel() {
+                    alert = false
+                }
+            )
         }
         .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -86,14 +104,18 @@ struct SignInScreenView: View {
 
 extension SignInScreenView {
     func bindEmail(_ email: String) {
-        signViewModel.input.emailSubject.send(email)
+        signInViewModel.input.emailSubject.send(email)
     }
     
     func bindPassword(_ password: String) {
-        signViewModel.input.passwordSubject.send(password)
+        signInViewModel.input.passwordSubject.send(password)
     }
     
     func signIn(_ email: String, _ password: String) {
-        signViewModel.input.signInSubject.send((email, password))
+        signInViewModel.input.signInSubject.send((email, password))
     }
 }
+
+
+        
+    

@@ -61,6 +61,9 @@ struct TrackView: View {
                         image(Image(systemName: "heart.fill"), show: isLiked)
                         image(Image(systemName: "heart"), show: !isLiked)
                     }
+                    .onReceive(trackViewModel.$isLiked) { isLiked in
+                        self.isLiked = isLiked
+                    }
                 }
                 Button {
                     trackViewModel.input.sheetButtonSubject.send(.trackInfo)
@@ -85,7 +88,8 @@ struct TrackView: View {
             
         }
         .onAppear {
-            isFavoriteTrack()
+            trackViewModel.input.isFavoriteTrackSubject.send((savedTrackEntities, trackID))
+            //isFavoriteTrack()
         }
         .padding(25)
     }
