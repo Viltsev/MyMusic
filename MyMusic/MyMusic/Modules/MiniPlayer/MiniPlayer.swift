@@ -260,6 +260,9 @@ struct MiniPlayer: View {
                             image(Image(systemName: "heart.fill"), show: isLiked)
                             image(Image(systemName: "heart"), show: !isLiked)
                         }
+                        .onReceive(miniPlayerViewModel.$isLiked) { isLiked in
+                            self.isLiked = isLiked
+                        }
                     }
                 }
             }
@@ -267,7 +270,7 @@ struct MiniPlayer: View {
             Spacer()
         }
         .onAppear {
-            isFavoriteTrack()
+            miniPlayerViewModel.input.isFavoriteTrackSubject.send((savedTrackEntities, newTrack.spotifyTrack.trackID))
         }
         .onReceive(audioPlayer.isTrackEnded, perform: { result in
             if result {
@@ -292,14 +295,16 @@ struct MiniPlayer: View {
         .gesture(DragGesture().onEnded(onEnded(value: )).onChanged(onChanged(value: )))
         .ignoresSafeArea()
     }
-    
-    func onChanged(value: DragGesture.Value) {
+}
+
+extension MiniPlayer {
+    private func onChanged(value: DragGesture.Value) {
         if value.translation.height > 0 && expand {
             offset = value.translation.height
         }
     }
     
-    func onEnded(value: DragGesture.Value) {
+    private func onEnded(value: DragGesture.Value) {
         withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.95, blendDuration: 0.95)) {
             if value.translation.height > height {
                 expand = false
@@ -323,18 +328,6 @@ struct MiniPlayer: View {
             .animation(.interpolatingSpring(stiffness: 170, damping: 15), value: show)
     }
     
-    private func isFavoriteTrack() {
-        for track in savedTrackEntities {
-            if let currentUser = UserDefaults.standard.string(forKey: "email"),
-               track.userEmail == currentUser,
-               let id = track.trackID {
-                if id == newTrack.spotifyTrack.trackID {
-                    self.isLiked = true
-                }
-            }
-        }
-    }
-    
     private func trackEndedAction() {
         if miniPlayerViewModel.output.repeatTrack {
             audioPlayer.restartAudio(newTrack: false)
@@ -353,5 +346,4 @@ struct MiniPlayer: View {
             }
         }
     }
-
 }

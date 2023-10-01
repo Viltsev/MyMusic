@@ -13,12 +13,10 @@ struct TrackView: View {
 
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var viewModel: TrackViewModel
-    
     @StateObject var trackViewModel = TrackViewModel()
-    
     @Binding var isActive: Bool
-    
     @State var isLiked: Bool = false
+    
     var trackTitle: String
     var trackArtists: String
     var trackImage: URL?
@@ -89,7 +87,6 @@ struct TrackView: View {
         }
         .onAppear {
             trackViewModel.input.isFavoriteTrackSubject.send((savedTrackEntities, trackID))
-            //isFavoriteTrack()
         }
         .padding(25)
     }
@@ -127,17 +124,5 @@ extension TrackView {
             .scaleEffect(show ? 1 : 0)
             .opacity(show ? 1 : 0)
             .animation(.interpolatingSpring(stiffness: 170, damping: 15), value: show)
-    }
-    
-    private func isFavoriteTrack() {
-        for track in savedTrackEntities {
-            if let currentUser = UserDefaults.standard.string(forKey: "email"),
-               track.userEmail == currentUser,
-               let id = track.trackID {
-                if id == trackID {
-                    self.isLiked = true
-                }
-            }
-        }
     }
 }

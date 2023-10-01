@@ -64,7 +64,6 @@
 		83ADC6BC2AAB56DD00CD62E5 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 83ADC6BB2AAB56DD00CD62E5 /* FirebaseAuthCombine-Community */; };
 		83ADC6BE2AAB7EA800CD62E5 /* SignUpScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ADC6BD2AAB7EA800CD62E5 /* SignUpScreenViewModel.swift */; };
 		83B05A902A9666AD0057CA72 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B05A8F2A9666AD0057CA72 /* SearchView.swift */; };
-		83B05A932A9689B80057CA72 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B05A922A9689B80057CA72 /* SearchViewModel.swift */; };
 		83B05A962A968BC10057CA72 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 83B05A952A968BC10057CA72 /* CombineExt */; };
 		83B3BB8B2AA5BFE6008D4063 /* ArtistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B3BB8A2AA5BFE6008D4063 /* ArtistsView.swift */; };
 		83B3BB8D2AA5CAC3008D4063 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B3BB8C2AA5CAC3008D4063 /* Artist.swift */; };
@@ -152,7 +151,6 @@
 		83ADC6B42AAB55C400CD62E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83ADC6BD2AAB7EA800CD62E5 /* SignUpScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewModel.swift; sourceTree = "<group>"; };
 		83B05A8F2A9666AD0057CA72 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		83B05A922A9689B80057CA72 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		83B3BB8A2AA5BFE6008D4063 /* ArtistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsView.swift; sourceTree = "<group>"; };
 		83B3BB8C2AA5CAC3008D4063 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		83B3BB8F2AA60D0D008D4063 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
@@ -213,21 +211,21 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
-		832053542AB5B13200B6A8DF /* AlbumInfoScreen */ = {
+		832053542AB5B13200B6A8DF /* AlbumInfo */ = {
 			isa = PBXGroup;
 			children = (
 				832053552AB5B14500B6A8DF /* AlbumInfoView.swift */,
 			);
-			path = AlbumInfoScreen;
+			path = AlbumInfo;
 			sourceTree = "<group>";
 		};
-		832DFCF62AB49ECA0090DEA5 /* TrackInfoScreen */ = {
+		832DFCF62AB49ECA0090DEA5 /* TrackInfo */ = {
 			isa = PBXGroup;
 			children = (
 				832DFCF72AB49EF00090DEA5 /* TrackInfoView.swift */,
 				83A1D5162AB83D2B0052F709 /* TrackInfoViewModel.swift */,
 			);
-			path = TrackInfoScreen;
+			path = TrackInfo;
 			sourceTree = "<group>";
 		};
 		83495FBE2AAC8B5D00ED870A /* Data */ = {
@@ -239,12 +237,12 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		83495FC42AACAE6600ED870A /* ProfileScreen */ = {
+		83495FC42AACAE6600ED870A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				83495FC52AACAE7C00ED870A /* ProfileView.swift */,
 			);
-			path = ProfileScreen;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		8373A9F12A9B7E9400CA4A44 /* Extensions */ = {
@@ -254,6 +252,15 @@
 				838EF06B2AB1D440004EC180 /* OptionalString+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8376D1492AC96E6500A44BBB /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				8383A0802AA9089900C9E175 /* TrackView.swift */,
+				838AEC5D2AADF6340081F7C6 /* TrackViewModel.swift */,
+			);
+			path = Track;
 			sourceTree = "<group>";
 		};
 		8388E6A32A9F7ED000A2520E /* Navigation */ = {
@@ -282,13 +289,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		838AEC572AADC8350081F7C6 /* FavoriteMusicScreen */ = {
+		838AEC572AADC8350081F7C6 /* FavoriteMusic */ = {
 			isa = PBXGroup;
 			children = (
 				838AEC5B2AADC9270081F7C6 /* FavoriteMusicView.swift */,
 				838B23212AB77F14005074CE /* FavoriteMusicViewModel.swift */,
 			);
-			path = FavoriteMusicScreen;
+			path = FavoriteMusic;
 			sourceTree = "<group>";
 		};
 		838AEC582AADC8520081F7C6 /* App */ = {
@@ -299,21 +306,21 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		838B232B2AB79893005074CE /* LyricsScreen */ = {
+		838B232B2AB79893005074CE /* Lyrics */ = {
 			isa = PBXGroup;
 			children = (
 				838B232C2AB798A9005074CE /* LyricsView.swift */,
 			);
-			path = LyricsScreen;
+			path = Lyrics;
 			sourceTree = "<group>";
 		};
-		838BEC362ABB844700BF0064 /* ArtistsScreenView */ = {
+		838BEC362ABB844700BF0064 /* Artists */ = {
 			isa = PBXGroup;
 			children = (
 				83B3BB8A2AA5BFE6008D4063 /* ArtistsView.swift */,
 				83B3BB912AA62588008D4063 /* ArtistsViewModel.swift */,
 			);
-			path = ArtistsScreenView;
+			path = Artists;
 			sourceTree = "<group>";
 		};
 		838EF0652AB1D329004EC180 /* AppContainer */ = {
@@ -349,22 +356,22 @@
 			path = StartScreen;
 			sourceTree = "<group>";
 		};
-		839DA0F02AA9EC300001DF8C /* SignInScreen */ = {
+		839DA0F02AA9EC300001DF8C /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
 				839DA0F12AA9EC490001DF8C /* SignInScreenView.swift */,
 				839DA0FA2AAA61130001DF8C /* SignInViewModel.swift */,
 			);
-			path = SignInScreen;
+			path = SignIn;
 			sourceTree = "<group>";
 		};
-		839DA0F32AAA15B50001DF8C /* LogInScreen */ = {
+		839DA0F32AAA15B50001DF8C /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
 				839DA0F42AAA15CF0001DF8C /* SignUpScreenView.swift */,
 				83ADC6BD2AAB7EA800CD62E5 /* SignUpScreenViewModel.swift */,
 			);
-			path = LogInScreen;
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		83A1D51A2AB859860052F709 /* RecentlyPlayedView */ = {
@@ -376,15 +383,12 @@
 			path = RecentlyPlayedView;
 			sourceTree = "<group>";
 		};
-		83B05A912A96896F0057CA72 /* SearchScreenView */ = {
+		83B05A912A96896F0057CA72 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
 				83B05A8F2A9666AD0057CA72 /* SearchView.swift */,
-				83B05A922A9689B80057CA72 /* SearchViewModel.swift */,
-				8383A0802AA9089900C9E175 /* TrackView.swift */,
-				838AEC5D2AADF6340081F7C6 /* TrackViewModel.swift */,
 			);
-			path = SearchScreenView;
+			path = SearchScreen;
 			sourceTree = "<group>";
 		};
 		83B3BB882AA5BFA2008D4063 /* AudioPlayer */ = {
@@ -395,23 +399,23 @@
 			path = AudioPlayer;
 			sourceTree = "<group>";
 		};
-		83B3BB892AA5BFBB008D4063 /* PlayerScreenView */ = {
+		83B3BB892AA5BFBB008D4063 /* MiniPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				8373AA182A9B9A6300CA4A44 /* MiniPlayer.swift */,
 				8373AA162A9B9A3D00CA4A44 /* BlurView.swift */,
 				8341B1DC2AC2F14E009B6F14 /* MiniPlayerViewModel.swift */,
 			);
-			path = PlayerScreenView;
+			path = MiniPlayer;
 			sourceTree = "<group>";
 		};
-		83B3BB8E2AA60CF7008D4063 /* ArtistScreenView */ = {
+		83B3BB8E2AA60CF7008D4063 /* Artist */ = {
 			isa = PBXGroup;
 			children = (
 				83B3BB8F2AA60D0D008D4063 /* ArtistView.swift */,
 				83A1D5182AB856050052F709 /* ArtistViewModel.swift */,
 			);
-			path = ArtistScreenView;
+			path = Artist;
 			sourceTree = "<group>";
 		};
 		83C0240E2A949EB500FE6B03 /* Services */ = {
@@ -473,20 +477,22 @@
 		83C024132A949EF300FE6B03 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				838B232B2AB79893005074CE /* LyricsScreen */,
-				832053542AB5B13200B6A8DF /* AlbumInfoScreen */,
-				832DFCF62AB49ECA0090DEA5 /* TrackInfoScreen */,
-				838AEC572AADC8350081F7C6 /* FavoriteMusicScreen */,
-				83495FC42AACAE6600ED870A /* ProfileScreen */,
-				839DA0F32AAA15B50001DF8C /* LogInScreen */,
-				839DA0F02AA9EC300001DF8C /* SignInScreen */,
 				839DA0ED2AA9E1C80001DF8C /* StartScreen */,
-				83B3BB8E2AA60CF7008D4063 /* ArtistScreenView */,
-				838BEC362ABB844700BF0064 /* ArtistsScreenView */,
-				83B3BB892AA5BFBB008D4063 /* PlayerScreenView */,
+				839DA0F02AA9EC300001DF8C /* SignIn */,
+				839DA0F32AAA15B50001DF8C /* SignUp */,
+				83C024282A94BD8900FE6B03 /* MainScreen */,
+				83A1D51A2AB859860052F709 /* RecentlyPlayedView */,
+				83495FC42AACAE6600ED870A /* Profile */,
+				838AEC572AADC8350081F7C6 /* FavoriteMusic */,
+				83B05A912A96896F0057CA72 /* SearchScreen */,
 				83B3BB882AA5BFA2008D4063 /* AudioPlayer */,
-				83B05A912A96896F0057CA72 /* SearchScreenView */,
-				83C024282A94BD8900FE6B03 /* MainScreenView */,
+				8376D1492AC96E6500A44BBB /* Track */,
+				83B3BB892AA5BFBB008D4063 /* MiniPlayer */,
+				832DFCF62AB49ECA0090DEA5 /* TrackInfo */,
+				838BEC362ABB844700BF0064 /* Artists */,
+				83B3BB8E2AA60CF7008D4063 /* Artist */,
+				832053542AB5B13200B6A8DF /* AlbumInfo */,
+				838B232B2AB79893005074CE /* Lyrics */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -525,16 +531,15 @@
 			path = Mappers;
 			sourceTree = "<group>";
 		};
-		83C024282A94BD8900FE6B03 /* MainScreenView */ = {
+		83C024282A94BD8900FE6B03 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
 				83CEAEF62A914C530044F2CF /* ContentView.swift */,
 				83C024292A94BDCA00FE6B03 /* SearchBarView.swift */,
 				83C0242B2A94BDFF00FE6B03 /* RecommendationsCircleView.swift */,
 				83C0242D2A94BE4E00FE6B03 /* FavoriteTracksView.swift */,
-				83A1D51A2AB859860052F709 /* RecentlyPlayedView */,
 			);
-			path = MainScreenView;
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		83CEAEE82A914C520044F2CF = {
@@ -693,7 +698,6 @@
 				838B23262AB79525005074CE /* Lyrics.swift in Sources */,
 				839DA0FB2AAA61130001DF8C /* SignInViewModel.swift in Sources */,
 				83C024382A95438300FE6B03 /* ErrorAPI.swift in Sources */,
-				83B05A932A9689B80057CA72 /* SearchViewModel.swift in Sources */,
 				83CEAEF72A914C530044F2CF /* ContentView.swift in Sources */,
 				83A1D5192AB856050052F709 /* ArtistViewModel.swift in Sources */,
 				83495FC12AAC8B7600ED870A /* UsersContainer.xcdatamodeld in Sources */,

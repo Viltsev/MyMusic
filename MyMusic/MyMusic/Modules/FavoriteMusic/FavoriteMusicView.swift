@@ -37,13 +37,13 @@ struct FavoriteMusicView: View {
                         .font(Font.custom("Chillax-Semibold", size: 30))
                         .foregroundColor(Color.greenLight)
                     Spacer()
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .font(.title2)
-                            .foregroundColor(Color.greenLight)
-                    }
+//                    Button {
+//                        
+//                    } label: {
+//                        Image(systemName: "magnifyingglass")
+//                            .font(.title2)
+//                            .foregroundColor(Color.greenLight)
+//                    }
                 }
                 .padding(25)
                 Button {

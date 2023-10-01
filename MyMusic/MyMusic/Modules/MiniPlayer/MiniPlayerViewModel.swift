@@ -13,6 +13,7 @@ import CombineExt
 final class MiniPlayerViewModel: ObservableObject {
     let input: Input = Input()
     @Published var output: Output = Output()
+    @Published var isLiked: Bool = false
     var cancellable = Set<AnyCancellable>()
     
     init() {
@@ -24,6 +25,7 @@ extension MiniPlayerViewModel {
     private func bind() {
         bindSheetButton()
         bindRepeatTrack()
+        defineFavoriteTrack()
     }
     
     private func bindSheetButton() {
@@ -44,12 +46,29 @@ extension MiniPlayerViewModel {
             }
             .store(in: &cancellable)
     }
+    
+    private func defineFavoriteTrack() {
+        input.isFavoriteTrackSubject
+            .sink { fetchedTracks, trackID in
+                for track in fetchedTracks {
+                    if let currentUser = UserDefaults.standard.string(forKey: "email"),
+                       track.userEmail == currentUser,
+                       let id = track.trackID {
+                        if id == trackID {
+                            self.isLiked = true
+                        }
+                    }
+                }
+            }
+            .store(in: &cancellable)
+    }
 }
 
 extension MiniPlayerViewModel {
     struct Input {
         let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
         let repeatTrackSubject = PassthroughSubject<Void, Never>()
+        let isFavoriteTrackSubject = PassthroughSubject<([TrackEntity], String), Never>()
     }
     
     struct Output {

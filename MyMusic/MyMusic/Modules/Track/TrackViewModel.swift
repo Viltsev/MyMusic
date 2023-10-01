@@ -44,7 +44,6 @@ extension TrackViewModel {
     func bind() {
         saveTrack()
         deleteTrack()
-        //checkFavoriteTrack()
         bindTrackInfo()
         
         bindSearchButton()
@@ -78,22 +77,6 @@ extension TrackViewModel {
             }
             .store(in: &cancellable)
     }
-    
-//    func checkFavoriteTrack() {
-//        input.checkFavoriteTrackSubject
-//            .sink { trackID in
-//                for track in self.savedTrackEntities {
-//                    if let currentUser = UserDefaults.standard.string(forKey: "email"),
-//                       track.userEmail == currentUser,
-//                       let id = track.trackID {
-//                        if id == trackID {
-//                            self.output.isLiked = true
-//                        }
-//                    }
-//                }
-//            }
-//            .store(in: &cancellable)
-//    }
     
     func bindTrackInfo() {
         input.sheetButtonSubject
@@ -245,7 +228,6 @@ extension TrackViewModel {
     struct Input {
         let saveTrackSubject = PassthroughSubject<(String, String, URL?, String), Never>()
         let deleteTrackSubject = PassthroughSubject<String, Never>()
-        //let checkFavoriteTrackSubject = PassthroughSubject<String, Never>()
         let sheetButtonSubject = PassthroughSubject<Sheet, Never>()
         
         let searchButtonTapSubject = PassthroughSubject<String, Never>()

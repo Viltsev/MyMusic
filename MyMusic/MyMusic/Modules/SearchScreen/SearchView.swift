@@ -105,21 +105,18 @@ struct SearchField: View {
                 SecureField("Search...", text: $text)
                     .font(Font.custom("Chillax-Regular", size: CGFloat(fieldSize)))
                     .foregroundColor(Color.white)
-                    //.font(.system(size: CGFloat(fieldSize)))
                     .disableAutocorrection(true)
             } else {
                 if isEmail {
                     TextField("Search...", value: $text, formatter: LowerCaseStringFormatter())
                         .font(Font.custom("Chillax-Regular", size: CGFloat(fieldSize)))
                         .foregroundColor(Color.white)
-                        //.font(.system(size: CGFloat(fieldSize)))
                         .disableAutocorrection(true)
                 }
                 else {
                     TextField("Search...", text: $text)
                         .font(Font.custom("Chillax-Regular", size: CGFloat(fieldSize)))
                         .foregroundColor(Color.white)
-                        //.font(.system(size: CGFloat(fieldSize)))
                         .disableAutocorrection(true)
                 }
             }
